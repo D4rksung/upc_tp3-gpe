@@ -1,0 +1,5 @@
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\bin\Release\Entidades.Petcenter.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\bin\Release\Entidades.Petcenter.pdb
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Release\Entidades.Petcenter.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Release\Entidades.Petcenter.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Release\Entidades.Petcenter.pdb

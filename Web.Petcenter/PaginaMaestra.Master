@@ -1,0 +1,142 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PaginaMaestra.master.cs" Inherits="Web.Petcenter.PaginaMaestra" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxControlToolkit" %>
+<!DOCTYPE html>
+
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Modulo de peluqueria">
+    <meta name="author" content="Gestion de peluqueria">
+    <link rel="icon" href="Content/Img/favicon.ico">
+    <title><%: Page.Title %> - PetCenter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
+    <link href="Content2/css/estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <form id="form1" runat="server" class="form-horizontal">
+        <asp:UpdatePanel ID="upMenu" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <!-- Fixed navbar -->
+               
+
+                <nav class="navbar navbar-default navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#myPage">
+                                <img src="Content/img/logo.png" /></a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="Default.aspx">INICIO</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >GESTIÓN  DE PELUQUERÍA <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                 
+                                        <li><a href="ActualizaProgramacion.aspx" style ="color:#6972d8 !important">Actualizar Programación de atención de cita</a></li>
+                                        <li><a href="#" style ="color:#6972d8 !important">Kardex</a></li>
+                                       <li><a href="#" style ="color:#6972d8 !important">Hoja de servicio</a></li>
+                                       <li><a href="#" style ="color:#6972d8 !important">Capacidad de recursos y servicios</a></li>
+                                       <li><a href="#" style ="color:#6972d8 !important">Eficiencia de uso de recursos</a></li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </nav>
+
+                <ajaxControlToolkit:ToolkitScriptManager ID="tsmMaster" runat="server" EnableScriptGlobalization="true" />
+
+                <div class="container">
+                    <br />
+                    <br />
+                    <br />
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <!-- /container -->
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+
+    <script src='<%=Page.ResolveUrl("~/Scripts/jquery/v2.2.4.js") %>' type="text/javascript"></script>
+    <script src='<%=Page.ResolveUrl("~/Scripts/bootstrap/bootstrap.js") %>' type="text/javascript"></script>
+    <script src='<%=Page.ResolveUrl("~/Scripts/Js/jquery.autoNumeric.js") %>' type="text/javascript"></script>
+    <script src='<%=Page.ResolveUrl("~/Scripts/Js/jquery.growl.js") %>' type="text/javascript"></script>
+
+    <asp:UpdateProgress ID="upgFormMenu" runat="server" DisplayAfter="0" AssociatedUpdatePanelID="upMenu">
+        <ProgressTemplate>
+            <div class="css-UpdateProgress-ui">
+                <div class="css-UpdateProgress-img">
+                    <img id="imgProgresoabc" src="Content/Img/progress2.gif" alt="" />
+                </div>
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <script>
+        function pageLoad() {
+            // Seleccion #FFF3AE
+            //$('.table  tr').mouseover(function () {
+            //    $(this).css("background-color", "#FFFFCC");
+            //}).mouseout(function () {
+            //    $(this).css("background-color", "#ffffff");
+            //});
+
+            $('[alt=integer]').autoNumeric('init', { mDec: 0, aSep: '' });
+            $('[alt=decimal-us]').autoNumeric('init');
+        }
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+
+            $(window).scroll(function () {
+                $(".slideanim").each(function () {
+                    var pos = $(this).offset().top;
+
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+        })
+    </script>
+</body>
+</html>

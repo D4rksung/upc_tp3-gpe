@@ -1,0 +1,5 @@
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\bin\Release\Utilitario.Comun.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\bin\Release\Utilitario.Comun.pdb
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\obj\Release\Utilitario.Comun.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\obj\Release\Utilitario.Comun.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\obj\Release\Utilitario.Comun.pdb

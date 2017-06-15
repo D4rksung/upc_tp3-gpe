@@ -1,0 +1,8 @@
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\bin\Debug\Utilitario.Comun.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\bin\Debug\Utilitario.Comun.pdb
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.pdb
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Utilitario.Comun\bin\Debug\Utilitario.Comun.dll
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Utilitario.Comun\bin\Debug\Utilitario.Comun.pdb
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.dll
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.pdb

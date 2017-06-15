@@ -1,0 +1,15 @@
+D:\JL\Pruebas\PetCenter\Entidades.Administracion\bin\Debug\Entidades.Petcenter.dll
+D:\JL\Pruebas\PetCenter\Entidades.Administracion\bin\Debug\Entidades.Petcenter.pdb
+D:\JL\Pruebas\PetCenter\Entidades.Administracion\obj\Debug\Entidades.Petcenter.csprojResolveAssemblyReference.cache
+D:\JL\Pruebas\PetCenter\Entidades.Administracion\obj\Debug\Entidades.Petcenter.dll
+D:\JL\Pruebas\PetCenter\Entidades.Administracion\obj\Debug\Entidades.Petcenter.pdb
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.pdb
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.csprojResolveAssemblyReference.cache
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.dll
+C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.pdb
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.dll
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.pdb
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.dll
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.pdb
+D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.csprojResolveAssemblyReference.cache
