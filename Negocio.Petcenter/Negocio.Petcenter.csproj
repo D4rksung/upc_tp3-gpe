@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtencionPeluqueriaBuss.cs" />
+    <Compile Include="IProgramacion.cs" />
+    <Compile Include="ProgramacionCita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos.Petcenter\Datos.Petcenter.csproj">

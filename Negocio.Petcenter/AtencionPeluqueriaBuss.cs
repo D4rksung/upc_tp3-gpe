@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Negocio.Petcenter
 {
-    public static class AtencionPeluqueriaBuss
+    public static class AtencionPeluqueriaBuss 
     {
 
         public static DataTable ParametroListar(string strDominio)
@@ -206,48 +206,14 @@ namespace Negocio.Petcenter
         {
             return AtencionPeluqueriaDAO.BuscarCitaDetalleEmpleados(idDetalleCita, idServicio);
         }
+
+
         #endregion
 
 
         #region Grabar
 
-        public static Boolean GrabarProgramación(Int32 idServicio, String idCita, DataTable dtEmpleados, Int32 idDetalleCita, Int32 idSector, Int32 accion, String MotivoAnulacion)
-        {
-
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
-            string Resultado = string.Empty;
-
-            try
-            {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
-
-                if (accion == 1)
-                    Resultado = AtencionPeluqueriaDAO.ActualizarProgramacion(idServicio, dtEmpleados, idDetalleCita, idSector, idCita, txOle);
-                else if (accion == 2)
-                    Resultado = AtencionPeluqueriaDAO.AnularProgramacion(idDetalleCita, idServicio, MotivoAnulacion, idCita, txOle);
-
-                txOle.Commit();
-                cnnDS.Close();
-                return (Resultado != String.Empty);
-            }
-            catch (Exception ex)
-            {
-                txOle.Rollback();
-                cnnDS.Close();
-                throw;
-                return false;
-            }
-            finally
-            {
-                cnnDS = null;
-                txOle = null;
-            }
-        }
+      
 
         #endregion
 

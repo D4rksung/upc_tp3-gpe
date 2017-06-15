@@ -53,3 +53,14 @@ C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Negocio.Petcenter\obj\Debug\Negocio.Petcenter.csprojResolveAssemblyReference.cache
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Negocio.Petcenter\obj\Debug\Negocio.Petcenter.dll
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Negocio.Petcenter\obj\Debug\Negocio.Petcenter.pdb
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Negocio.Petcenter.dll
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Negocio.Petcenter.pdb
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Datos.Petcenter.dll
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Entidades.Petcenter.dll
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Utilitario.Comun.dll
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Datos.Petcenter.pdb
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Entidades.Petcenter.pdb
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\bin\Debug\Utilitario.Comun.pdb
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\obj\Debug\Negocio.Petcenter.csprojResolveAssemblyReference.cache
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\obj\Debug\Negocio.Petcenter.dll
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Negocio.Petcenter\obj\Debug\Negocio.Petcenter.pdb

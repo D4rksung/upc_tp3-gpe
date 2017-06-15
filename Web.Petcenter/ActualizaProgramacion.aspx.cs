@@ -355,7 +355,7 @@ namespace Web.Petcenter
                     }
 
                 }
-                if (AtencionPeluqueriaBuss.GrabarProgramación(Int32.Parse(idServicioP.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaP.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 1, txtMotivoAnulacion.Text))
+                if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioP.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaP.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 1, txtMotivoAnulacion.Text))
                 {
                     EmpleadosAsig = new DataTable();
                     Servicios = new DataTable();
@@ -462,7 +462,7 @@ namespace Web.Petcenter
                
             }
 
-            if (AtencionPeluqueriaBuss.GrabarProgramación(Int32.Parse(idServicioA.Value), Citasstr , EmpleadosAsig, Int32.Parse(idDetalleCitaA.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 2, txtMotivoAnulacion.Text))
+            if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioA.Value), Citasstr , EmpleadosAsig, Int32.Parse(idDetalleCitaA.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 2, txtMotivoAnulacion.Text))
             { 
                 lblMensajeTitulo.Text = "INFORMATIVO";
                 lblMensaje.Text = "Informativo:Se procedió a Anular planificación de atención.";

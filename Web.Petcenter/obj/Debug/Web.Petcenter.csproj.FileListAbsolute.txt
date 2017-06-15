@@ -69,3 +69,4 @@ C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Web.Petcenter\bin\Datos.Pet
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.csprojResolveAssemblyReference.cache
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.dll
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.pdb
+C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.csprojResolveAssemblyReference.cache
