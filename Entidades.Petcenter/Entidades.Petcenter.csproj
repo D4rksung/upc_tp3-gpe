@@ -44,6 +44,8 @@
     <Compile Include="DetalleServicio.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Especie.cs" />
+    <Compile Include="Grafica.cs" />
+    <Compile Include="GraficaResponse.cs" />
     <Compile Include="HojaServicio.cs" />
     <Compile Include="KardexMaterial.cs" />
     <Compile Include="Mascota.cs" />

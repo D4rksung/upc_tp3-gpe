@@ -47,5 +47,46 @@ namespace Negocio.Petcenter
             }
         }
 
+        public bool GrabarHojadeServicio(Int32 idDetalleCita, DataTable dt, String txtComents)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+
+            SqlConnection cnnDS = new SqlConnection();
+            SqlTransaction txOle = null;
+            string Resultado = string.Empty;
+
+            try
+            {
+                cnnDS.ConnectionString = conn;
+                cnnDS.Open();
+                txOle = cnnDS.BeginTransaction();
+
+                Resultado = AtencionPeluqueriaDAO.ActualizarHojaServicio(idDetalleCita, dt, txtComents, txOle);
+                
+                txOle.Commit();
+                cnnDS.Close();
+                return (Resultado != String.Empty);
+            }
+            catch (Exception ex)
+            {
+                txOle.Rollback();
+                cnnDS.Close();
+                throw;
+                return false;
+            }
+            finally
+            {
+                cnnDS = null;
+                txOle = null;
+            }
+        }
+
+        public DataTable GrabarHojadeServicioComents(Int32 idDetalleCita, String text)
+        {
+
+            return AtencionPeluqueriaDAO.GrabarHojadeServicioComents(idDetalleCita, text);
+
+           
+        }
     }
 }

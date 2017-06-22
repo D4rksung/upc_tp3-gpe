@@ -8,16 +8,6 @@ D:\JL\Pruebas\PetCenter\Datos.Administracion\bin\Debug\Utilitario.Comun.pdb
 D:\JL\Pruebas\PetCenter\Datos.Administracion\obj\Debug\Datos.Petcenter.csprojResolveAssemblyReference.cache
 D:\JL\Pruebas\PetCenter\Datos.Administracion\obj\Debug\Datos.Petcenter.dll
 D:\JL\Pruebas\PetCenter\Datos.Administracion\obj\Debug\Datos.Petcenter.pdb
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.dll
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.pdb
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.dll
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\log4net.dll
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.dll
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.pdb
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.pdb
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.csprojResolveAssemblyReference.cache
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.dll
-C:\Users\Miguel\Desktop\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.pdb
 D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.dll
 D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.pdb
 D:\ESCRITORIO\PetCenter\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.dll
@@ -37,6 +27,26 @@ C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\E
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.pdb
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.dll
 C:\Users\Miguel\Desktop\Diseño\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.pdb
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.dll
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.pdb
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.dll
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\log4net.dll
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.dll
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.pdb
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.pdb
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.dll
+D:\ESCRITORIO\Nueva carpeta (3)\PetCenter-Peluqueriav7.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.pdb
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.dll
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.pdb
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.dll
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\log4net.dll
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.dll
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.pdb
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.pdb
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.dll
+D:\ESCRITORIO\PetCenter-Peluqueriav9.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.pdb
 C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.dll
 C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.pdb
 C:\Users\USUARIO\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.dll

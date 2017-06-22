@@ -42,7 +42,7 @@ namespace Web.Petcenter
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMasc", "$('#myModalMasc').modal();", true);
             upModalMasc.Update();
         }
-        
+
         protected void btnBuscarCitaMasc_Click(object sender, EventArgs e)
         {
 
@@ -69,7 +69,7 @@ namespace Web.Petcenter
             obj.FechaFinal = txtFechaFinCita.Text;
             obj.CodigoCita = txtCodigoCitaCita.Text;
             obj.CodigoCliente = txtCodigoClienteCita.Text;
-            obj.Cliente  = txtnombreclienteCita.Text;
+            obj.Cliente = txtnombreclienteCita.Text;
             obj.CodigoMascota = txtCodigoMascotaCita.Text;
             obj.Mascota = txtnombreMascotaCita.Text;
             obj.Tipo = 2;
@@ -89,11 +89,11 @@ namespace Web.Petcenter
             {
                 txtCodigoCita.Text = e.CommandArgument.ToString();
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal('hide');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal2", "AsignarValor(1, '"+ e.CommandArgument.ToString() + "' );", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal2", "AsignarValor(1, '" + e.CommandArgument.ToString() + "' );", true);
                 //EDITAR
             }
 
-            
+
 
         }
         protected void grvResultadoMascPopup_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -143,8 +143,9 @@ namespace Web.Petcenter
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalError", "$('#myModalError').modal();", true);
                 upModalError.Update();
             }
-            else { 
-            Response.Redirect("MantenimientoProgramaciondeAtencion.aspx?mode=2&upd=0&id=" + grvresultado.SelectedDataKey.Values[0]);
+            else
+            {
+                Response.Redirect("MantenimientoProgramaciondeAtencion.aspx?mode=2&upd=0&id=" + grvresultado.SelectedDataKey.Values[0]);
             }
         }
 

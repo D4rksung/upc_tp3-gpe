@@ -20,6 +20,15 @@ namespace Negocio.Petcenter
             return AtencionPeluqueriaDAO.BusquedaHojaServicio(hoja);
         }
 
+        public static DataTable BuscarServicioHoy(Int32 codigo, String fechaInicial, String fechaFinal)
+        {
+            return AtencionPeluqueriaDAO.BuscarServicioHoy(codigo, fechaInicial, fechaFinal);
+        }
+
+        public static DataSet BuscarServicioDetalle(Int32 iddetalleCita)
+        {
+            return AtencionPeluqueriaDAO.BuscarServicioDetalle(iddetalleCita);
+        }
 
         //Grabar Hoja de servicio
         public static string GrabarHojaServicio(HojaServicio objParam, List<DetalleServicio> detalle, int accion)
@@ -71,7 +80,6 @@ namespace Negocio.Petcenter
                 txOle = null;
             }
         }
-
 
 
         public static DataSet GetDatosHojaServicioEjecutar(int idHojaServicio)
@@ -168,7 +176,7 @@ namespace Negocio.Petcenter
 
         public static DataTable GetServicio()
         {
-            return AtencionPeluqueriaDAO.GetEstado();
+            return AtencionPeluqueriaDAO.GetServicio();
         }
 
         public static DataTable GetEmpleados()
@@ -210,12 +218,7 @@ namespace Negocio.Petcenter
 
         #endregion
 
-
-        #region Grabar
-
-      
-
-        #endregion
+        
 
         #endregion
     }

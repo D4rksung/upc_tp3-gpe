@@ -53,6 +53,7 @@ namespace Datos.Petcenter
             }
         }
 
+
         //busqueda de hoja de servicio
         public static DataTable BusquedaHojaServicio(HojaServicio hoja)
         {
@@ -118,6 +119,107 @@ namespace Datos.Petcenter
             }
         }
 
+        public static DataTable GrabarHojadeServicioComents(Int32 idDetalleCita, String text)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+                cmd.CommandText = "usp_HojaServicio_ComentsGrabar";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                if (idDetalleCita != 0)
+                    cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = idDetalleCita;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = DBNull.Value;
+
+                if (idDetalleCita != 0)
+                    cmd.Parameters.Add(new SqlParameter("@Comments", SqlDbType.VarChar,5000)).Value = text;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@Comments", SqlDbType.VarChar, 5000)).Value = DBNull.Value;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                dap.Fill(dt);
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+            }
+        }
+
+        public static string ActualizarHojaServicioComents(int idDetalleCita, string text, SqlTransaction txOle)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandText = "usp_HojaServicio_ComentsGrabar";
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = txOle.Connection;
+                cmd.Transaction = txOle;
+
+                cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = idDetalleCita;
+                cmd.Parameters.Add(new SqlParameter("@Comments", SqlDbType.Int)).Value = text;
+                cmd.ExecuteNonQuery();
+
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                cmd = null;
+            }
+        }
+
+        public static string ActualizarHojaServicio(Int32 idDetalleCita, DataTable dt, String txtComents, SqlTransaction txOle)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandText = "usp_HojaServicio_Grabar";
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = txOle.Connection;
+                cmd.Transaction = txOle;
+
+                cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = idDetalleCita;
+                cmd.Parameters.Add(new SqlParameter("@dtMaterial", SqlDbType.Structured)).Value = dt;
+                cmd.Parameters.Add(new SqlParameter("@Comentarios", SqlDbType.VarChar,5000)).Value = txtComents;
+                cmd.ExecuteNonQuery();
+
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                cmd = null;
+            }
+        }
+
         //ingreso de hoja de servicio
         public static string InsertarHojaServicio(HojaServicio  objParam, SqlTransaction objTx)
         {
@@ -150,8 +252,9 @@ namespace Datos.Petcenter
                 cmd = null;
             }
         }
+        
 
-       
+
 
         //Modificar de hoja de servicio
         public static void ModificarHojaServicio(HojaServicio objParam, SqlTransaction objTx)
@@ -749,7 +852,7 @@ namespace Datos.Petcenter
             }
         }
 
-        public static DataTable GetEstado()
+        public static DataTable GetServicio()
         {
             //Shared
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
@@ -884,12 +987,12 @@ namespace Datos.Petcenter
                 cmd.Connection = cnn;
 
                 if (obj.FechaInicial != String.Empty)
-                    cmd.Parameters.Add(new SqlParameter("@FechaInicial", SqlDbType.VarChar, 10)).Value = obj.FechaInicial;
+                    cmd.Parameters.Add(new SqlParameter("@FechaInicial", SqlDbType.VarChar, 10)).Value = obj.FechaInicial.Substring(6, 4) + obj.FechaInicial.Substring(3, 2) + obj.FechaInicial.Substring(0, 2);
                 else
                     cmd.Parameters.Add(new SqlParameter("@FechaInicial", SqlDbType.VarChar)).Value = DBNull.Value;
 
                 if (obj.FechaFinal != String.Empty)
-                    cmd.Parameters.Add(new SqlParameter("@FechaFinal", SqlDbType.VarChar, 10)).Value = obj.FechaFinal;
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinal", SqlDbType.VarChar, 10)).Value = obj.FechaFinal.Substring(6, 4) + obj.FechaFinal.Substring(3, 2) + obj.FechaFinal.Substring(0, 2);
                 else
                     cmd.Parameters.Add(new SqlParameter("@FechaFinal", SqlDbType.VarChar, 10)).Value = DBNull.Value;
 
@@ -1104,9 +1207,160 @@ namespace Datos.Petcenter
             }
         }
 
-      
+
         #endregion
 
         #endregion
+
+
+
+
+
+        #region Metodos Actualizar Hoja de servicio
+
+        #region Combos
+
+      
+        public static DataTable GetEstadosHS()
+        {
+            //Shared
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_EstadosHS_gl";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+
+        #endregion
+
+
+        public static DataSet BuscarServicioDetalle(int iddetalleCita)
+        {
+            //Shared
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_GestionHojaServicioDetalle_gl";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                if (iddetalleCita > 0)
+                    cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = iddetalleCita;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = DBNull.Value;
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataSet dt = new DataSet();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+    
+
+        public static DataTable BuscarServicioHoy(Int32 codigo, String FechaInicial, String FechaFinal)
+        {
+            
+            //Shared
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_GestionHojaServicio_gl";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+                
+                     if (codigo>0)
+                    cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = codigo;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = DBNull.Value;
+
+                if (FechaInicial != String.Empty)
+                    cmd.Parameters.Add(new SqlParameter("@FechaInicial", SqlDbType.VarChar, 10)).Value = FechaInicial.Substring(6, 4) + FechaInicial.Substring(3, 2) + FechaInicial.Substring(0, 2);
+                else
+                    cmd.Parameters.Add(new SqlParameter("@FechaInicial", SqlDbType.VarChar)).Value = DBNull.Value;
+
+                if (FechaFinal != String.Empty)
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinal", SqlDbType.VarChar, 10)).Value = FechaFinal.Substring(6, 4) + FechaFinal.Substring(3, 2) + FechaFinal.Substring(0, 2) ; 
+                else
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinal", SqlDbType.VarChar, 10)).Value = DBNull.Value;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataSet dt = new DataSet();
+                dap.Fill(dt);
+
+                return dt.Tables[0];
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+        
+    
+        #endregion
+
     }
 }

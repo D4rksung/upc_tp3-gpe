@@ -10,7 +10,6 @@
 namespace Web.Petcenter {
     
     
-    public partial class Default
-    {
+    public partial class Default {
     }
 }

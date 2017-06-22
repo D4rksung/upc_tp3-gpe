@@ -12,11 +12,6 @@ namespace Web.Petcenter
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!Page.IsPostBack)
-            {
-                Session["_Seguridad"] = new Entidades.Petcenter.Seguridad() { idUsuario = 1, Nombres = "Usuario sistema", strConexion = "conexion de la base de datos", indHabilitado = 1 };
-            }
-
         }
     }
 }

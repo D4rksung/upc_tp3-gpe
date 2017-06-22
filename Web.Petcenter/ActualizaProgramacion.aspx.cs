@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Utilitario.Comun;
 
@@ -18,18 +19,23 @@ namespace Web.Petcenter
         public static DataTable Servicios = new DataTable();
         public static DataTable EmpleadosTotal = new DataTable();
         public static DataTable EmpleadosDetalle = new DataTable();
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                HtmlGenericControl divProgramacion = (HtmlGenericControl)this.Master.FindControl("liprogramacion");
+                divProgramacion.Attributes.Add("class", "dropdown active");
+
+                HtmlGenericControl divinicio = (HtmlGenericControl)this.Master.FindControl("liinicio");
+                divinicio.Attributes.Add("class", "");
 
                 this.CargaCombo();
                 this.CargaListado();
-                this.CargarInfoSession();
+                //this.CargarInfoSession();
             }
         }
-       void CargarInfoSession()
+        void CargarInfoSession()
         {
 
             if (Session["idCitaDetalle"] != null && Session["idCitaDetalle"].ToString() != "")
@@ -48,8 +54,10 @@ namespace Web.Petcenter
                     }
                 }
 
-                divDetalle.Visible = true;
-                divDetalle.Style.Add("width", "380px");
+                //divDetalle.Visible = true;
+                //divDetalle.Style.Add("width", "380px");
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mydetallegrilla", "$('#mydetallegrilla').modal();", true);
+                //upModalConfirmacion.Update();
                 CargarDataDetalle(Int32.Parse(Session["idCitaDetalle"].ToString()));
 
             }
@@ -60,6 +68,7 @@ namespace Web.Petcenter
         }
         private void CargaListado()
         {
+            
             Cita obj = new Cita();
             obj.FechaInicial = txtfechaInicio.Text;
             obj.FechaFinal = txtFechaFin.Text;
@@ -81,7 +90,7 @@ namespace Web.Petcenter
             {
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvresultado, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Ver Detalle";
-            
+
                 GridView gvDetalle = (GridView)e.Row.FindControl("gvDetalle");
                 Int32 idCita = Int32.Parse(grvresultado.DataKeys[e.Row.RowIndex].Values[0].ToString());
 
@@ -100,7 +109,8 @@ namespace Web.Petcenter
                 idDetalleCitaP.Value = e.CommandArgument.ToString().Split('|')[0];
                 idServicioP.Value = e.CommandArgument.ToString().Split('|')[1];
                 idCitaP.Value = e.CommandArgument.ToString().Split('|')[2];
-                CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value);
+                strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
+                CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value, strServicio.Value);
 
                 lblModalPTitle.Text = "Programar Cita";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
@@ -113,8 +123,9 @@ namespace Web.Petcenter
                 idDetalleCitaP.Value = e.CommandArgument.ToString().Split('|')[0];
                 idServicioP.Value = e.CommandArgument.ToString().Split('|')[1];
                 idCitaP.Value = e.CommandArgument.ToString().Split('|')[2];
-                
-                CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value);
+                strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
+
+                CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value, strServicio.Value);
                 lblModalPTitle.Text = "Modificar Cita";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
                 upModalP.Update();
@@ -126,6 +137,7 @@ namespace Web.Petcenter
                 idDetalleCitaA.Value = e.CommandArgument.ToString().Split('|')[0];
                 idServicioA.Value = e.CommandArgument.ToString().Split('|')[1];
                 idCitaA.Value = e.CommandArgument.ToString().Split('|')[2];
+                strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal();", true);
                 upModalA.Update();
@@ -144,8 +156,10 @@ namespace Web.Petcenter
                     {
                         row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
                         row.ToolTip = string.Empty;
-                        divDetalle.Visible = true;
-                        divDetalle.Style.Add("width", "380px");
+                        //divDetalle.Visible = true;
+                        //divDetalle.Style.Add("width", "380px");
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mydetallegrilla", "$('#mydetallegrilla').modal();", true);
+                        //upModalConfirmacion.Update();
                         CargarDataDetalle(Int32.Parse(grvresultado.SelectedDataKey.Values[0].ToString()));
                     }
                     else
@@ -159,29 +173,18 @@ namespace Web.Petcenter
         void CargarDataDetalle(Int32 idCita)
         {
             Session["idCitaDetalle"] = idCita.ToString();
-    DataSet data = AtencionPeluqueriaBuss.BuscarCitaDetalleCompleto(idCita);
+            DataSet data = AtencionPeluqueriaBuss.BuscarCitaDetalleCompleto(idCita);
             if (idCita != 0)
             {
                 if (data.Tables[0].Rows.Count > 0)
                 {
-                    txtCodigo.Text = data.Tables[0].Rows[0]["NroCita"].ToString();
-                    txtFechaCita.Text = data.Tables[0].Rows[0]["fechaCita"].ToString();
-                    txtHoraCita.Text = data.Tables[0].Rows[0]["horaCita"].ToString();
-                    txtnombrecliente.Text = data.Tables[0].Rows[0]["Cliente"].ToString();
-                    txtEstado.Text = data.Tables[0].Rows[0]["Estado"].ToString();
-
-                    txtnombreMascota.Text = data.Tables[0].Rows[0]["nombreMascota"].ToString();
-                    txtEspecieMascota.Text = data.Tables[0].Rows[0]["descripcionEspecie"].ToString();
-                    txtRazaMascota.Text = data.Tables[0].Rows[0]["nombreRaza"].ToString();
-                    txtTamanioMascota.Text = data.Tables[0].Rows[0]["Tamanio"].ToString();
-                    txtGeneroMascota.Text = data.Tables[0].Rows[0]["Sexo"].ToString();
-                    txtEdadMascota.Text = data.Tables[0].Rows[0]["Edad"].ToString();
+                    txtObservaciones.Text = data.Tables[0].Rows[0]["Observaciones"].ToString();
 
                 }  //detalle
-                
 
-                    Servicios = data.Tables[1];
-                    EmpleadosDetalle = data.Tables[2];
+
+                Servicios = data.Tables[1];
+                EmpleadosDetalle = data.Tables[2];
 
                 this.grvresultadodet.DataSource = OrdenarServicios(Servicios, EmpleadosDetalle);
                 this.grvresultadodet.DataBind();
@@ -215,11 +218,16 @@ namespace Web.Petcenter
             }
 
             Session["idCitaDetalle"] = "";
-            divDetalle.Visible = false;
-            divDetalle.Style.Add("width", "0px");
+
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mydetallegrilla", "$( '#divcerrardetalle').click();", true);
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal7", "UpdateDatos();", true);
+            //upModalConfirmacion.Update();
+
+            //divDetalle.Visible = false;
+            //divDetalle.Style.Add("width", "0px");
         }
-        
-        void CargarDataDetalle(String idDetalleCita, String idServicio)
+
+        void CargarDataDetalle(String idDetalleCita, String idServicio, String nombreServicio)
         {
             DataSet data = AtencionPeluqueriaBuss.BuscarCitaDetalleEmpleados(idDetalleCita, idServicio);
             if (idDetalleCita != "0")
@@ -229,7 +237,10 @@ namespace Web.Petcenter
                     Utilidades.CargaCombo(ref cboSector, AtencionPeluqueriaBuss.GetSectores(idServicio), "idSector", "descripcion", true);
                     Utilidades.CargaCombo(ref cboRol, AtencionPeluqueriaBuss.GetRoles(idServicio), "idRol", "descripcion", true);
                     cboSector.SelectedValue = data.Tables[0].Rows[0]["idSector"].ToString();
-
+                    if (cboRol.Items.Count > 0) {
+                    cboRol.SelectedIndex = 1;
+                    }
+                
 
                 }  //detalle
 
@@ -238,7 +249,8 @@ namespace Web.Petcenter
                 EmpleadosAsig.Columns.Add("nombreEmpleado");
                 EmpleadosAsig.Columns.Add("idServicio");
                 DataTable EmpleadosTotal = data.Tables[1];
-                if (EmpleadosTotal != null) { 
+                if (EmpleadosTotal != null)
+                {
                     foreach (DataRow dr in EmpleadosTotal.Select("idServicio=" + idServicio))
                     {
                         DataRow dr1 = EmpleadosAsig.NewRow();
@@ -250,6 +262,7 @@ namespace Web.Petcenter
                 }
                 this.gvEmpleadosAsig.DataSource = EmpleadosAsig;
                 this.gvEmpleadosAsig.DataBind();
+                CargarEmpleados();
 
             }
         }
@@ -299,7 +312,7 @@ namespace Web.Petcenter
 
                 int index = Convert.ToInt32(e.CommandArgument);
                 int id = Convert.ToInt32(gvEmpleados.DataKeys[index][0]);
-                
+
                 if (EmpleadosAsig.Rows.Count < 2)
                 {
                     DataRow dr = EmpleadosAsig.NewRow();
@@ -362,7 +375,7 @@ namespace Web.Petcenter
                     EmpleadosTotal = new DataTable();
 
                     lblMensajeTitulo.Text = "MENSAJE INFORMATIVO";
-                    lblMensaje.Text = "Mensaje informativo: Se procedió a asignar recursos al servicio.";
+                    lblMensaje.Text = "Mensaje informativo: Se procedió a cambiar el(los) recurso(s) asignado(s) al servicio " + strServicio.Value + ".";
                     lblMensaje.ForeColor = System.Drawing.Color.Blue;
 
 
@@ -371,7 +384,7 @@ namespace Web.Petcenter
                 }
                 else
                 {
-                    
+
 
                     lblModalValTitle.Text = "ERROR";
                     lblVal.Text = "Ocurrio un error al grabar. Favor comunicarse con el administrador del sistema.";
@@ -391,7 +404,7 @@ namespace Web.Petcenter
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();
             }
-            
+
         }
 
 
@@ -406,7 +419,7 @@ namespace Web.Petcenter
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();
-                
+
             }
             else
             {
@@ -447,28 +460,28 @@ namespace Web.Petcenter
         {
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal('hide');", true);
             List<Cita> listCita = new List<Cita>();
-            String Citasstr="";
+            String Citasstr = "";
             Citasstr = idCitaA.Value;
             foreach (GridViewRow gvRow in grvresultado.Rows)
             {
                 Int32 rowIndex = gvRow.RowIndex;
                 String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
                 Int32 idCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                    CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
                 if (hdnCheck.Checked)
                 {
                     Citasstr = Citasstr + ";" + idCita.ToString();
                 }
-               
+
             }
 
-            if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioA.Value), Citasstr , EmpleadosAsig, Int32.Parse(idDetalleCitaA.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 2, txtMotivoAnulacion.Text))
-            { 
+            if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioA.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaA.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 2, txtMotivoAnulacion.Text))
+            {
                 lblMensajeTitulo.Text = "INFORMATIVO";
-                lblMensaje.Text = "Informativo:Se procedió a Anular planificación de atención.";
+                lblMensaje.Text = "Informativo:Se procedió a Anular planificación del servicio " + strServicio.Value +".";
                 lblMensaje.ForeColor = System.Drawing.Color.Blue;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal('hide');", true);
-
+                txtMotivoAnulacion.Text = "";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
                 upModalMensaje.Update();
             }
@@ -481,7 +494,7 @@ namespace Web.Petcenter
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();
-                
+
 
             }
 

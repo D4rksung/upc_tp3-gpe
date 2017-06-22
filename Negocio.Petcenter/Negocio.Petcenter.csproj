@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtencionPeluqueriaBuss.cs" />
+    <Compile Include="Graficos.cs" />
     <Compile Include="IProgramacion.cs" />
     <Compile Include="ProgramacionCita.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
