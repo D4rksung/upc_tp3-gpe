@@ -32,6 +32,7 @@ namespace Web.Petcenter
             Utilidades.CargaCombo(ref cboGrafico1, AtencionPeluqueriaBuss.GetServicio(), "idServicio", "descripcion", true);
             Utilidades.CargaCombo(ref cbografico4, AtencionPeluqueriaBuss.GetRoles("0"), "idRol", "descripcion", true);
             Utilidades.CargaCombo(ref filtroservicio, AtencionPeluqueriaBuss.GetServicio(), "idServicio", "descripcion", true);
+            Utilidades.CargaCombo(ref cboGrafico2, AtencionPeluqueriaBuss.GetServicio(), "idServicio", "descripcion", true);
             
         }
 

@@ -499,7 +499,11 @@ namespace Web.Petcenter
             }
 
         }
-
+        protected void gvResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvresultado.PageIndex = e.NewPageIndex;
+            CargaListado();
+        }
         protected void chkAsignacion_CheckedChanged(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)(((CheckBox)sender).NamingContainer);

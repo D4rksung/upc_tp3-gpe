@@ -264,7 +264,11 @@ namespace Web.Petcenter
             txtComent.Text = "";
             upModalP.Update();
         }
-
+        protected void gvResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grvresultado.PageIndex = e.NewPageIndex;
+            CargarDetalle();
+        }
         protected void btnEjecutar_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();

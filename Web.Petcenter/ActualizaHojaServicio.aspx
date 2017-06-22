@@ -218,7 +218,7 @@
 
                             <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%"
                                 AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True"
-                                OnRowCommand="grvresultado_RowCommand" OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" DataKeyNames="idHojaServicio,horaCita,fechaCita">
+                                OnRowCommand="grvresultado_RowCommand" OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idHojaServicio,horaCita,fechaCita">
 
                                 <Columns>
                                     <asp:BoundField DataField="fechaCita" HeaderText="FECHA">
@@ -269,6 +269,8 @@
 
 
                                 </Columns>
+                                <PagerSettings Position="Top" />
+                                    <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
                                 <RowStyle Font-Size="8pt" />
                             </asp:GridView>
                             <div class="row">

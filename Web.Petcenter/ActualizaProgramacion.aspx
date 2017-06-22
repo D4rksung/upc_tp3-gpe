@@ -121,7 +121,7 @@
                         </div>
                         <div class="panel-body">
                             <div id="table-responsive" class="table-responsive">
-                                <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%"
+                                <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%" OnPageIndexChanging="gvResultado_PageIndexChanging"
                                     AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True"
                                     OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" DataKeyNames="idCita,DescripcionCita">
 
@@ -206,6 +206,8 @@
 
 
                                     </Columns>
+                                    <PagerSettings Position="Top" />
+                                    <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
                                     <RowStyle Font-Size="8pt" CssClass="td1" />
                                 </asp:GridView>
                                 <div class="row">
