@@ -15,3 +15,8 @@ D:\ESCRITORIO\PetCenter-Peluqueriav12\PetCenter-Peluqueria\Utilitario.Comun\bin\
 D:\ESCRITORIO\PetCenter-Peluqueriav12\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.dll
 D:\ESCRITORIO\PetCenter-Peluqueriav12\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.pdb
 D:\ESCRITORIO\PetCenter-Peluqueriav12\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Utilitario.Comun\bin\Debug\Utilitario.Comun.dll
+D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Utilitario.Comun\bin\Debug\Utilitario.Comun.pdb
+D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.csprojResolveAssemblyReference.cache
+D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.dll
+D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.pdb

@@ -184,8 +184,8 @@ namespace Web.Petcenter
             }
             if (dt.Select("Cantidad>0").Count() == 0)
             {
-                lblModalValTitle.Text = "ERROR";
-                lblVal.Text = "Error: Debe de ingresar al menos la cantidad de un material que se utilizó para el servicio";
+                lblModalValTitle.Text = "Error";
+                lblVal.Text = "Ocurrio un error en el sistema: Debe de ingresar al menos la cantidad de un material que se utilizó para el servicio";
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();
@@ -197,7 +197,7 @@ namespace Web.Petcenter
                     if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), dt, txtComent.Text) != null)
                     {
 
-                        lblMensajeTitulo.Text = "MENSAJE INFORMATIVO";
+                        lblMensajeTitulo.Text = "Informativo";
                         lblMensaje.Text = "Informativo: Se procedió a finalizar el servicio.";
                         lblMensaje.ForeColor = System.Drawing.Color.Blue;
                         txtComent.Text = "";
@@ -211,8 +211,8 @@ namespace Web.Petcenter
                     {
 
 
-                        lblModalValTitle.Text = "ERROR";
-                        lblVal.Text = "Ocurrio un error al grabar. Favor comunicarse con el administrador del sistema.";
+                        lblModalValTitle.Text = "Error";
+                        lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
                         lblVal.ForeColor = System.Drawing.Color.Red;
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                         upModalVal.Update();
@@ -223,8 +223,8 @@ namespace Web.Petcenter
                 else
                 {
 
-                    lblModalValTitle.Text = "ERROR";
-                    lblVal.Text = "Debe de ingresar comentario sobre lo realizado para finalizar el servicio";
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Ocurrio un error en el sistema: Debe de ingresar comentario sobre lo realizado para finalizar el servicio";
 
                     lblVal.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
@@ -297,7 +297,7 @@ namespace Web.Petcenter
                     mensaje = "Informativo: Se procedió a ejecutar el servicio";
                 }
 
-                lblMensajeTitulo.Text = "MENSAJE INFORMATIVO";
+                lblMensajeTitulo.Text = "Informativo";
                 lblMensaje.Text = mensaje;
                 lblMensaje.ForeColor = System.Drawing.Color.Blue;
                 txtComent.Text = "";
@@ -311,8 +311,8 @@ namespace Web.Petcenter
             {
 
 
-                lblModalValTitle.Text = "ERROR";
-                lblVal.Text = "Ocurrio un error al grabar. Favor comunicarse con el administrador del sistema.";
+                lblModalValTitle.Text = "Error";
+                lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();

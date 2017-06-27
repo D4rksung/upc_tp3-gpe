@@ -74,10 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActualizaHojaServicio.aspx" />
+    <Content Include="ActualizaKardex.aspx" />
     <Content Include="ActualizaProgramacion.aspx" />
-    <Content Include="ActualizarHojaServicio.aspx" />
     <Content Include="ActualizarKardexMaterial.aspx" />
-    <Content Include="ActualizarProgramaciondeAtencion.aspx" />
     <Content Include="assets\css\animate.min.css" />
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\style.css" />
@@ -489,7 +488,6 @@
     <Content Include="Default.aspx" />
     <Content Include="EditarHojaServicio.aspx" />
     <Content Include="EditarKardexMaterial.aspx" />
-    <Content Include="GestionHojaServicio.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGES\Boby.jpg" />
     <Content Include="IMAGES\Lady.jpg" />
@@ -518,6 +516,13 @@
     <Compile Include="ActualizaHojaServicio.aspx.designer.cs">
       <DependentUpon>ActualizaHojaServicio.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ActualizaKardex.aspx.cs">
+      <DependentUpon>ActualizaKardex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActualizaKardex.aspx.designer.cs">
+      <DependentUpon>ActualizaKardex.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ActualizaProgramacion.aspx.cs">
       <DependentUpon>ActualizaProgramacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -525,26 +530,12 @@
     <Compile Include="ActualizaProgramacion.aspx.designer.cs">
       <DependentUpon>ActualizaProgramacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ActualizarHojaServicio.aspx.cs">
-      <DependentUpon>ActualizarHojaServicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ActualizarHojaServicio.aspx.designer.cs">
-      <DependentUpon>ActualizarHojaServicio.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ActualizarKardexMaterial.aspx.cs">
       <DependentUpon>ActualizarKardexMaterial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ActualizarKardexMaterial.aspx.designer.cs">
       <DependentUpon>ActualizarKardexMaterial.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ActualizarProgramaciondeAtencion.aspx.cs">
-      <DependentUpon>ActualizarProgramaciondeAtencion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ActualizarProgramaciondeAtencion.aspx.designer.cs">
-      <DependentUpon>ActualizarProgramaciondeAtencion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -566,13 +557,6 @@
     </Compile>
     <Compile Include="EditarKardexMaterial.aspx.designer.cs">
       <DependentUpon>EditarKardexMaterial.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GestionHojaServicio.aspx.cs">
-      <DependentUpon>GestionHojaServicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GestionHojaServicio.aspx.designer.cs">
-      <DependentUpon>GestionHojaServicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

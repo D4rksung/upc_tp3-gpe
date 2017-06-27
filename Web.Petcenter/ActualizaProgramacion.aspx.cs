@@ -324,7 +324,7 @@ namespace Web.Petcenter
                 }
                 else
                 {
-                    lblModalValTitle.Text = "ADVERTENCIA";
+                    lblModalValTitle.Text = "Advertencia";
                     lblVal.Text = "No puede asignar mas de 2 empleados.";
                     lblVal.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
@@ -374,8 +374,8 @@ namespace Web.Petcenter
                     Servicios = new DataTable();
                     EmpleadosTotal = new DataTable();
 
-                    lblMensajeTitulo.Text = "MENSAJE INFORMATIVO";
-                    lblMensaje.Text = "Mensaje informativo: Se procedió a cambiar el(los) recurso(s) asignado(s) al servicio " + strServicio.Value + ".";
+                    lblMensajeTitulo.Text = "Informativo";
+                    lblMensaje.Text = "Informativo: Se procedió a cambiar el(los) recurso(s) asignado(s) al servicio " + strServicio.Value + ".";
                     lblMensaje.ForeColor = System.Drawing.Color.Blue;
 
 
@@ -386,8 +386,8 @@ namespace Web.Petcenter
                 {
 
 
-                    lblModalValTitle.Text = "ERROR";
-                    lblVal.Text = "Ocurrio un error al grabar. Favor comunicarse con el administrador del sistema.";
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
                     lblVal.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                     upModalVal.Update();
@@ -398,8 +398,8 @@ namespace Web.Petcenter
             else
             {
 
-                lblModalValTitle.Text = "ERROR";
-                lblVal.Text = "Debe ingresar el Sector y/o por lo menos un empleado.";
+                lblModalValTitle.Text = "Error";
+                lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar el Sector y/o por lo menos un empleado.";
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();
@@ -414,8 +414,8 @@ namespace Web.Petcenter
             {
 
 
-                lblModalValTitle.Text = "ERROR";
-                lblVal.Text = "Debe ingresar el Motivo de Anulación";
+                lblModalValTitle.Text = "Error";
+                lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar el Motivo de Anulación de la planificación del servicio";
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();
@@ -424,8 +424,8 @@ namespace Web.Petcenter
             else
             {
 
-                lblConfirmacionTitulo.Text = "ADVERTENCIA";
-                lblConfirmacion.Text = "Advertencia:¿Está seguro de anular la planificación de servicio?";
+                lblConfirmacionTitulo.Text = "Confirmación";
+                lblConfirmacion.Text = "Advertencia:¿Desea continuar con la anulación de la planificación de servicio?";
                 lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
                 upModalConfirmacion.Update();
@@ -477,20 +477,21 @@ namespace Web.Petcenter
 
             if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioA.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaA.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 2, txtMotivoAnulacion.Text))
             {
-                lblMensajeTitulo.Text = "INFORMATIVO";
-                lblMensaje.Text = "Informativo:Se procedió a Anular planificación del servicio " + strServicio.Value +".";
+                lblMensajeTitulo.Text = "Informativo";
+                lblMensaje.Text = "Informativo:Se realizó la anulación de la planificación de atención con éxito.";
                 lblMensaje.ForeColor = System.Drawing.Color.Blue;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal('hide');", true);
                 txtMotivoAnulacion.Text = "";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
                 upModalMensaje.Update();
+                txtMotivoAnulacion.Text = "";
             }
             else
             {
 
 
-                lblModalValTitle.Text = "ERROR";
-                lblVal.Text = "Error:Valide la información con el administrador del sistema.";
+                lblModalValTitle.Text = "Error";
+                lblVal.Text = "Error: Ocurrió un error en el sistema. Error de Base de datos.";
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();
