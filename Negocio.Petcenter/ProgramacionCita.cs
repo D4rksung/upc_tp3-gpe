@@ -81,6 +81,40 @@ namespace Negocio.Petcenter
             }
         }
 
+        public Boolean GrabarMovimientoAtencion(DataTable dt)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+
+            SqlConnection cnnDS = new SqlConnection();
+            SqlTransaction txOle = null;
+            string Resultado = string.Empty;
+
+            try
+            {
+                cnnDS.ConnectionString = conn;
+                cnnDS.Open();
+                txOle = cnnDS.BeginTransaction();
+
+                Resultado = AtencionPeluqueriaDAO.GrabarMovimientoAtencion(dt, txOle);
+
+                txOle.Commit();
+                cnnDS.Close();
+                return (Resultado != String.Empty);
+            }
+            catch (Exception ex)
+            {
+                txOle.Rollback();
+                cnnDS.Close();
+                throw;
+                return false;
+            }
+            finally
+            {
+                cnnDS = null;
+                txOle = null;
+            }
+        }
+
         public DataTable GrabarHojadeServicioComents(Int32 idDetalleCita, String text)
         {
 
@@ -89,7 +123,7 @@ namespace Negocio.Petcenter
 
         }
 
-        public Boolean GrabarMovimiento(int idMovimiento, DataTable dt, String fechaMov, String guia, String tipoMov, Int32 idAlmacen)
+        public Boolean GrabarMovimiento(int idMovimiento, DataTable dt, String fechaMov, String tipoMov, String motivoMov, Int32 idAlmacen)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
@@ -103,7 +137,7 @@ namespace Negocio.Petcenter
                 cnnDS.Open();
                 txOle = cnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarMovimiento(idMovimiento, dt, fechaMov, guia, tipoMov, idAlmacen, txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarMovimiento(idMovimiento, dt, fechaMov, tipoMov, motivoMov, idAlmacen, txOle);
 
                 txOle.Commit();
                 cnnDS.Close();
@@ -123,7 +157,7 @@ namespace Negocio.Petcenter
             }
         }
 
-        public Boolean GrabarMovimientoAnular(Int32 idMovimiento)
+        public Boolean GrabarMovimientoTipo(Int32 idMovimiento, String tipo)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
@@ -137,7 +171,7 @@ namespace Negocio.Petcenter
                 cnnDS.Open();
                 txOle = cnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarMovimientoAnular(idMovimiento,  txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarMovimientoTipo(idMovimiento,tipo,  txOle);
 
                 txOle.Commit();
                 cnnDS.Close();
@@ -156,6 +190,7 @@ namespace Negocio.Petcenter
                 txOle = null;
             }
         }
+        
     }
 }
 

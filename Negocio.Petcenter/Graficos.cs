@@ -33,5 +33,14 @@ namespace Negocio.Petcenter
         {
             return Datos.Petcenter.Graficos.BuscarGrafico4(opcion);
         }
+        public static DataSet ObtenerGraficaRent1()
+        {
+            return Datos.Petcenter.Graficos.ObtenerGraficaRent1();
+        }
+
+        public static DataSet ObtenerGraficaRent2()
+        {
+            return Datos.Petcenter.Graficos.ObtenerGraficaRent2();
+        }
     }
 }

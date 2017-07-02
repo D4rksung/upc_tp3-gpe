@@ -62,7 +62,7 @@
         <div class="box">
             <div class="contenido-ficha">
                 <section>
-                    <h2 class="text-center">Actualizar programación de Atención</h2>
+                    <h2 class="text-center">Realizar programación de atención de servicios</h2>
                     <br>
                     <br>
                     <div class="row">
@@ -237,9 +237,11 @@
                 <ContentTemplate>--%>
 
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="divcerrardetalle">&times;</button>
-                </div>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">
+                                <asp:Label ID="lblModalPTitleGD" runat="server" Text=""></asp:Label></h4>
+                        </div>
                 <div class="modal-body">
                     <%--contenido--%>
 
@@ -262,7 +264,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div id="table-responsive2" class="table-responsive">
-                                        <asp:GridView ID="grvresultadodet" runat="server" CssClass="table table-bordered" HeaderStyle-CssClass="bg-primary" Width="100%"
+                                        <asp:GridView ID="grvresultadodet" runat="server" CssClass="table table-bordered" Width="100%"
                                             BorderStyle="None" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="true">
                                             <HeaderStyle Font-Size="8pt" Font-Names="Arial" />
                                             <Columns>
@@ -290,7 +292,7 @@
                     <%--fin de contenido--%>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button runat="server" Text="Ocultar" data-dismiss="modal" CssClass="btn btn-default" ID="btnOcultar" Style="width: 30%" OnClick="btnOcultar_Click" />
+                    <asp:Button runat="server" Text="Ocultar" data-dismiss="modal" CssClass="btn btn-danger" ID="btnOcultar" Style="width: 30%" OnClick="btnOcultar_Click" />
                 </div>
             </div>
             <%--              </ContentTemplate>
@@ -342,12 +344,12 @@
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label class="col-md-12  control-label">Empleado:</label>
+                                    <label class="col-md-12  control-label">Empleado(s):</label>
 
 
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-md-12  control-label">Asignado:</label>
+                                    <label class="col-md-12  control-label">Asignado(s):</label>
 
                                 </div>
                             </div>
@@ -356,7 +358,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <asp:GridView ID="gvEmpleados" runat="server" CssClass="table table-bordered" HeaderStyle-CssClass="bg-primary" Width="100%"
+                                                <asp:GridView ID="gvEmpleados" runat="server" CssClass="table table-bordered" Width="100%"
                                                     BorderStyle="None" AutoGenerateColumns="False" AllowSorting="False" AllowPaging="False" ShowHeaderWhenEmpty="False" ShowHeader="false"
                                                     DataKeyNames="idEmpleado" OnRowCommand="gvEmpleados_RowCommand">
 
@@ -381,7 +383,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <asp:GridView ID="gvEmpleadosAsig" runat="server" CssClass="table table-bordered" HeaderStyle-CssClass="bg-primary" Width="100%"
+                                                <asp:GridView ID="gvEmpleadosAsig" runat="server" CssClass="table table-bordered"  Width="100%"
                                                     BorderStyle="None" AutoGenerateColumns="False" AllowSorting="False" AllowPaging="False" ShowHeaderWhenEmpty="False" ShowHeader="false"
                                                     DataKeyNames="idEmpleado" OnRowCommand="gvEmpleadosAsig_RowCommand">
 
@@ -427,7 +429,7 @@
                             <asp:HiddenField runat="server" ID="strServicio" />
 
                             <asp:Button runat="server" Text="Guardar" CssClass="btn btn-default" ID="btnGuardarP" Style="width: 30%" OnClick="btnGuardarP_Click" />
-                            <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-default" ID="btnCancelarP" Style="width: 30%" />
+                            <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-danger" ID="btnCancelarP" Style="width: 30%" />
 
                         </div>
                     </div>
@@ -479,7 +481,7 @@
                             <asp:HiddenField runat="server" ID="idCitaA" />
 
                             <asp:Button runat="server" Text="Anular" CssClass="btn btn-default" ID="btnGuardarA" Style="width: 30%" OnClick="btnGuardarA_Click" />
-                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="btnCancelarA" Style="width: 30%" data-dismiss="modal" />
+                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-danger" ID="btnCancelarA" Style="width: 30%" data-dismiss="modal" />
 
                         </div>
                     </div>
@@ -535,7 +537,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <asp:Label ID="Label2" runat="server" Font-Size="14px" ForeColor="Red" Text="La Fecha Final debe ser mayor a la Fecha Inicial"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Font-Size="14px" ForeColor="Red" Text="Ocurrió un error en el sistema: La fecha fin debe de ser mayor a la fecha inicio."></asp:Label>
                         </div>
 
                         <%--fin de contenido--%>
@@ -572,7 +574,7 @@
                         <%--fin de contenido--%>
 
                         <div class="modal-footer">
-                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-default" ID="btnAceptar" Style="width: 30%" OnClick="btnAceptar_Click" />
+                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-danger" ID="btnAceptar" Style="width: 30%" OnClick="btnAceptar_Click" />
 
                         </div>
                     </div>
@@ -605,7 +607,7 @@
                         <div class="modal-footer">
                             <asp:Button runat="server" Text="SI" CssClass="btn btn-default" ID="btnSi" Style="width: 30%" OnClick="btnsi_Click" />
 
-                            <button class="btn btn-info" data-dismiss="modal" style="width: 30%" aria-hidden="true">NO</button>
+                            <button class="btn btn-danger" data-dismiss="modal" style="width: 30%" aria-hidden="true">NO</button>
                         </div>
                     </div>
 

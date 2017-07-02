@@ -74,6 +74,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActualizaHojaServicio.aspx" />
+    <Content Include="ActualizaKardexAtencion.aspx" />
+    <Content Include="ActualizaKardexJefe.aspx" />
     <Content Include="ActualizaKardex.aspx" />
     <Content Include="ActualizaProgramacion.aspx" />
     <Content Include="ActualizarKardexMaterial.aspx" />
@@ -495,6 +497,8 @@
     <Content Include="IMAGES\Lucas.jpg" />
     <Content Include="IMAGES\Toby.jpg" />
     <Content Include="Index.aspx" />
+    <Content Include="RequerimientoMaterial.aspx" />
+    <Content Include="ResumenGeneralGrafico2.aspx" />
     <Content Include="ResumenGeneralGrafico.aspx" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
@@ -515,6 +519,20 @@
     </Compile>
     <Compile Include="ActualizaHojaServicio.aspx.designer.cs">
       <DependentUpon>ActualizaHojaServicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActualizaKardexAtencion.aspx.cs">
+      <DependentUpon>ActualizaKardexAtencion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActualizaKardexAtencion.aspx.designer.cs">
+      <DependentUpon>ActualizaKardexAtencion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActualizaKardexJefe.aspx.cs">
+      <DependentUpon>ActualizaKardexJefe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActualizaKardexJefe.aspx.designer.cs">
+      <DependentUpon>ActualizaKardexJefe.aspx</DependentUpon>
     </Compile>
     <Compile Include="ActualizaKardex.aspx.cs">
       <DependentUpon>ActualizaKardex.aspx</DependentUpon>
@@ -583,6 +601,20 @@
       <DependentUpon>PaginaMaestra.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequerimientoMaterial.aspx.cs">
+      <DependentUpon>RequerimientoMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequerimientoMaterial.aspx.designer.cs">
+      <DependentUpon>RequerimientoMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResumenGeneralGrafico2.aspx.cs">
+      <DependentUpon>ResumenGeneralGrafico2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResumenGeneralGrafico2.aspx.designer.cs">
+      <DependentUpon>ResumenGeneralGrafico2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ResumenGeneralGrafico.aspx.cs">
       <DependentUpon>ResumenGeneralGrafico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

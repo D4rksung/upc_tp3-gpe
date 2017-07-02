@@ -122,3 +122,36 @@ D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Web.Petcenter\bin\New
 D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Web.Petcenter\bin\Datos.Petcenter.pdb
 D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.dll
 D:\ESCRITORIO\PetCenter-Peluqueriav15\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Web.Petcenter.dll.config
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Web.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Web.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Entidades.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\log4net.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Negocio.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Newtonsoft.Json.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Utilitario.Comun.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Datos.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Entidades.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Negocio.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Utilitario.Comun.pdb
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Newtonsoft.Json.xml
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\bin\Datos.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.csprojResolveAssemblyReference.cache
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Web.Petcenter.dll.config
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Web.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Web.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Entidades.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\log4net.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Negocio.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Newtonsoft.Json.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Utilitario.Comun.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Datos.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Entidades.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Negocio.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Utilitario.Comun.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Newtonsoft.Json.xml
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Datos.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.dll
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.pdb

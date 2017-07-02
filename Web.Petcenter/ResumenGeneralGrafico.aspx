@@ -481,7 +481,7 @@
                         clickable: true
                     },
                     legend: {
-                        show: false
+                        show: true
                     }
                 });
             }

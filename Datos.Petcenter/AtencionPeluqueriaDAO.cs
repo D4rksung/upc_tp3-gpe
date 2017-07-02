@@ -53,7 +53,7 @@ namespace Datos.Petcenter
             }
         }
 
-        public static DataTable BuscarMovimientos(int almacenID, string fechaIni, string fechaFin)
+        public static DataTable BuscarMovimientosAtencion(int almacenID, string material, String Req)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection cnn = new SqlConnection(conn);
@@ -63,24 +63,201 @@ namespace Datos.Petcenter
             {
                 cnn.Open();
 
-                cmd.CommandText = "usp_KardexMovimiento_gl";
+                cmd.CommandText = "usp_getMaterialxAtencion_gl";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = cnn;
 
-                if (almacenID != 0)
+                cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = almacenID;
+                cmd.Parameters.Add(new SqlParameter("@material", SqlDbType.VarChar,250)).Value = material;
+                cmd.Parameters.Add(new SqlParameter("@Req", SqlDbType.VarChar, 250)).Value = Req;
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static DataTable BuscarMaterialesxCodigo(int codigo, Int32 almacenID)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_getMaterialxCod_gl";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = codigo;
+                cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = almacenID;
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static string GrabarMovimientoAtencion(DataTable dt, SqlTransaction txOle)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandText = "usp_RequerimientoAtencionActualizada";
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = txOle.Connection;
+                cmd.Transaction = txOle;
+
+                cmd.Parameters.Add(new SqlParameter("@dtDetalle", SqlDbType.Structured)).Value = dt;
+
+                return cmd.ExecuteNonQuery().ToString();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                cmd = null;
+            }
+        }
+        
+
+        public static DataTable BuscarMaterialesGen()
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_getMaterial_gl";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+                
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static DataTable BuscarMovimientos(Int32 almacenID, String fechaIni, String fechaFin, String motivoID, String tipoID, String estadoID, String NumReq)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_ReqMaterial_gl";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+                
                     cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = almacenID;
-                else
-                    cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = DBNull.Value;
-
-                if (fechaIni != "")
                     cmd.Parameters.Add(new SqlParameter("@fechaIni", SqlDbType.VarChar, 10)).Value = fechaIni;
-                else
-                    cmd.Parameters.Add(new SqlParameter("@fechaIni", SqlDbType.VarChar, 10)).Value = DBNull.Value;
-
-                if (fechaFin != "")
                     cmd.Parameters.Add(new SqlParameter("@fechaFin", SqlDbType.VarChar, 10)).Value = fechaFin;
+                cmd.Parameters.Add(new SqlParameter("@motivoID", SqlDbType.VarChar, 10)).Value = motivoID;
+                cmd.Parameters.Add(new SqlParameter("@tipoID", SqlDbType.VarChar, 10)).Value = tipoID;
+                cmd.Parameters.Add(new SqlParameter("@estadoID", SqlDbType.VarChar, 10)).Value = estadoID;
+                cmd.Parameters.Add(new SqlParameter("@NumReq", SqlDbType.VarChar, 100)).Value = NumReq;
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static DataTable GetParametros(String codigo)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_ParametrosCombo_GL";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                if (codigo != "0")
+                    cmd.Parameters.Add(new SqlParameter("@codigo", SqlDbType.VarChar,10)).Value = codigo;
                 else
-                    cmd.Parameters.Add(new SqlParameter("@fechaFin", SqlDbType.VarChar, 10)).Value = DBNull.Value;
+                    cmd.Parameters.Add(new SqlParameter("@codigo", SqlDbType.VarChar, 10)).Value = DBNull.Value;
+                
 
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -155,20 +332,21 @@ namespace Datos.Petcenter
             }
         }
 
-        public static string GrabarMovimientoAnular(int idMovimiento, SqlTransaction txOle)
+        public static string GrabarMovimientoTipo(int idMovimiento,String tipo, SqlTransaction txOle)
         {
             SqlCommand cmd = new SqlCommand();
 
             try
             {
-                cmd.CommandText = "usp_KardexAnular";
+                cmd.CommandText = "usp_RequerimientoTipo";
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = txOle.Connection;
                 cmd.Transaction = txOle;
 
                 cmd.Parameters.Add(new SqlParameter("@idMovimiento", SqlDbType.Int)).Value = idMovimiento;
-               
+                cmd.Parameters.Add(new SqlParameter("@tipo", SqlDbType.VarChar,10)).Value = tipo;
+
 
                 return  cmd.ExecuteNonQuery().ToString();
             }
@@ -231,7 +409,7 @@ namespace Datos.Petcenter
             try
             {
                 cnn.Open();
-                cmd.CommandText = "usp_KardexMaterialesDisponiblegl";
+                cmd.CommandText = "usp_ReqMaterialesDisponiblegl";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = cnn;
 
@@ -401,13 +579,13 @@ namespace Datos.Petcenter
             }
         }
 
-        public static string GrabarMovimiento(int idMovimiento, DataTable dtMateriales, String fechaMov, String guia, String tipoMov, Int32 idAlmacen,SqlTransaction txOle)
+        public static string GrabarMovimiento(int idMovimiento, DataTable dtMateriales, String fechaMov, String tipoMov, String MotivoMov, Int32 idAlmacen,SqlTransaction txOle)
         {
             SqlCommand cmd = new SqlCommand();
 
             try
             {
-                cmd.CommandText = "usp_KardexActualizar";
+                cmd.CommandText = "usp_RequerimientoActualizar";
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = txOle.Connection;
@@ -415,8 +593,8 @@ namespace Datos.Petcenter
 
                 cmd.Parameters.Add(new SqlParameter("@idMovimiento", SqlDbType.Int)).Value = idMovimiento;
                 cmd.Parameters.Add(new SqlParameter("@fechaMov", SqlDbType.VarChar,10)).Value = fechaMov;
-                cmd.Parameters.Add(new SqlParameter("@guia", SqlDbType.VarChar,10)).Value = guia;
                 cmd.Parameters.Add(new SqlParameter("@tipoMov", SqlDbType.VarChar,10)).Value = tipoMov;
+                cmd.Parameters.Add(new SqlParameter("@MotivoMov", SqlDbType.VarChar,10)).Value = MotivoMov;
                 cmd.Parameters.Add(new SqlParameter("@dtMateriales", SqlDbType.Structured)).Value = dtMateriales;
                 cmd.Parameters.Add(new SqlParameter("@idAlmacen", SqlDbType.Int)).Value = idAlmacen;
 

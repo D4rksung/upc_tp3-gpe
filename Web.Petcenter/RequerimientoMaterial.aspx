@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaMaestra.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="ActualizaHojaServicio.aspx.cs" Inherits="Web.Petcenter.ActualizaHojaServicio" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaMaestra.Master" AutoEventWireup="true" CodeBehind="RequerimientoMaterial.aspx.cs" Inherits="Web.Petcenter.RequerimientoMaterial" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -169,14 +169,14 @@
         <div class="box">
             <div class="contenido-ficha">
                 <section>
-                    <h2 class="text-center">Gestión de hoja de servicio</h2>
+                    <h2 class="text-center">Requerimiento de Materiales</h2>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">Fecha Inicio:<font size="2" color="red"> </font></div>
+                                    <div class="input-group-addon">Fecha Registro:<font size="2" color="red"> </font></div>
                                     <asp:TextBox ID="txtfechaIni" runat="server" class="form-control datepicker" placeholder="Fecha Inicial" onBlur="javascript:ValidarFecha(this)"></asp:TextBox>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -187,7 +187,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="input-group">
-                                    <div class="input-group-addon">Fecha Fin:<font size="2" color="red"> </font></div>
+                                    <div class="input-group-addon">al:<font size="2" color="red"> </font></div>
                                     <asp:TextBox ID="txtFechaFinal" runat="server" class="form-control datepicker" placeholder="Fecha Final" onBlur="javascript:ValidarFecha(this)"></asp:TextBox>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -442,7 +442,7 @@
 
                                                             <ItemTemplate>
 
-                                                                <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0"  Style="text-align: center" onkeypress="return PriceMask(this)" Visible='<%# Eval("HasNumber") %>' Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                                                <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0" Style="text-align: center" onkeypress="return PriceMask(this)" Visible='<%# Eval("HasNumber") %>' Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                                                 <asp:CheckBox ID="chkCantidad" Width="50px" runat="server" Style="text-align: center" Checked='<%# Eval("CantidadBit") %>' Visible='<%# Eval("HasBit") %>'></asp:CheckBox>
 
 

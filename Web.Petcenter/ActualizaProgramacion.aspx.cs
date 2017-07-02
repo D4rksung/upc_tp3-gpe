@@ -173,6 +173,9 @@ namespace Web.Petcenter
         void CargarDataDetalle(Int32 idCita)
         {
             Session["idCitaDetalle"] = idCita.ToString();
+
+            lblModalPTitleGD.Text = "Ver Cita";
+
             DataSet data = AtencionPeluqueriaBuss.BuscarCitaDetalleCompleto(idCita);
             if (idCita != 0)
             {
@@ -425,7 +428,7 @@ namespace Web.Petcenter
             {
 
                 lblConfirmacionTitulo.Text = "Confirmación";
-                lblConfirmacion.Text = "Advertencia:¿Desea continuar con la anulación de la planificación de servicio?";
+                lblConfirmacion.Text = "Confirmación:¿Desea continuar con la anulación de la planificación de servicio?";
                 lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
                 upModalConfirmacion.Update();
@@ -491,7 +494,7 @@ namespace Web.Petcenter
 
 
                 lblModalValTitle.Text = "Error";
-                lblVal.Text = "Error: Ocurrió un error en el sistema. Error de Base de datos.";
+                lblVal.Text = "Ocurrió un error en el sistema. Error de Base de datos.";
                 lblVal.ForeColor = System.Drawing.Color.Red;
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                 upModalVal.Update();

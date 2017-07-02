@@ -1,4 +1,5 @@
 ﻿using Entidades.Petcenter;
+using Negocio.Petcenter;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,49 @@ namespace Web.Petcenter
         }
 
 
+        [WebMethod]
+        public string GraficoRent1()
+        {
+            String daresult = null;
+            DataSet data = Negocio.Petcenter.Graficos.ObtenerGraficaRent1();
+            data.Tables[0].TableName = "RentxSede";
+            daresult = JsonConvert.SerializeObject(data);
+            return daresult;
+
+        }
+        [WebMethod]
+
+    public string[] GetMateriales(string prefixText, int count)
+
+    {
+
+        if (count == 0)
+
+        {
+
+            count = 10;
+
+      }
+
+            DataTable dt = AtencionPeluqueriaBuss.BuscarMaterialesGen();
+
+            List<string> items = new List<string>(count);
+
+ 
+
+        for (int i = 0; i<dt.Rows.Count; i++)
+
+        {
+
+            string strName = dt.Rows[i][0].ToString();
+
+            items.Add(strName);
+
+        }
+
+        return items.ToArray();
+
+    }
 
     }
 }

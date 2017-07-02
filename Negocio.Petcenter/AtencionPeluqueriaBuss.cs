@@ -25,15 +25,28 @@ namespace Negocio.Petcenter
             return AtencionPeluqueriaDAO.BuscarServicioHoy(codigo, fechaInicial, fechaFinal);
         }
 
+        public static DataTable BuscarMovimientosAtencion(Int32 almacenID, String material, String Req)
+        {
+            return AtencionPeluqueriaDAO.BuscarMovimientosAtencion(almacenID, material, Req);
+        }
 
+        public static DataTable BuscarMaterialesGen()
+        {
+            return AtencionPeluqueriaDAO.BuscarMaterialesGen();
+        }
+
+        public static DataTable BuscarMaterialesxCodigo(Int32 codigo, Int32 almacenID)
+        {
+            return AtencionPeluqueriaDAO.BuscarMaterialesxCodigo(codigo, almacenID);
+        }
         public static DataSet BuscarServicioDetalle(Int32 iddetalleCita)
         {
             return AtencionPeluqueriaDAO.BuscarServicioDetalle(iddetalleCita);
         }
 
-        public static DataTable BuscarMovimientos(int AlmacenID, string fechaIni, string FechaFin)
+        public static DataTable BuscarMovimientos(Int32 AlmacenID, String fechaIni, String FechaFin, String motivoID, String tipoID, String estadoID, String NumReq)
         {
-            return AtencionPeluqueriaDAO.BuscarMovimientos(AlmacenID, fechaIni, FechaFin);
+            return AtencionPeluqueriaDAO.BuscarMovimientos(AlmacenID, fechaIni, FechaFin, motivoID, tipoID, estadoID, NumReq);
         }
         public static DataTable BuscarMateriales(int AlmacenID, string fechaIni, string FechaFin)
         {
@@ -43,6 +56,11 @@ namespace Negocio.Petcenter
         public static DataTable GetcboTipoMov()
         {
             return AtencionPeluqueriaDAO.GetcboTipoMov();
+        }
+
+        public static DataTable GetParametros(String codigo)
+        {
+            return AtencionPeluqueriaDAO.GetParametros(codigo);
         }
 
         public static DataTable GetAlmacen()

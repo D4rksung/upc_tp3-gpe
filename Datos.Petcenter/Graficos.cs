@@ -48,6 +48,79 @@ namespace Datos.Petcenter
             }
         }
 
+        public static DataSet ObtenerGraficaRent2()
+        {
+            //Shared
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "up_graficoRENT_2";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataSet dt = new DataSet();
+                dap.Fill(dt);
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static DataSet ObtenerGraficaRent1()
+        {
+            //Shared
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "up_graficoRENT_1";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+                
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataSet dt = new DataSet();
+                dap.Fill(dt);
+
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
         public static DataSet BuscarGrafico4(Int32 opcion)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
