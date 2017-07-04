@@ -10,43 +10,7 @@
 namespace Web.Petcenter {
     
     
-    public partial class ActualizaKardex {
-        
-        /// <summary>
-        /// hfMaterialID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfMaterialID;
-        
-        /// <summary>
-        /// UpdatePanel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-        
-        /// <summary>
-        /// cboAlmacen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboAlmacen;
-        
-        /// <summary>
-        /// cboTipo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboTipo;
+    public partial class ActualizaSectorCanil {
         
         /// <summary>
         /// txtfechaIni control.
@@ -67,6 +31,15 @@ namespace Web.Petcenter {
         protected global::System.Web.UI.WebControls.TextBox txtFechaFinal;
         
         /// <summary>
+        /// cboRecurso control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboRecurso;
+        
+        /// <summary>
         /// cboEstado control.
         /// </summary>
         /// <remarks>
@@ -74,15 +47,6 @@ namespace Web.Petcenter {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cboEstado;
-        
-        /// <summary>
-        /// txtNumReq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumReq;
         
         /// <summary>
         /// btnBuscar control.
@@ -94,15 +58,6 @@ namespace Web.Petcenter {
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
-        /// grvresultado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvresultado;
-        
-        /// <summary>
         /// btnNuevo control.
         /// </summary>
         /// <remarks>
@@ -112,40 +67,58 @@ namespace Web.Petcenter {
         protected global::System.Web.UI.WebControls.Button btnNuevo;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// btnExportar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Button btnExportar;
         
         /// <summary>
-        /// txtFechaMovHasta control.
+        /// divCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaMovHasta;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCanil;
         
         /// <summary>
-        /// cboAlmacenV control.
+        /// grvresultado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboAlmacenV;
+        protected global::System.Web.UI.WebControls.GridView grvresultado;
         
         /// <summary>
-        /// btnBuscar2 control.
+        /// lnkDummy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar2;
+        protected global::System.Web.UI.WebControls.LinkButton lnkDummy;
+        
+        /// <summary>
+        /// lblmsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblmsg;
+        
+        /// <summary>
+        /// divSector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSector;
         
         /// <summary>
         /// grvresultado2 control.
@@ -202,247 +175,202 @@ namespace Web.Petcenter {
         protected global::System.Web.UI.WebControls.Label lblModalPTitle2;
         
         /// <summary>
-        /// txtNroReq control.
+        /// divCodigoCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNroReq;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCodigoCanil;
         
         /// <summary>
-        /// txtSede control.
+        /// txtCodigoCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSede;
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoCanil;
         
         /// <summary>
-        /// txtFechaReq control.
+        /// txtNombreCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaReq;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreCanil;
         
         /// <summary>
-        /// cboTipoReq control.
+        /// cboTamanioCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboTipoReq;
+        protected global::System.Web.UI.WebControls.DropDownList cboTamanioCanil;
         
         /// <summary>
-        /// divBuscar control.
+        /// cboEspecieCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBuscar;
+        protected global::System.Web.UI.WebControls.DropDownList cboEspecieCanil;
         
         /// <summary>
-        /// combobox control.
+        /// cboEstadoCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList combobox;
+        protected global::System.Web.UI.WebControls.DropDownList cboEstadoCanil;
         
         /// <summary>
-        /// gvMateriales control.
+        /// txtObservacionesCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMateriales;
+        protected global::System.Web.UI.WebControls.TextBox txtObservacionesCanil;
         
         /// <summary>
-        /// idMovimiento control.
+        /// idCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idMovimiento;
+        protected global::System.Web.UI.WebControls.HiddenField idCanil;
         
         /// <summary>
-        /// idMaterial control.
+        /// btnGuardarCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idMaterial;
+        protected global::System.Web.UI.WebControls.Button btnGuardarCanil;
         
         /// <summary>
-        /// idAlmacen control.
+        /// btnCancelarCanil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idAlmacen;
+        protected global::System.Web.UI.WebControls.Button btnCancelarCanil;
         
         /// <summary>
-        /// btnGuardarP control.
+        /// upModalS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardarP;
+        protected global::System.Web.UI.UpdatePanel upModalS;
         
         /// <summary>
-        /// btnCancelarP control.
+        /// lblModalSTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarP;
+        protected global::System.Web.UI.WebControls.Label lblModalSTitle;
         
         /// <summary>
-        /// upModalR control.
+        /// lblModalSTitle2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upModalR;
+        protected global::System.Web.UI.WebControls.Label lblModalSTitle2;
         
         /// <summary>
-        /// idMovimientoR control.
+        /// divCodigoSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idMovimientoR;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCodigoSector;
         
         /// <summary>
-        /// lblModalRTitle control.
+        /// txtCodigoSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModalRTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtCodigoSector;
         
         /// <summary>
-        /// lblModalRTitle2 control.
+        /// txtNombreSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModalRTitle2;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreSector;
         
         /// <summary>
-        /// grvresultado3 control.
+        /// cboServicioSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvresultado3;
+        protected global::System.Web.UI.WebControls.DropDownList cboServicioSector;
         
         /// <summary>
-        /// HiddenField1 control.
+        /// cboEstadoSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        protected global::System.Web.UI.WebControls.DropDownList cboEstadoSector;
         
         /// <summary>
-        /// HiddenField2 control.
+        /// txtObservacionesSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField2;
+        protected global::System.Web.UI.WebControls.TextBox txtObservacionesSector;
         
         /// <summary>
-        /// HiddenField3 control.
+        /// idSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField3;
+        protected global::System.Web.UI.WebControls.HiddenField idSector;
         
         /// <summary>
-        /// btnGrabar control.
+        /// btnGuardarSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGrabar;
+        protected global::System.Web.UI.WebControls.Button btnGuardarSector;
         
         /// <summary>
-        /// Button3 control.
+        /// btnCancelarSector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
-        
-        /// <summary>
-        /// upModalV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upModalV;
-        
-        /// <summary>
-        /// lblModalPTitleV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModalPTitleV;
-        
-        /// <summary>
-        /// lblModalPTitleV2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblModalPTitleV2;
-        
-        /// <summary>
-        /// gvMaterialesV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMaterialesV;
-        
-        /// <summary>
-        /// btnCancelarV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelarV;
+        protected global::System.Web.UI.WebControls.Button btnCancelarSector;
         
         /// <summary>
         /// upModalVal control.
@@ -535,33 +463,6 @@ namespace Web.Petcenter {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// upModalFecActual control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upModalFecActual;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
         /// upModalConfirmacion control.
         /// </summary>
         /// <remarks>
@@ -580,13 +481,13 @@ namespace Web.Petcenter {
         protected global::System.Web.UI.WebControls.HiddenField idTipo;
         
         /// <summary>
-        /// idMovimientoT control.
+        /// id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField idMovimientoT;
+        protected global::System.Web.UI.WebControls.HiddenField id;
         
         /// <summary>
         /// lblConfirmacionTitulo control.

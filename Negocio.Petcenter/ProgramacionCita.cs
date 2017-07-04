@@ -190,7 +190,108 @@ namespace Negocio.Petcenter
                 txOle = null;
             }
         }
-        
+
+        public bool GrabarEliminarCanilSector(Int32 id, String Tipo)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+
+            SqlConnection cnnDS = new SqlConnection();
+            SqlTransaction txOle = null;
+            string Resultado = string.Empty;
+
+            try
+            {
+                cnnDS.ConnectionString = conn;
+                cnnDS.Open();
+                txOle = cnnDS.BeginTransaction();
+
+                Resultado = AtencionPeluqueriaDAO.GrabarEliminarCanilSector(id, Tipo, txOle);
+
+                txOle.Commit();
+                cnnDS.Close();
+                return (Resultado != String.Empty);
+            }
+            catch (Exception ex)
+            {
+                txOle.Rollback();
+                cnnDS.Close();
+                throw;
+                return false;
+            }
+            finally
+            {
+                cnnDS = null;
+                txOle = null;
+            }
+        }
+
+        public bool GrabarCanil(Int32 idCanil, String Tamanio, String Especie, String Estado, String observaciones)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+
+            SqlConnection cnnDS = new SqlConnection();
+            SqlTransaction txOle = null;
+            string Resultado = string.Empty;
+
+            try
+            {
+                cnnDS.ConnectionString = conn;
+                cnnDS.Open();
+                txOle = cnnDS.BeginTransaction();
+
+                Resultado = AtencionPeluqueriaDAO.GrabarCanil(idCanil, Tamanio, Especie, Estado, observaciones, txOle);
+
+                txOle.Commit();
+                cnnDS.Close();
+                return (Resultado != String.Empty);
+            }
+            catch (Exception ex)
+            {
+                txOle.Rollback();
+                cnnDS.Close();
+                throw;
+                return false;
+            }
+            finally
+            {
+                cnnDS = null;
+                txOle = null;
+            }
+        }
+
+        public bool GrabarSector(Int32 idSector, String Servicio, String   Estado, String observaciones)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+
+            SqlConnection cnnDS = new SqlConnection();
+            SqlTransaction txOle = null;
+            string Resultado = string.Empty;
+
+            try
+            {
+                cnnDS.ConnectionString = conn;
+                cnnDS.Open();
+                txOle = cnnDS.BeginTransaction();
+
+                Resultado = AtencionPeluqueriaDAO.GrabarSector(idSector, Servicio,  Estado, observaciones, txOle);
+
+                txOle.Commit();
+                cnnDS.Close();
+                return (Resultado != String.Empty);
+            }
+            catch (Exception ex)
+            {
+                txOle.Rollback();
+                cnnDS.Close();
+                throw;
+                return false;
+            }
+            finally
+            {
+                cnnDS = null;
+                txOle = null;
+            }
+        }
     }
 }
 

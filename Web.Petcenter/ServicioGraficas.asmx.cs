@@ -67,39 +67,6 @@ namespace Web.Petcenter
             return daresult;
 
         }
-        [WebMethod]
-
-    public string[] GetMateriales(string prefixText, int count)
-
-    {
-
-        if (count == 0)
-
-        {
-
-            count = 10;
-
-      }
-
-            DataTable dt = AtencionPeluqueriaBuss.BuscarMaterialesGen();
-
-            List<string> items = new List<string>(count);
-
- 
-
-        for (int i = 0; i<dt.Rows.Count; i++)
-
-        {
-
-            string strName = dt.Rows[i][0].ToString();
-
-            items.Add(strName);
-
-        }
-
-        return items.ToArray();
-
-    }
-
+      
     }
 }

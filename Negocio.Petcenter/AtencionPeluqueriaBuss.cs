@@ -25,14 +25,15 @@ namespace Negocio.Petcenter
             return AtencionPeluqueriaDAO.BuscarServicioHoy(codigo, fechaInicial, fechaFinal);
         }
 
-        public static DataTable BuscarMovimientosAtencion(Int32 almacenID, String material, String Req)
+
+        public static DataTable BuscarMovimientosAtencion(Int32 movimientoID)
         {
-            return AtencionPeluqueriaDAO.BuscarMovimientosAtencion(almacenID, material, Req);
+            return AtencionPeluqueriaDAO.BuscarMovimientosAtencion(movimientoID);
         }
 
-        public static DataTable BuscarMaterialesGen()
+        public static DataTable BuscarMaterialesGen(String codigo)
         {
-            return AtencionPeluqueriaDAO.BuscarMaterialesGen();
+            return AtencionPeluqueriaDAO.BuscarMaterialesGen(codigo);
         }
 
         public static DataTable BuscarMaterialesxCodigo(Int32 codigo, Int32 almacenID)
@@ -176,9 +177,9 @@ namespace Negocio.Petcenter
             return AtencionPeluqueriaDAO.BuscarMaterialesMov(idMaterial);
         }
 
-        public static DataSet BuscarMaterialesDispo(Int32 idMovimiento)
+        public static DataSet BuscarMaterialesDispo(Int32 idMovimiento, Int32 almacenID)
         {
-            return AtencionPeluqueriaDAO.BuscarMaterialesDispo(idMovimiento);
+            return AtencionPeluqueriaDAO.BuscarMaterialesDispo(idMovimiento, almacenID);
         }
         public static DataTable GetDatosMaterial(int idmaterial)
         {
@@ -265,8 +266,41 @@ namespace Negocio.Petcenter
 
         #endregion
 
-        
+
 
         #endregion
+
+
+        public static DataTable GetParametrosGEN(String tipo)
+        {
+            return AtencionPeluqueriaDAO.GetParametrosGEN(tipo);
+        }
+
+
+
+        public static DataSet BuscarSectorDetalle(Int32 idCanil)
+        {
+            return AtencionPeluqueriaDAO.BuscarSectorDetalle(idCanil);
+        }
+
+
+
+        public static DataSet BuscarCanilDetalle(int idSector)
+        {
+            return AtencionPeluqueriaDAO.BuscarCanilDetalle(idSector);
+        }
+
+
+        public static DataTable BuscarCanil(Int32 tipo, String fechaIni, String fechaFin, String Recurso, String Estado)
+        {
+            return AtencionPeluqueriaDAO.BuscarCanil(tipo, fechaIni, fechaFin, Recurso, Estado);
+        }
+
+        public static DataTable BuscarSector(Int32 tipo, String fechaIni, String fechaFin, String Recurso, String Estado)
+        {
+            return AtencionPeluqueriaDAO.BuscarSector(tipo, fechaIni, fechaFin, Recurso, Estado);
+        }
+
+
     }
 }

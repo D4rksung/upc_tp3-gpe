@@ -27,3 +27,4 @@ D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Utilitario.Comun\bi
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Utilitario.Comun\bin\Debug\Utilitario.Comun.pdb
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.dll
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Utilitario.Comun\obj\Debug\Utilitario.Comun.csprojResolveAssemblyReference.cache

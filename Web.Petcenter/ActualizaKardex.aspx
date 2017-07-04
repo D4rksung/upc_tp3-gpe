@@ -225,17 +225,6 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <div class="input-group-addon">Motivo:</div>
-                                                        <asp:DropDownList ID="cboMotivo" runat="server" class="form-control">
-                                                            <asp:ListItem Value="">Seleccione</asp:ListItem>
-                                                        </asp:DropDownList>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
                                                         <div class="input-group-addon">Tipo:</div>
                                                         <asp:DropDownList ID="cboTipo" runat="server" class="form-control">
                                                             <asp:ListItem Value="">Seleccione</asp:ListItem>
@@ -311,7 +300,9 @@
 
                                                     <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%"
                                                         AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True"
-                                                        OnRowCommand="grvresultado_RowCommand" OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idMovimiento">
+                                                        OnRowCommand="grvresultado_RowCommand"
+                                                        OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" 
+                                                         OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idMovimiento">
 
                                                         <Columns>
                                                             <asp:BoundField DataField="NUMREQ" HeaderText="NUM REQ">
@@ -320,7 +311,7 @@
                                                             <asp:BoundField DataField="TIPO" HeaderText="TIPO">
                                                                 <ItemStyle VerticalAlign="Middle" />
                                                             </asp:BoundField>
-                                                            <asp:BoundField DataField="MOTIVO" HeaderText="MOTIVO">
+                                                            <asp:BoundField DataField="SEDE" HeaderText="SEDE">
                                                                 <ItemStyle VerticalAlign="Middle" />
                                                             </asp:BoundField>
                                                             <asp:BoundField DataField="ESTADO" HeaderText="ESTADO">
@@ -334,9 +325,11 @@
                                                                     <asp:Button ID="ibtnAnular" runat="server" AlternateText="Anular" CausesValidation="false" Visible='<%# Eval("Anular") %>'
                                                                         CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Anular" Text="Anular" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
 
-                                                                    <itemstyle width="5%" />
-                                                                    <asp:Button ID="Button1" runat="server" AlternateText="Cerrar" CausesValidation="false" Visible='<%# Eval("Cerrar") %>'
+                                                                    <asp:Button ID="ibtnCerrar" runat="server" AlternateText="Cerrar" CausesValidation="false" Visible='<%# Eval("Cerrar") %>'
                                                                         CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Cerrar" Text="Cerrar" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
+                                                                    
+                                                                    <asp:Button ID="ibtnRecepcionar" runat="server" AlternateText="Recepcionar" CausesValidation="false" Visible='<%# Eval("Recepcionar") %>'
+                                                                        CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Recepcionar" Text="Recepcionar" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
 
                                                                     <itemstyle width="5%" />
                                                                 </ItemTemplate>
@@ -347,7 +340,7 @@
                                                         </Columns>
                                                         <PagerSettings Position="Top" />
                                                         <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
-                                                        <RowStyle Font-Size="8pt" CssClass="td1" />
+                                                        <RowStyle Font-Size="8pt" CssClass="td2" />
                                                     </asp:GridView>
 
 
@@ -541,43 +534,30 @@
                                                 <div class="input-group">
                                                     <div class="input-group-addon">Tipo :</div>
 
-                                                    <asp:DropDownList ID="cboTipoReq" runat="server" class="form-control">
+                                                    <asp:DropDownList ID="cboTipoReq" runat="server" class="form-control" OnSelectedIndexChanged="cboTipoReq_SelectedIndexChanged" AutoPostBack="true">
                                                         <asp:ListItem Value="">Seleccione</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">Motivo :</div>
-
-                                                    <asp:DropDownList ID="cboMotivoReq" runat="server" class="form-control">
-                                                        <asp:ListItem Value="">Seleccione</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       
                                     </div>
 
 
                                 </div>
                             </div>
 
-                            <br />
-                            <br />
-
                             <hr />
                             <div class="row">
                                 <section>
                                     <div class="col-sm-12">
 
-
-                                        <div class="row">
+                                        
+                                                <div class="row" id="divBuscar" runat="server">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <div class="input-group-addon">Buscar Material :</div>
+                                                        <div class="input-group-addon">Agregar Material :</div>
 
                                                         <asp:DropDownList ID="combobox" Width="100%" runat="server" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="combobox_SelectedIndexChanged"></asp:DropDownList>
 
@@ -659,6 +639,96 @@
         </div>
     </div>
 
+
+    
+    <%--RECEPCIONAR--%>
+    <div class="modal fade" id="myModalR" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <asp:UpdatePanel ID="upModalR" runat="server" UpdateMode="Conditional">
+                <ContentTemplate>
+                    
+                                <asp:HiddenField runat="server" ID="idMovimientoR" />
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">
+                                <asp:Label ID="lblModalRTitle" runat="server" Text=""></asp:Label>
+                                <asp:Label ID="lblModalRTitle2" Font-Size="Large" Font-Bold="true" runat="server" Text=""></asp:Label>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <%--contenido--%>
+
+                            <hr />
+                            <div class="row">
+                                <section>
+                                    <div class="col-sm-12">
+
+
+                                        <div class="row">
+                                            <div style="height: 180px; width: 100%; overflow: auto" class="col-md-12">
+                                            <asp:GridView ID="grvresultado3" runat="server" class="table table-bordered" Width="100%"
+                                                AutoGenerateColumns="False" AllowSorting="True" AllowPaging="false" ShowHeaderWhenEmpty="True"
+                                                DataKeyNames="idMovimiento">
+
+                                                <Columns>
+                                                    <asp:BoundField DataField="NUMREQ" HeaderText="NUM REQ">
+                                                        <ItemStyle VerticalAlign="Middle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="MATERIAL" HeaderText="MATERIAL">
+                                                        <ItemStyle VerticalAlign="Middle" />
+                                                    </asp:BoundField>
+                                                    <asp:BoundField DataField="SOL" HeaderText="CANTIDAD SOLICITADA">
+                                                        <ItemStyle VerticalAlign="Middle" />
+                                                    </asp:BoundField>
+                                                    <asp:TemplateField HeaderText="CANTIDAD">
+
+                                                        <ItemTemplate>
+
+                                                            <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0" Style="text-align: center" onkeypress="return PriceMask(this)" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+
+
+                                                            <itemstyle width="15%" horizontalalign="Center" />
+                                                        </ItemTemplate>
+
+                                                        <ItemStyle BorderStyle="Solid" HorizontalAlign="Center" />
+                                                    </asp:TemplateField>
+
+                                                </Columns>
+                                                <PagerSettings Position="Top" />
+                                                <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
+                                                <RowStyle Font-Size="8pt" CssClass="td2" />
+                                            </asp:GridView>
+
+                                                   </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+
+                            </div>
+
+
+                            <%--fin de contenido--%>
+
+                            <div class="modal-footer">
+                                <asp:HiddenField runat="server" ID="HiddenField1" />
+                                <asp:HiddenField runat="server" ID="HiddenField2" />
+                                <asp:HiddenField runat="server" ID="HiddenField3" />
+
+                                 <asp:Button runat="server" Text="Grabar" CssClass="btn btn-danger" ID="btnGrabar" Style="min-width: 100px" OnClick="btnGrabar_Click" />
+                               <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-danger" ID="Button3" Style="width: 30%" />
+
+                            </div>
+                        </div>
+                    </div>
+
+                </ContentTemplate>
+
+            </asp:UpdatePanel>
+        </div>
+    </div>
 
 
 

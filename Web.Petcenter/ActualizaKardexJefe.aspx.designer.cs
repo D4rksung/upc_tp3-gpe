@@ -40,15 +40,6 @@ namespace Web.Petcenter {
         protected global::System.Web.UI.WebControls.DropDownList cboAlmacen;
         
         /// <summary>
-        /// cboMotivo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboMotivo;
-        
-        /// <summary>
         /// txtfechaIni control.
         /// </summary>
         /// <remarks>
@@ -227,15 +218,6 @@ namespace Web.Petcenter {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cboTipoReq;
-        
-        /// <summary>
-        /// cboMotivoReq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboMotivoReq;
         
         /// <summary>
         /// divBuscar control.

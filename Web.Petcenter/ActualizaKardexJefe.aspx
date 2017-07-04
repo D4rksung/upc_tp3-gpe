@@ -194,11 +194,6 @@
                 <section>
                     <h2 class="text-center">Revisión de Requerimientos</h2>
                     <br>
-                    <br>
-                    <div class="container" style="width: 100%">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#Movimientos">Requerimientos</a></li>
-                        </ul>
                         <div class="tab-content">
                             <div id="Movimientos" class="tab-pane fade in active">
 
@@ -221,18 +216,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">Motivo:</div>
-                                                        <asp:DropDownList ID="cboMotivo" runat="server" class="form-control">
-                                                            <asp:ListItem Value="">Seleccione</asp:ListItem>
-                                                        </asp:DropDownList>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                          
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -292,20 +275,20 @@
                                         <section>
                                             <div class="panel panel-danger">
                                                 <div class="panel-heading">
-                                                    <h3 class="panel-title">Lista de Requerimientos</h3>
+                                                    <h3 class="panel-title">Lista de Movimientos</h3>
                                                 </div>
                                                 <div class="panel-body">
 
 
                                                     <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%"
-                                                        AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True" OnRowDataBound="grvresultado_RowDataBound"
-                                                        OnRowCommand="grvresultado_RowCommand" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idMovimiento">
+                                                        AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True" 
+                                                        OnRowCommand="grvresultado_RowCommand" OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idMovimiento">
 
                                                         <Columns>
                                                             <asp:BoundField DataField="NUMREQ" HeaderText="NUM REQ">
                                                                 <ItemStyle VerticalAlign="Middle" />
                                                             </asp:BoundField>
-                                                            <asp:BoundField DataField="MOTIVO" HeaderText="MOTIVO">
+                                                            <asp:BoundField DataField="SEDE" HeaderText="SEDE">
                                                                 <ItemStyle VerticalAlign="Middle" />
                                                             </asp:BoundField>
                                                             <asp:BoundField DataField="ESTADO" HeaderText="ESTADO">
@@ -445,7 +428,6 @@
                         </div>
 
 
-                    </div>
 
                     <br />
 
@@ -478,10 +460,6 @@
 
                             <div class="row">
                                 <div class="col-sm-12">
-
-                                    <div class="modal-content">
-
-                                        <div class="modal-body">
 
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -526,39 +504,23 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-addon">Motivo :</div>
-
-                                                            <asp:DropDownList ID="cboMotivoReq" runat="server" class="form-control">
-                                                                <asp:ListItem Value="">Seleccione</asp:ListItem>
-                                                            </asp:DropDownList>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
 
                                         </div>
                                     </div>
-                                </div>
-
-                                <br />
-                                <br />
-                                <br />
-
+                              
+                            <hr />
 
 
                                 <div class="row">
                                     <div class="col-sm-12">
 
-                                        <div class="modal-content">
-                                            <div class="modal-body">
                                                 <div class="row" id="divBuscar" runat="server">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <div class="input-group">
-                                                                <div class="input-group-addon">Buscar Material :</div>
+                                                                <div class="input-group-addon">Agregar Material :</div>
                                                                
                                                                         <asp:DropDownList ID="combobox" Width="100%" runat="server"  class="form-control" AutoPostBack="true" OnSelectedIndexChanged="combobox_SelectedIndexChanged"  ></asp:DropDownList>
 
@@ -619,13 +581,9 @@
                                                 </div>
                                                 </div>
 
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-
+                          
                             <%--fin de contenido--%>
 
                             <div class="modal-footer">
@@ -634,7 +592,7 @@
                                 <asp:HiddenField runat="server" ID="idAlmacen" />
 
                                 <asp:Button runat="server" Text="Grabar" CssClass="btn btn-default" ID="btnGuardarP" Style="width: 30%" OnClick="btnGuardarP_Click" />
-                                <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-default" ID="btnCancelarP" Style="width: 30%" />
+                                <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-danger" ID="btnCancelarP" Style="width: 30%" />
 
                             </div>
                         </div>

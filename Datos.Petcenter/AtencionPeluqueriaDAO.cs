@@ -53,7 +53,7 @@ namespace Datos.Petcenter
             }
         }
 
-        public static DataTable BuscarMovimientosAtencion(int almacenID, string material, String Req)
+        public static DataTable BuscarMovimientosAtencion(int movimientoID)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection cnn = new SqlConnection(conn);
@@ -67,9 +67,7 @@ namespace Datos.Petcenter
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = cnn;
 
-                cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = almacenID;
-                cmd.Parameters.Add(new SqlParameter("@material", SqlDbType.VarChar,250)).Value = material;
-                cmd.Parameters.Add(new SqlParameter("@Req", SqlDbType.VarChar, 250)).Value = Req;
+                cmd.Parameters.Add(new SqlParameter("@movimientoID", SqlDbType.Int)).Value = movimientoID;
 
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -159,7 +157,7 @@ namespace Datos.Petcenter
         }
         
 
-        public static DataTable BuscarMaterialesGen()
+        public static DataTable BuscarMaterialesGen(String codigo)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection cnn = new SqlConnection(conn);
@@ -172,7 +170,8 @@ namespace Datos.Petcenter
                 cmd.CommandText = "usp_getMaterial_gl";
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Connection = cnn;
-                
+                cmd.Parameters.Add(new SqlParameter("@codigo", SqlDbType.VarChar,10)).Value = codigo;
+
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
@@ -280,6 +279,8 @@ namespace Datos.Petcenter
 
             }
         }
+
+    
 
         public static DataTable BuscarMateriales(int almacenID, string fechaIni, string fechaFin)
         {
@@ -400,7 +401,7 @@ namespace Datos.Petcenter
             }
         }
 
-        public static DataSet BuscarMaterialesDispo(int idMovimiento)
+        public static DataSet BuscarMaterialesDispo(int idMovimiento, Int32 almacenID)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection cnn = new SqlConnection(conn);
@@ -418,7 +419,13 @@ namespace Datos.Petcenter
                 else
                     cmd.Parameters.Add(new SqlParameter("@idMovimiento", SqlDbType.Int)).Value = DBNull.Value;
 
-                
+
+                if (almacenID != 0)
+                    cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = almacenID;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = DBNull.Value;
+
+
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataSet dt = new DataSet();
                 dap.Fill(dt);
@@ -1850,9 +1857,317 @@ namespace Datos.Petcenter
 
             }
         }
-        
-    
+
+
         #endregion
+
+
+
+
+
+
+
+        public static DataTable GetParametrosGEN(String tipo)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_ParametrosComboGEN_GL";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                if (tipo != "0")
+                    cmd.Parameters.Add(new SqlParameter("@tipo", SqlDbType.VarChar, 100)).Value = tipo;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@tipo", SqlDbType.VarChar, 100)).Value = DBNull.Value;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static DataSet BuscarSectorDetalle(Int32 idSector)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_BuscarSectorDetalle_GL";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                if (idSector != 0)
+                    cmd.Parameters.Add(new SqlParameter("@idSector", SqlDbType.VarChar, 100)).Value = idSector;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@idSector", SqlDbType.VarChar, 100)).Value = DBNull.Value;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataSet dt = new DataSet();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static DataSet BuscarCanilDetalle(int idCanil)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_BuscarCanilDetalle_GL";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                if (idCanil != 0)
+                    cmd.Parameters.Add(new SqlParameter("@idCanil", SqlDbType.VarChar, 100)).Value = idCanil;
+                else
+                    cmd.Parameters.Add(new SqlParameter("@idCanil", SqlDbType.VarChar, 100)).Value = DBNull.Value;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataSet dt = new DataSet();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static  DataTable BuscarCanil(Int32 tipo, String fechaIni, String fechaFin, String Recurso, String Estado)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_BuscarCanil_GL";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+                
+                cmd.Parameters.Add(new SqlParameter("@tipo", SqlDbType.VarChar, 100)).Value = tipo;
+                cmd.Parameters.Add(new SqlParameter("@fechaIni", SqlDbType.VarChar, 100)).Value = fechaIni;
+                cmd.Parameters.Add(new SqlParameter("@fechaFin", SqlDbType.VarChar, 100)).Value = fechaFin;
+                cmd.Parameters.Add(new SqlParameter("@Recurso", SqlDbType.VarChar, 100)).Value = Recurso;
+                cmd.Parameters.Add(new SqlParameter("@Estado", SqlDbType.VarChar, 100)).Value = Estado;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+        public static DataTable BuscarSector(Int32 tipo, String fechaIni, String fechaFin, String Recurso, String Estado)
+        {
+            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection cnn = new SqlConnection(conn);
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cnn.Open();
+
+                cmd.CommandText = "usp_BuscarSector_GL";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = cnn;
+
+                cmd.Parameters.Add(new SqlParameter("@tipo", SqlDbType.VarChar, 100)).Value = tipo;
+                cmd.Parameters.Add(new SqlParameter("@fechaIni", SqlDbType.VarChar, 100)).Value = fechaIni;
+                cmd.Parameters.Add(new SqlParameter("@fechaFin", SqlDbType.VarChar, 100)).Value = fechaFin;
+                cmd.Parameters.Add(new SqlParameter("@Recurso", SqlDbType.VarChar, 100)).Value = Recurso;
+                cmd.Parameters.Add(new SqlParameter("@Estado", SqlDbType.VarChar, 100)).Value = Estado;
+
+
+                SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                dap.Fill(dt);
+
+                return dt;
+                dt = null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+
+            }
+            finally
+            {
+                cnn.Close();
+                cnn = null;
+                cmd = null;
+
+            }
+        }
+
+
+        public static string GrabarEliminarCanilSector(int id, string tipo, SqlTransaction txOle)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandText = "usp_EliminarCanilSector_i";
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = txOle.Connection;
+                cmd.Transaction = txOle;
+
+                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = id;
+                cmd.Parameters.Add(new SqlParameter("@tipo", SqlDbType.VarChar, 10)).Value = tipo;
+
+
+                return cmd.ExecuteNonQuery().ToString();
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+            finally
+            {
+                cmd = null;
+            }
+        }
+        public static string GrabarCanil(int idCanil, string tamanio, string especie, string estado, string observaciones, SqlTransaction txOle)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandText = "usp_GrabarCanil_i";
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = txOle.Connection;
+                cmd.Transaction = txOle;
+
+                cmd.Parameters.Add(new SqlParameter("@idCanil", SqlDbType.Int)).Value = idCanil;
+                cmd.Parameters.Add(new SqlParameter("@tamanio", SqlDbType.VarChar, 10)).Value = tamanio;
+                cmd.Parameters.Add(new SqlParameter("@especie", SqlDbType.VarChar, 10)).Value = especie;
+                cmd.Parameters.Add(new SqlParameter("@estado", SqlDbType.VarChar, 10)).Value = estado;
+                cmd.Parameters.Add(new SqlParameter("@observaciones", SqlDbType.VarChar, 8000)).Value = observaciones;
+
+
+                return cmd.ExecuteNonQuery().ToString();
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+            finally
+            {
+                cmd = null;
+            }
+        }
+
+        public static string GrabarSector(int idSector, string servicio, string estado, string observaciones, SqlTransaction txOle)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandText = "usp_GrabarSector_i";
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = txOle.Connection;
+                cmd.Transaction = txOle;
+
+                cmd.Parameters.Add(new SqlParameter("@idSector", SqlDbType.Int)).Value = idSector;
+                cmd.Parameters.Add(new SqlParameter("@servicio", SqlDbType.VarChar, 10)).Value = servicio;
+                cmd.Parameters.Add(new SqlParameter("@estado", SqlDbType.VarChar, 10)).Value = estado;
+                cmd.Parameters.Add(new SqlParameter("@observaciones", SqlDbType.VarChar, 8000)).Value = observaciones;
+
+
+                return cmd.ExecuteNonQuery().ToString();
+            }
+            catch (Exception ex)
+            {
+                return "";
+            }
+            finally
+            {
+                cmd = null;
+            }
+        }
 
     }
 }
+

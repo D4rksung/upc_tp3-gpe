@@ -34,6 +34,5 @@ D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Entidades.Petcenter\obj
 D:\Descargas\PetCenter-Peluqueria17\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.pdb
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.dll
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.pdb
-D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.csprojResolveAssemblyReference.cache
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.dll
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.pdb

@@ -47,6 +47,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=3.1.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\Lib\log4net.dll</HintPath>
     </Reference>
@@ -74,11 +78,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActualizaHojaServicio.aspx" />
-    <Content Include="ActualizaKardexAtencion.aspx" />
     <Content Include="ActualizaKardexJefe.aspx" />
     <Content Include="ActualizaKardex.aspx" />
     <Content Include="ActualizaProgramacion.aspx" />
     <Content Include="ActualizarKardexMaterial.aspx" />
+    <Content Include="ActualizaSectorCanil.aspx" />
     <Content Include="assets\css\animate.min.css" />
     <Content Include="assets\css\responsive.css" />
     <Content Include="assets\css\style.css" />
@@ -392,6 +396,7 @@
     <Content Include="assets\plugins\viewport\viewportchecker.js" />
     <Content Include="bin\AjaxControls.dll" />
     <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\EPPlus.dll" />
     <Content Include="Content2\css\estilos.css" />
     <Content Include="Content2\img\logo.png" />
     <Content Include="Content\bootstrap-datepicker-1.6.4-dist\css\bootstrap-datepicker.css" />
@@ -490,6 +495,7 @@
     <Content Include="Default.aspx" />
     <Content Include="EditarHojaServicio.aspx" />
     <Content Include="EditarKardexMaterial.aspx" />
+    <Content Include="ExportarSectorCanil.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGES\Boby.jpg" />
     <Content Include="IMAGES\Lady.jpg" />
@@ -520,13 +526,6 @@
     <Compile Include="ActualizaHojaServicio.aspx.designer.cs">
       <DependentUpon>ActualizaHojaServicio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ActualizaKardexAtencion.aspx.cs">
-      <DependentUpon>ActualizaKardexAtencion.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ActualizaKardexAtencion.aspx.designer.cs">
-      <DependentUpon>ActualizaKardexAtencion.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ActualizaKardexJefe.aspx.cs">
       <DependentUpon>ActualizaKardexJefe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -555,6 +554,13 @@
     <Compile Include="ActualizarKardexMaterial.aspx.designer.cs">
       <DependentUpon>ActualizarKardexMaterial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ActualizaSectorCanil.aspx.cs">
+      <DependentUpon>ActualizaSectorCanil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActualizaSectorCanil.aspx.designer.cs">
+      <DependentUpon>ActualizaSectorCanil.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -575,6 +581,13 @@
     </Compile>
     <Compile Include="EditarKardexMaterial.aspx.designer.cs">
       <DependentUpon>EditarKardexMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExportarSectorCanil.aspx.cs">
+      <DependentUpon>ExportarSectorCanil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExportarSectorCanil.aspx.designer.cs">
+      <DependentUpon>ExportarSectorCanil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

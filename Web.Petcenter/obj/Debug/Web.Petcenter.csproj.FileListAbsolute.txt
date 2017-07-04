@@ -153,5 +153,6 @@ D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\N
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Utilitario.Comun.pdb
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Newtonsoft.Json.xml
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\bin\Datos.Petcenter.pdb
+D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.csprojResolveAssemblyReference.cache
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.dll
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Web.Petcenter\obj\Debug\Web.Petcenter.pdb

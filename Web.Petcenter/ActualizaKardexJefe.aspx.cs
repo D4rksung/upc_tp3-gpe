@@ -27,7 +27,7 @@ namespace Web.Petcenter
         
         void CargarDetalle()
         {
-            DataTable data = AtencionPeluqueriaBuss.BuscarMovimientos(Int32.Parse(cboAlmacen.SelectedValue), txtfechaIni.Text, txtFechaFinal.Text, cboMotivo.SelectedValue,"0",cboEstado.SelectedValue, txtNumReq.Text);
+            DataTable data = AtencionPeluqueriaBuss.BuscarMovimientos(Int32.Parse(cboAlmacen.SelectedValue), txtfechaIni.Text, txtFechaFinal.Text, "0","0",cboEstado.SelectedValue, txtNumReq.Text);
             grvresultado.DataSource = data;
             grvresultado.DataBind();
             
@@ -45,13 +45,10 @@ namespace Web.Petcenter
 
 
             Utilidades.CargaCombo(ref cboAlmacen, AtencionPeluqueriaBuss.GetAlmacen(), "idAlmacen", "descripcion", true);
-            Utilidades.CargaCombo(ref cboMotivo, AtencionPeluqueriaBuss.GetParametros("012"), "ID", "DESCR", true);
             Utilidades.CargaCombo(ref cboEstado, AtencionPeluqueriaBuss.GetParametros("011"), "ID", "DESCR", true);
             cboEstado.SelectedValue = "002";
             Utilidades.CargaCombo(ref cboTipoReq, AtencionPeluqueriaBuss.GetParametros("013"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref cboMotivoReq, AtencionPeluqueriaBuss.GetParametros("012"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref combobox, AtencionPeluqueriaBuss.BuscarMaterialesGen(), "IdMaterial", "Descripcion", true);
-            
+               
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -123,7 +120,7 @@ namespace Web.Petcenter
                     row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
                     row.ToolTip = string.Empty;
                     idMovimiento.Value = grvresultado.SelectedDataKey.Values[0].ToString();
-                    CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 3);
+                    CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 3,0);
 
                     lblModalPTitle.Text = "Detalle del requerimiento";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
@@ -156,9 +153,9 @@ namespace Web.Petcenter
             gvMaterialesV.DataSource = data2;
             gvMaterialesV.DataBind();
         }
-        void CargarDataDetalle2(Int32 idMovimiento, Int32 tipo)
+        void CargarDataDetalle2(Int32 idMovimiento, Int32 tipo, Int32 almacenID)
         {
-            DataSet ds = AtencionPeluqueriaBuss.BuscarMaterialesDispo(idMovimiento);
+            DataSet ds = AtencionPeluqueriaBuss.BuscarMaterialesDispo(idMovimiento, almacenID);
             DataTable data2 = ds.Tables[0];
 
             data2.Columns.Add("SubTotal");
@@ -175,14 +172,12 @@ namespace Web.Petcenter
 
             txtNroReq.Text = "";
             txtFechaReq.Text = "";
-            cboTipoReq.ClearSelection();
-            cboMotivoReq.ClearSelection();
+            cboTipoReq.ClearSelection();         
             if (ds.Tables[1].Rows.Count > 0)
             {
                 txtNroReq.Text = ds.Tables[1].Rows[0]["NroReq"].ToString();
                 txtFechaReq.Text = ds.Tables[1].Rows[0]["FECHAMOV"].ToString();
                 cboTipoReq.SelectedValue = ds.Tables[1].Rows[0]["TipoMovimiento"].ToString();
-                cboMotivoReq.SelectedValue = ds.Tables[1].Rows[0]["MotivoMovimiento"].ToString();
                 txtSede.Text = ds.Tables[1].Rows[0]["Sede"].ToString();
                 idAlmacen.Value = ds.Tables[1].Rows[0]["IdAlmacen"].ToString();
             }
@@ -191,7 +186,6 @@ namespace Web.Petcenter
                 txtFechaReq.ReadOnly = true;
                 txtFechaReq.Attributes.Add("disabled", "disabled");
                 cboTipoReq.Attributes.Add("disabled", "disabled");
-                cboMotivoReq.Attributes.Add("disabled", "disabled");
                 divBuscar.Visible = false;
                 gvMateriales.Enabled = false ;
                 btnGuardarP.Visible = false;
@@ -199,12 +193,13 @@ namespace Web.Petcenter
             else
             {
                 txtFechaReq.ReadOnly = false;
-                txtFechaReq.Attributes.Add("disabled", "");
-                cboTipoReq.Attributes.Add("disabled", "");
-                cboMotivoReq.Attributes.Add("disabled", "");
+                txtFechaReq.Attributes.Remove("disabled");
+                cboTipoReq.Attributes.Add("disabled", "disabled");
                 divBuscar.Visible = true;
                 gvMateriales.Enabled = true;
                 btnGuardarP.Visible = true;
+                Utilidades.CargaCombo(ref combobox, AtencionPeluqueriaBuss.BuscarMaterialesGen(cboTipoReq.SelectedValue), "IdMaterial", "Descripcion", true);
+
             }
         }
         protected void gvResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -227,7 +222,7 @@ namespace Web.Petcenter
             if (e.CommandName == "Modificar")
             {
                 idMovimiento.Value = e.CommandArgument.ToString();
-                CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 1);
+                CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 1,0);
 
                 lblModalPTitle.Text = "Registro de Movimiento";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
@@ -301,7 +296,7 @@ namespace Web.Petcenter
                 idMovimiento.Value = "0";
                 idAlmacen.Value = cboAlmacen.SelectedValue;
                 txtSede.Text = cboAlmacen.SelectedItem.Text;
-                CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 0);
+                CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 0, Int32.Parse(idAlmacen.Value));
                 lblModalPTitle.Text = "Registro de material";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
                 upModalP.Update();
@@ -320,6 +315,26 @@ namespace Web.Petcenter
 
             Boolean VAL = true;
             String MENSAJE = " ";
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("MaterialID");
+            dt.Columns.Add("Precio", typeof(Decimal));
+            dt.Columns.Add("Cantidad", typeof(Decimal));
+
+            foreach (GridViewRow gvRow in gvMateriales.Rows)
+            {
+                DataRow dr = dt.NewRow();
+                Int32 rowIndex = gvRow.RowIndex;
+                Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
+                TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
+                dr[0] = idMaterial;
+                dr[1] = 0;
+                dr[2] = txtCantidad.Text;
+                dt.Rows.Add(dr);
+
+            }
+
+
             if (txtFechaReq.Text == "")
             {
                 MENSAJE = MENSAJE + " la Fecha del requerimiento";
@@ -330,12 +345,7 @@ namespace Web.Petcenter
                 MENSAJE = MENSAJE + " el tipo de requerimiento";
                 VAL = false;
             }
-            else if (cboMotivoReq.SelectedValue =="0")
-            {
-                MENSAJE = MENSAJE + " el motivo del requerimiento";
-                VAL = false;
-            }
-            else if (gvMateriales.Rows.Count==0)
+            else if (gvMateriales.Rows.Count == 0 || dt.Select("Cantidad>0").Count() == 0)
             {
                 MENSAJE = MENSAJE + " lista de materiales";
                 VAL = false;
@@ -346,26 +356,10 @@ namespace Web.Petcenter
                 VAL = true;
 
             }
-                DataTable dt = new DataTable();
-            dt.Columns.Add("MaterialID");
-            dt.Columns.Add("Precio", typeof(Decimal));
-            dt.Columns.Add("Cantidad", typeof(Decimal));
-
-                foreach (GridViewRow gvRow in gvMateriales.Rows)
-                {
-                    DataRow dr = dt.NewRow();
-                    Int32 rowIndex = gvRow.RowIndex;
-                    Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
-                    TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
-                    dr[0] = idMaterial;
-                    dr[1] = 0;
-                    dr[2] = txtCantidad.Text;
-                    dt.Rows.Add(dr);
-
-                }
+               
             if (VAL)
             {
-                if ((new ProgramacionCita()).GrabarMovimiento(Int32.Parse(idMovimiento.Value), dt, txtFechaReq.Text,  cboTipoReq.SelectedValue, cboMotivoReq.SelectedValue, Int32.Parse(idAlmacen.Value )))
+                if ((new ProgramacionCita()).GrabarMovimiento(Int32.Parse(idMovimiento.Value), dt, txtFechaReq.Text,  cboTipoReq.SelectedValue, "0", Int32.Parse(idAlmacen.Value )))
                 {
 
                     lblMensajeTitulo.Text = "Informativo";
@@ -376,7 +370,6 @@ namespace Web.Petcenter
                     txtFechaReq.Text = "";
                     txtSede.Text = "";
                     cboTipoReq.ClearSelection();
-                    cboMotivoReq.ClearSelection();
 
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
                     upModalMensaje.Update();
