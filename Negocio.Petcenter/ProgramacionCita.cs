@@ -10,6 +10,12 @@ namespace Negocio.Petcenter
 {
     public class ProgramacionCita : IProgramacion
     {
+
+
+        /// <summary>Descripción breve del método</summary> 
+        /// <remarks>Descripción detallada del método</remarks> 
+        /// <param name="idServicio">Descripción parámetro 1</param> 
+        /// <returns>Información valor de retorno</returns>
         public bool GrabarProgramación(int idServicio, string idCita, DataTable dtEmpleados, int idDetalleCita, int idSector, int accion, string MotivoAnulacion)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
@@ -46,7 +52,12 @@ namespace Negocio.Petcenter
                 txOle = null;
             }
         }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="idDetalleCita"></param>
+        /// <param name="dt"></param>
+        /// <param name="txtComents"></param>
+        /// <returns></returns>
         public bool GrabarHojadeServicio(Int32 idDetalleCita, DataTable dt, String txtComents)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
@@ -80,7 +91,11 @@ namespace Negocio.Petcenter
                 txOle = null;
             }
         }
-
+        /// <summary>
+        /// Algo
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         public Boolean GrabarMovimientoAtencion(DataTable dt)
         {
             string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
@@ -118,7 +133,7 @@ namespace Negocio.Petcenter
         public DataTable GrabarHojadeServicioComents(Int32 idDetalleCita, String text)
         {
 
-            return AtencionPeluqueriaDAO.GrabarHojadeServicioComents(idDetalleCita, text);
+            return AtencionPeluqueriaDAO.GrabarHojaDeServicioComents(idDetalleCita, text);
 
 
         }

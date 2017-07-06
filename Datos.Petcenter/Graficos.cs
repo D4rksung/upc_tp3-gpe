@@ -7,31 +7,31 @@ using System.Text;
 
 namespace Datos.Petcenter
 {
-   public class Graficos
+    public class Graficos
     {
 
-        public static DataSet ObtenerGrafica1(string idServicio)
+        public static DataSet ObtenerGraficaDemandaSemanal(string idServicio)
         {
             //Shared
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-            SqlConnection cnn = new SqlConnection(conn);
-            SqlCommand cmd = new SqlCommand();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection Cnn = new SqlConnection(Conn);
+            SqlCommand Cmd = new SqlCommand();
 
             try
             {
-                cnn.Open();
+                Cnn.Open();
 
-                cmd.CommandText = "usp_ObtenerGrafica1_g";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = cnn;
+                Cmd.CommandText = "usp_GP_ObtenerGrafica1";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Connection = Cnn;
 
-                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar,20)).Value = idServicio;
+                Cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20)).Value = idServicio;
 
-                SqlDataAdapter dap = new SqlDataAdapter(cmd);
-                DataSet dt = new DataSet();
-                dap.Fill(dt);
+                SqlDataAdapter Dap = new SqlDataAdapter(Cmd);
+                DataSet Dt = new DataSet();
+                Dap.Fill(Dt);
 
-                return dt;
+                return Dt;
 
             }
             catch (Exception ex)
@@ -41,9 +41,9 @@ namespace Datos.Petcenter
             }
             finally
             {
-                cnn.Close();
-                cnn = null;
-                cmd = null;
+                Cnn.Close();
+                Cnn = null;
+                Cmd = null;
 
             }
         }
@@ -51,24 +51,24 @@ namespace Datos.Petcenter
         public static DataSet ObtenerGraficaRent2()
         {
             //Shared
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-            SqlConnection cnn = new SqlConnection(conn);
-            SqlCommand cmd = new SqlCommand();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection Cnn = new SqlConnection(Conn);
+            SqlCommand Cmd = new SqlCommand();
 
             try
             {
-                cnn.Open();
+                Cnn.Open();
 
-                cmd.CommandText = "up_graficoRENT_2";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = cnn;
+                Cmd.CommandText = "up_graficoRENT_2";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Connection = Cnn;
 
 
-                SqlDataAdapter dap = new SqlDataAdapter(cmd);
-                DataSet dt = new DataSet();
-                dap.Fill(dt);
+                SqlDataAdapter Dap = new SqlDataAdapter(Cmd);
+                DataSet Dt = new DataSet();
+                Dap.Fill(Dt);
 
-                return dt;
+                return Dt;
 
             }
             catch (Exception ex)
@@ -78,9 +78,9 @@ namespace Datos.Petcenter
             }
             finally
             {
-                cnn.Close();
-                cnn = null;
-                cmd = null;
+                Cnn.Close();
+                Cnn = null;
+                Cmd = null;
 
             }
         }
@@ -88,24 +88,24 @@ namespace Datos.Petcenter
         public static DataSet ObtenerGraficaRent1()
         {
             //Shared
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-            SqlConnection cnn = new SqlConnection(conn);
-            SqlCommand cmd = new SqlCommand();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection Cnn = new SqlConnection(Conn);
+            SqlCommand Cmd = new SqlCommand();
 
             try
             {
-                cnn.Open();
+                Cnn.Open();
 
-                cmd.CommandText = "up_graficoRENT_1";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = cnn;
-                
+                Cmd.CommandText = "up_graficoRENT_1";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Connection = Cnn;
 
-                SqlDataAdapter dap = new SqlDataAdapter(cmd);
-                DataSet dt = new DataSet();
-                dap.Fill(dt);
 
-                return dt;
+                SqlDataAdapter Dap = new SqlDataAdapter(Cmd);
+                DataSet Dt = new DataSet();
+                Dap.Fill(Dt);
+
+                return Dt;
 
             }
             catch (Exception ex)
@@ -115,33 +115,33 @@ namespace Datos.Petcenter
             }
             finally
             {
-                cnn.Close();
-                cnn = null;
-                cmd = null;
+                Cnn.Close();
+                Cnn = null;
+                Cmd = null;
 
             }
         }
         public static DataSet BuscarGrafico4(Int32 opcion)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-            SqlConnection cnn = new SqlConnection(conn);
-            SqlCommand cmd = new SqlCommand();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection Cnn = new SqlConnection(Conn);
+            SqlCommand Cmd = new SqlCommand();
 
             try
             {
-                cnn.Open();
+                Cnn.Open();
 
-                cmd.CommandText = "usp_ObtenerGrafico4_g";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = cnn;
+                Cmd.CommandText = "usp_GP_ObtenerGrafico4";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Connection = Cnn;
 
-                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = opcion;
+                Cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = opcion;
 
-                SqlDataAdapter dap = new SqlDataAdapter(cmd);
-                DataSet dt = new DataSet();
-                dap.Fill(dt);
+                SqlDataAdapter Dap = new SqlDataAdapter(Cmd);
+                DataSet Dt = new DataSet();
+                Dap.Fill(Dt);
 
-                return dt;
+                return Dt;
 
             }
             catch (Exception ex)
@@ -151,32 +151,32 @@ namespace Datos.Petcenter
             }
             finally
             {
-                cnn.Close();
-                cnn = null;
-                cmd = null;
+                Cnn.Close();
+                Cnn = null;
+                Cmd = null;
 
             }
         }
 
         public static DataSet BuscarResumen()
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-            SqlConnection cnn = new SqlConnection(conn);
-            SqlCommand cmd = new SqlCommand();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection Cnn = new SqlConnection(Conn);
+            SqlCommand Cmd = new SqlCommand();
 
             try
             {
-                cnn.Open();
+                Cnn.Open();
 
-                cmd.CommandText = "usp_ObtenerResumen_g";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = cnn;
+                Cmd.CommandText = "usp_GP_ObtenerResumen";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Connection = Cnn;
 
-                SqlDataAdapter dap = new SqlDataAdapter(cmd);
-                DataSet dt = new DataSet();
-                dap.Fill(dt);
+                SqlDataAdapter Dap = new SqlDataAdapter(Cmd);
+                DataSet Dt = new DataSet();
+                Dap.Fill(Dt);
 
-                return dt;
+                return Dt;
 
             }
             catch (Exception ex)
@@ -186,35 +186,35 @@ namespace Datos.Petcenter
             }
             finally
             {
-                cnn.Close();
-                cnn = null;
-                cmd = null;
+                Cnn.Close();
+                Cnn = null;
+                Cmd = null;
 
             }
         }
 
-        public static DataSet ObtenerGrafica2(string opcion)
+        public static DataSet ObtenerGraficaIndicadorDeActividadPorEmpleado(string opcion)
         {
             //Shared
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-            SqlConnection cnn = new SqlConnection(conn);
-            SqlCommand cmd = new SqlCommand();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection Cnn = new SqlConnection(Conn);
+            SqlCommand Cmd = new SqlCommand();
 
             try
             {
-                cnn.Open();
+                Cnn.Open();
 
-                cmd.CommandText = "usp_ObtenerGrafica2_g";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = cnn;
+                Cmd.CommandText = "usp_GP_ObtenerGrafica2";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Connection = Cnn;
 
-                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20)).Value = opcion;
+                Cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20)).Value = opcion;
 
-                SqlDataAdapter dap = new SqlDataAdapter(cmd);
-                DataSet dt = new DataSet();
-                dap.Fill(dt);
+                SqlDataAdapter Dap = new SqlDataAdapter(Cmd);
+                DataSet Dt = new DataSet();
+                Dap.Fill(Dt);
 
-                return dt;
+                return Dt;
 
             }
             catch (Exception ex)
@@ -224,35 +224,35 @@ namespace Datos.Petcenter
             }
             finally
             {
-                cnn.Close();
-                cnn = null;
-                cmd = null;
+                Cnn.Close();
+                Cnn = null;
+                Cmd = null;
 
             }
         }
 
-        public static DataSet ObtenerGrafica3(string opcion)
+        public static DataSet ObtenerGraficaIndicadorDeEficienciaDeRecurso(string opcion)
         {
             //Shared
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
-            SqlConnection cnn = new SqlConnection(conn);
-            SqlCommand cmd = new SqlCommand();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            SqlConnection Cnn = new SqlConnection(Conn);
+            SqlCommand Cmd = new SqlCommand();
 
             try
             {
-                cnn.Open();
+                Cnn.Open();
 
-                cmd.CommandText = "usp_ObtenerGrafica3_g";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = cnn;
+                Cmd.CommandText = "usp_GP_ObtenerGrafica3";
+                Cmd.CommandType = CommandType.StoredProcedure;
+                Cmd.Connection = Cnn;
 
-                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20)).Value = opcion;
+                Cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.VarChar, 20)).Value = opcion;
 
-                SqlDataAdapter dap = new SqlDataAdapter(cmd);
-                DataSet dt = new DataSet();
-                dap.Fill(dt);
+                SqlDataAdapter Dap = new SqlDataAdapter(Cmd);
+                DataSet Dt = new DataSet();
+                Dap.Fill(Dt);
 
-                return dt;
+                return Dt;
 
             }
             catch (Exception ex)
@@ -262,9 +262,9 @@ namespace Datos.Petcenter
             }
             finally
             {
-                cnn.Close();
-                cnn = null;
-                cmd = null;
+                Cnn.Close();
+                Cnn = null;
+                Cmd = null;
 
             }
         }

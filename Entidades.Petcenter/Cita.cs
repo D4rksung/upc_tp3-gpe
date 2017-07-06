@@ -7,10 +7,10 @@ namespace Entidades.Petcenter
 {
    public class Cita
     {
-        public int idcita { set; get; }
-        public int idServicio { set; get; }
-        public DateTime fechaLlegada { set; get; }
-        public DateTime fechaRecojo { set; get; }
+        public int IdCita { set; get; }
+        public int IdServicio { set; get; }
+        public DateTime FechaLlegada { set; get; }
+        public DateTime FechaRecojo { set; get; }
         public string Observaciones { set; get; }
         public string FechaInicial { set; get; }
         public string FechaFinal { set; get; }

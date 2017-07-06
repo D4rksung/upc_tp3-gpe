@@ -23,10 +23,10 @@ namespace Web.Petcenter
     {
 
         [WebMethod]
-        public string Grafico1(string idServcio)
+        public string ObtenerGraficaDemandaSemanal(string idServcio)
         {
             String daresult = null;
-            DataSet data = Negocio.Petcenter.Graficos.ObtenerGrafica1(idServcio);
+            DataSet data = Negocio.Petcenter.Graficos.ObtenerGraficaDemandaSemanal(idServcio);
             data.Tables[0].TableName = "Servicios";
             data.Tables[1].TableName = "Etiquetas";
             daresult= JsonConvert.SerializeObject(data);
@@ -35,10 +35,10 @@ namespace Web.Petcenter
         }
 
         [WebMethod]
-        public string Grafico2(string opcion)
+        public string ObtenerGraficaIndicadorDeActividadPorEmpleado(string opcion)
         {
             String daresult = null;
-            DataSet data = Negocio.Petcenter.Graficos.ObtenerGrafica2(opcion);
+            DataSet data = Negocio.Petcenter.Graficos.ObtenerGraficaIndicadorDeActividadPorEmpleado(opcion);
             data.Tables[0].TableName = "Empleado";
             daresult = JsonConvert.SerializeObject(data);
             return daresult;
@@ -46,10 +46,10 @@ namespace Web.Petcenter
         }
 
         [WebMethod]
-        public string Grafico3(string sede)
+        public string ObtenerGraficaIndicadorDeEficienciaDeRecurso(string sede)
         {
             String daresult = null;
-            DataSet data = Negocio.Petcenter.Graficos.ObtenerGrafica3(sede);
+            DataSet data = Negocio.Petcenter.Graficos.ObtenerGraficaIndicadorDeEficienciaDeRecurso(sede);
             data.Tables[0].TableName = "Sede";
             daresult = JsonConvert.SerializeObject(data);
             return daresult;

@@ -38,7 +38,7 @@ namespace Negocio.Petcenter
 
         public static DataTable BuscarMaterialesxCodigo(Int32 codigo, Int32 almacenID)
         {
-            return AtencionPeluqueriaDAO.BuscarMaterialesxCodigo(codigo, almacenID);
+            return AtencionPeluqueriaDAO.BuscarMaterialesPorCodigo(codigo, almacenID);
         }
         public static DataSet BuscarServicioDetalle(Int32 iddetalleCita)
         {

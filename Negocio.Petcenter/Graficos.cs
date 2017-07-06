@@ -9,14 +9,14 @@ namespace Negocio.Petcenter
   public  class Graficos
     {
 
-        public static DataSet ObtenerGrafica1(string idServicio)
+        public static DataSet ObtenerGraficaDemandaSemanal(string idServicio)
         {
-            return Datos.Petcenter. Graficos.ObtenerGrafica1(idServicio);
+            return Datos.Petcenter. Graficos.ObtenerGraficaDemandaSemanal(idServicio);
         }
 
-        public static DataSet ObtenerGrafica2(string opcion)
+        public static DataSet ObtenerGraficaIndicadorDeActividadPorEmpleado(string opcion)
         {
-            return Datos.Petcenter.Graficos.ObtenerGrafica2(opcion);
+            return Datos.Petcenter.Graficos.ObtenerGraficaIndicadorDeActividadPorEmpleado(opcion);
         }
 
         public static DataSet BuscarResumen()
@@ -24,9 +24,9 @@ namespace Negocio.Petcenter
             return Datos.Petcenter.Graficos.BuscarResumen();
         }
 
-        public static DataSet ObtenerGrafica3(string opcion)
+        public static DataSet ObtenerGraficaIndicadorDeEficienciaDeRecurso(string opcion)
         {
-            return Datos.Petcenter.Graficos.ObtenerGrafica3(opcion);
+            return Datos.Petcenter.Graficos.ObtenerGraficaIndicadorDeEficienciaDeRecurso(opcion);
         }
 
         public static DataSet BuscarGrafico4(int opcion)
