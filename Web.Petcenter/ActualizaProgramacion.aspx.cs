@@ -24,11 +24,11 @@ namespace Web.Petcenter
         {
             if (!Page.IsPostBack)
             {
-                HtmlGenericControl divProgramacion = (HtmlGenericControl)this.Master.FindControl("liprogramacion");
-                divProgramacion.Attributes.Add("class", "dropdown active");
+                HtmlGenericControl DivProgramacion = (HtmlGenericControl)this.Master.FindControl("liprogramacion");
+                DivProgramacion.Attributes.Add("class", "dropdown active");
 
-                HtmlGenericControl divinicio = (HtmlGenericControl)this.Master.FindControl("liinicio");
-                divinicio.Attributes.Add("class", "");
+                HtmlGenericControl DivInicio = (HtmlGenericControl)this.Master.FindControl("liinicio");
+                DivInicio.Attributes.Add("class", "");
 
                 this.CargaCombo();
                 this.CargaListado();
@@ -64,20 +64,20 @@ namespace Web.Petcenter
         }
         private void CargaCombo()
         {
-            Utilidades.CargaCombo(ref cboEstado, AtencionPeluqueriaBuss.GetEstadosCita(), "idEstado", "descripcion", true);
+            Utilidades.CargaCombo(ref cboEstado, AtencionPeluqueriaBuss.GetEstadosCita(), Utilitario.Comun.Dominios.IdEstado, Utilitario.Comun.Dominios.DescripcionEstado, true);
         }
         private void CargaListado()
         {
             
-            Cita obj = new Cita();
-            obj.FechaInicial = txtfechaInicio.Text;
-            obj.FechaFinal = txtFechaFin.Text;
-            obj.CodigoEstado = cboEstado.SelectedValue;
+            Cita Obj = new Cita();
+            Obj.FechaInicial = txtfechaInicio.Text;
+            Obj.FechaFinal = txtFechaFin.Text;
+            Obj.CodigoEstado = cboEstado.SelectedValue;
 
-            DataTable data = AtencionPeluqueriaBuss.BuscarCita(obj);
+            DataTable Data = AtencionPeluqueriaBuss.BuscarCita(Obj);
 
 
-            this.grvresultado.DataSource = data;
+            this.grvresultado.DataSource = Data;
             this.grvresultado.DataBind();
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -92,10 +92,10 @@ namespace Web.Petcenter
                 e.Row.ToolTip = "Ver Detalle";
 
                 GridView gvDetalle = (GridView)e.Row.FindControl("gvDetalle");
-                Int32 idCita = Int32.Parse(grvresultado.DataKeys[e.Row.RowIndex].Values[0].ToString());
+                Int32 IdCita = Int32.Parse(grvresultado.DataKeys[e.Row.RowIndex].Values[0].ToString());
 
-                DataSet data = AtencionPeluqueriaBuss.BuscarCitaDetalle(idCita);
-                gvDetalle.DataSource = data.Tables[0];
+                DataSet Data = AtencionPeluqueriaBuss.BuscarCitaDetalle(IdCita);
+                gvDetalle.DataSource = Data.Tables[0];
                 gvDetalle.DataBind();
 
             }
@@ -149,8 +149,8 @@ namespace Web.Petcenter
             foreach (GridViewRow row in grvresultado.Rows)
             {
 
-                CheckBox hdnCheck = (CheckBox)row.Cells[0].FindControl("chkAsignacion");
-                if (!hdnCheck.Checked)
+                CheckBox Marca = (CheckBox)row.Cells[0].FindControl("chkAsignacion");
+                if (!Marca.Checked)
                 {
                     if (row.RowIndex == grvresultado.SelectedIndex)
                     {
@@ -176,18 +176,18 @@ namespace Web.Petcenter
 
             lblModalPTitleGD.Text = "Ver Cita";
 
-            DataSet data = AtencionPeluqueriaBuss.BuscarCitaDetalleCompleto(idCita);
+            DataSet Data = AtencionPeluqueriaBuss.BuscarCitaDetalleCompleto(idCita);
             if (idCita != 0)
             {
-                if (data.Tables[0].Rows.Count > 0)
+                if (Data.Tables[0].Rows.Count > 0)
                 {
-                    txtObservaciones.Text = data.Tables[0].Rows[0]["Observaciones"].ToString();
+                    txtObservaciones.Text = Data.Tables[0].Rows[0]["Observaciones"].ToString();
 
                 }  //detalle
 
 
-                Servicios = data.Tables[1];
-                EmpleadosDetalle = data.Tables[2];
+                Servicios = Data.Tables[1];
+                EmpleadosDetalle = Data.Tables[2];
 
                 this.grvresultadodet.DataSource = OrdenarServicios(Servicios, EmpleadosDetalle);
                 this.grvresultadodet.DataBind();
@@ -232,14 +232,14 @@ namespace Web.Petcenter
 
         void CargarDataDetalle(String idDetalleCita, String idServicio, String nombreServicio)
         {
-            DataSet data = AtencionPeluqueriaBuss.BuscarCitaDetalleEmpleados(idDetalleCita, idServicio);
+            DataSet Data = AtencionPeluqueriaBuss.BuscarCitaDetalleEmpleados(idDetalleCita, idServicio);
             if (idDetalleCita != "0")
             {
-                if (data.Tables[0].Rows.Count > 0)
+                if (Data.Tables[0].Rows.Count > 0)
                 {
-                    Utilidades.CargaCombo(ref cboSector, AtencionPeluqueriaBuss.GetSectores(idServicio), "idSector", "descripcion", true);
-                    Utilidades.CargaCombo(ref cboRol, AtencionPeluqueriaBuss.GetRoles(idServicio), "idRol", "descripcion", true);
-                    cboSector.SelectedValue = data.Tables[0].Rows[0]["idSector"].ToString();
+                    Utilidades.CargaCombo(ref cboSector, AtencionPeluqueriaBuss.GetSectores(idServicio), Utilitario.Comun.Dominios.IdSector, Utilitario.Comun.Dominios.DescripcionSector, true);
+                    Utilidades.CargaCombo(ref cboRol, AtencionPeluqueriaBuss.GetRoles(idServicio), Utilitario.Comun.Dominios.IdRol, Utilitario.Comun.Dominios.DescripcionRol, true);
+                    cboSector.SelectedValue = Data.Tables[0].Rows[0]["idSector"].ToString();
                     if (cboRol.Items.Count > 0) {
                     cboRol.SelectedIndex = 1;
                     }
@@ -251,16 +251,16 @@ namespace Web.Petcenter
                 EmpleadosAsig.Columns.Add("idEmpleado");
                 EmpleadosAsig.Columns.Add("nombreEmpleado");
                 EmpleadosAsig.Columns.Add("idServicio");
-                DataTable EmpleadosTotal = data.Tables[1];
+                DataTable EmpleadosTotal = Data.Tables[1];
                 if (EmpleadosTotal != null)
                 {
                     foreach (DataRow dr in EmpleadosTotal.Select("idServicio=" + idServicio))
                     {
-                        DataRow dr1 = EmpleadosAsig.NewRow();
-                        dr1[0] = dr[0];
-                        dr1[1] = dr[1];
-                        dr1[2] = dr[2];
-                        EmpleadosAsig.Rows.Add(dr1);
+                        DataRow Dr1 = EmpleadosAsig.NewRow();
+                        Dr1[0] = dr[0];
+                        Dr1[1] = dr[1];
+                        Dr1[2] = dr[2];
+                        EmpleadosAsig.Rows.Add(Dr1);
                     }
                 }
                 this.gvEmpleadosAsig.DataSource = EmpleadosAsig;
@@ -275,18 +275,18 @@ namespace Web.Petcenter
         }
         void CargarEmpleados()
         {
-            List<Empleado> lstEmpleados = new List<Empleado>();
+            List<Empleado> ListaEmpleados = new List<Empleado>();
             String Citasstr = "";
             Citasstr = idCitaA.Value;
             foreach (GridViewRow gvRow in grvresultado.Rows)
             {
                 Int32 rowIndex = gvRow.RowIndex;
                 String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
-                Int32 idCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                if (hdnCheck.Checked)
+                Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
+                CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                if (Marca.Checked)
                 {
-                    Citasstr = Citasstr + ";" + idCita.ToString();
+                    Citasstr = Citasstr + ";" + IdCita.ToString();
                 }
 
             }
@@ -296,13 +296,13 @@ namespace Web.Petcenter
             {
                 if (EmpleadosAsig.AsEnumerable().Where(c => c.Field<string>("nombreEmpleado").Equals(dr["nombreEmpleado"])).Count() == 0)
                 {
-                    Empleado obj = new Empleado();
-                    obj.idEmpleado = Int32.Parse(dr["idEmpleado"].ToString());
-                    obj.nombreEmpleado = dr["nombreEmpleado"].ToString();
-                    lstEmpleados.Add(obj);
+                    Empleado Obj = new Empleado();
+                    Obj.IdEmpleado = Int32.Parse(dr["idEmpleado"].ToString());
+                    Obj.NombreEmpleado = dr["nombreEmpleado"].ToString();
+                    ListaEmpleados.Add(Obj);
                 }
             }
-            gvEmpleados.DataSource = lstEmpleados;
+            gvEmpleados.DataSource = Empleados;
             gvEmpleados.DataBind();
             gvEmpleadosAsig.DataSource = EmpleadosAsig;
             gvEmpleadosAsig.DataBind();
@@ -343,10 +343,10 @@ namespace Web.Petcenter
             //EJECUTAR
             if (e.CommandName == "Accion")
             {
-                int index = Convert.ToInt32(e.CommandArgument);
-                int id = Convert.ToInt32(gvEmpleadosAsig.DataKeys[index][0]);
+                int Index = Convert.ToInt32(e.CommandArgument);
+                int Id = Convert.ToInt32(gvEmpleadosAsig.DataKeys[Index][0]);
 
-                EmpleadosAsig.Rows.Remove(EmpleadosAsig.Select("idEmpleado=" + id)[0]);
+                EmpleadosAsig.Rows.Remove(EmpleadosAsig.Select("idEmpleado=" + Id)[0]);
                 CargarEmpleados();
             }
 
@@ -363,11 +363,11 @@ namespace Web.Petcenter
                 {
                     Int32 rowIndex = gvRow.RowIndex;
                     String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
-                    Int32 idCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                    CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                    if (hdnCheck.Checked)
+                    Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
+                    CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                    if (Marca.Checked)
                     {
-                        Citasstr = Citasstr + ";" + idCita.ToString();
+                        Citasstr = Citasstr + ";" + IdCita.ToString();
                     }
 
                 }
@@ -462,18 +462,18 @@ namespace Web.Petcenter
         protected void btnsi_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal('hide');", true);
-            List<Cita> listCita = new List<Cita>();
+            List<Cita> ListCita = new List<Cita>();
             String Citasstr = "";
             Citasstr = idCitaA.Value;
             foreach (GridViewRow gvRow in grvresultado.Rows)
             {
                 Int32 rowIndex = gvRow.RowIndex;
                 String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
-                Int32 idCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                if (hdnCheck.Checked)
+                Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
+                CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                if (Marca.Checked)
                 {
-                    Citasstr = Citasstr + ";" + idCita.ToString();
+                    Citasstr = Citasstr + ";" + IdCita.ToString();
                 }
 
             }
@@ -510,17 +510,17 @@ namespace Web.Petcenter
         }
         protected void chkAsignacion_CheckedChanged(object sender, EventArgs e)
         {
-            GridViewRow row = (GridViewRow)(((CheckBox)sender).NamingContainer);
-            CheckBox hdnCheck = (CheckBox)row.Cells[0].FindControl("chkAsignacion");
-            if (hdnCheck.Checked)
+            GridViewRow Fila = (GridViewRow)(((CheckBox)sender).NamingContainer);
+            CheckBox Marca = (CheckBox)Fila.Cells[0].FindControl("chkAsignacion");
+            if (Marca.Checked)
             {
-                int rowIndex = row.RowIndex;
+                int rowIndex = Fila.RowIndex;
                 string val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
                 CargarOtrosServ(val);
             }
             else
             {
-                row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                Fila.BackColor = ColorTranslator.FromHtml("#FFFFFF");
             }
 
         }
@@ -528,20 +528,20 @@ namespace Web.Petcenter
         {
             foreach (GridViewRow gvRow in grvresultado.Rows)
             {
-                Int32 rowIndex = gvRow.RowIndex;
-                String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
-                Int32 idCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                if (val == servicios)
+                Int32 FilaIndex = gvRow.RowIndex;
+                String Val = (string)grvresultado.DataKeys[FilaIndex]["DescripcionCita"];
+                Int32 IdCita = (Int32)grvresultado.DataKeys[FilaIndex]["idCita"];
+                if (Val == servicios)
                 {
                     gvRow.BackColor = ColorTranslator.FromHtml("#E8E5F5");
-                    CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                    hdnCheck.Checked = true;
+                    CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                    Marca.Checked = true;
                 }
                 else
                 {
                     gvRow.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                    hdnCheck.Checked = false;
+                    CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                    Marca.Checked = false;
 
                 }
             }

@@ -86,3 +86,13 @@ D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Datos.Petcenter\bin
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.csprojResolveAssemblyReference.cache
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.dll
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.pdb
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.dll
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Datos.Petcenter.pdb
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.dll
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\log4net.dll
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.dll
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Entidades.Petcenter.pdb
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\bin\Debug\Utilitario.Comun.pdb
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.csprojResolveAssemblyReference.cache
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.dll
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Datos.Petcenter\obj\Debug\Datos.Petcenter.pdb

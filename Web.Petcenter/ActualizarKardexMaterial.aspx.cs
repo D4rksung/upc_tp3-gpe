@@ -41,21 +41,21 @@ namespace Web.Petcenter
 
         private void ListarKardex()
         {
-            KardexMaterial kardex = new KardexMaterial();
+            KardexMaterial Kardex = new KardexMaterial();
 
-            kardex.FechaInicial = txtfechaInicio.Text;
-            kardex.FechaFinal = txtFechaFin.Text;
-            kardex.Material = txtnombrematerial.Text;
+            Kardex.FechaInicial = txtfechaInicio.Text;
+            Kardex.FechaFinal = txtFechaFin.Text;
+            Kardex.Material = txtnombrematerial.Text;
 
-            DataTable data = AtencionPeluqueriaBuss.BusquedaKardexMaterial(kardex);
-            ViewState["_datagrilla"] = data;
+            DataTable Data = AtencionPeluqueriaBuss.BusquedaKardexMaterial(Kardex);
+            ViewState["_datagrilla"] = Data;
 
-            if (data.Rows.Count == 0)
+            if (Data.Rows.Count == 0)
                 lblmsg.Text = "Sin registros para mostrar";
             else
                 lblmsg.Text = "";
 
-            this.grvIngresoMateriales.DataSource = data;
+            this.grvIngresoMateriales.DataSource = Data;
             this.grvIngresoMateriales.DataBind();
         }
 
@@ -65,15 +65,15 @@ namespace Web.Petcenter
             {
                 try
                 {
-                    int idkardex = Utilidades.ToInt(e.CommandArgument.ToString());
-                    GridViewRow gvr = (GridViewRow)((ImageButton)e.CommandSource).NamingContainer;
-                    int RowIndex = gvr.RowIndex;
+                    int Idkardex = Utilidades.ToInt(e.CommandArgument.ToString());
+                    GridViewRow Gvr = (GridViewRow)((ImageButton)e.CommandSource).NamingContainer;
+                    int FilaIndex = Gvr.RowIndex;
 
-                    KardexMaterial kardex = new KardexMaterial() { idKardexMaterial = idkardex };
+                    KardexMaterial kardex = new KardexMaterial() { IdKardexMaterial = Idkardex };
                     AtencionPeluqueriaBuss.GrabarKardexMaterial(kardex, 2);
                     ListarKardex();
                 }
-                catch (Exception ex)
+                catch 
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
                 }

@@ -19,6 +19,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
 
             try
@@ -32,11 +33,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@pisDominio", SqlDbType.Char, 3)).Value = dominio;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable("DominioParametro" + dominio);
+                Dt = new DataTable("DominioParametro" + dominio);
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -46,9 +47,11 @@ namespace Datos.Petcenter
             }
             finally
             {
+                
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -58,6 +61,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -70,11 +74,10 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@movimientoID", SqlDbType.Int)).Value = movimientoID;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -84,9 +87,11 @@ namespace Datos.Petcenter
             }
             finally
             {
+                
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -96,6 +101,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -109,11 +115,10 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@almacenID", SqlDbType.Int)).Value = almacenID;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -123,9 +128,11 @@ namespace Datos.Petcenter
             }
             finally
             {
+                
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -146,7 +153,7 @@ namespace Datos.Petcenter
 
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -162,6 +169,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -173,11 +181,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@codigo", SqlDbType.VarChar,10)).Value = codigo;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -187,9 +195,11 @@ namespace Datos.Petcenter
             }
             finally
             {
+                
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -199,6 +209,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -217,11 +228,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@NumReq", SqlDbType.VarChar, 100)).Value = NumReq;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -231,9 +242,11 @@ namespace Datos.Petcenter
             }
             finally
             {
+                
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -243,6 +256,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -259,11 +273,11 @@ namespace Datos.Petcenter
                 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -273,10 +287,11 @@ namespace Datos.Petcenter
             }
             finally
             {
+                
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
-
+                Dt = null;
             }
         }
 
@@ -287,6 +302,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -312,11 +328,11 @@ namespace Datos.Petcenter
                     Cmd.Parameters.Add(new SqlParameter("@fechaFin", SqlDbType.VarChar, 10)).Value = DBNull.Value;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -326,9 +342,11 @@ namespace Datos.Petcenter
             }
             finally
             {
+                
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -351,7 +369,7 @@ namespace Datos.Petcenter
 
                 return  Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
@@ -361,11 +379,12 @@ namespace Datos.Petcenter
             }
         }
 
-        public static DataTable BuscarMaterialesMov(int idMaterial)
+        public static DataTable BuscarMaterialesMovimiento(int idMaterial)
         {
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -382,14 +401,14 @@ namespace Datos.Petcenter
               
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
 
                 dap.Fill(Dt);
 
                 return Dt;
 
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
@@ -398,14 +417,16 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
             }
         }
 
-        public static DataSet BuscarMaterialesDispo(int idMovimiento, Int32 almacenID)
+        public static DataSet BuscarMaterialesDispositivo(int idMovimiento, Int32 almacenID)
         {
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -427,14 +448,14 @@ namespace Datos.Petcenter
 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -443,6 +464,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
             }
         }
 
@@ -452,6 +474,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -462,11 +485,11 @@ namespace Datos.Petcenter
                 Cmd.Connection = Cnn;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -479,6 +502,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -489,6 +513,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -499,11 +524,11 @@ namespace Datos.Petcenter
                 Cmd.Connection = Cnn;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -516,6 +541,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -545,8 +571,8 @@ namespace Datos.Petcenter
                 else
                     Cmd.Parameters.Add(new SqlParameter("@NombreCliente", SqlDbType.VarChar, 250)).Value = DBNull.Value;
 
-                if (hoja.idServicio != 0)
-                    Cmd.Parameters.Add(new SqlParameter("@idServicio", SqlDbType.Int)).Value = hoja.idServicio;
+                if (hoja.IdServicio != 0)
+                    Cmd.Parameters.Add(new SqlParameter("@idServicio", SqlDbType.Int)).Value = hoja.IdServicio;
                 else
                     Cmd.Parameters.Add(new SqlParameter("@idServicio", SqlDbType.Int)).Value = DBNull.Value;
 
@@ -561,8 +587,8 @@ namespace Datos.Petcenter
                 else
                     Cmd.Parameters.Add(new SqlParameter("@FechaFin", SqlDbType.Date)).Value = DBNull.Value;
 
-                if (hoja.idCliente != 0)
-                    Cmd.Parameters.Add(new SqlParameter("@idCliente", SqlDbType.Int)).Value = hoja.idCliente;
+                if (hoja.IdCliente != 0)
+                    Cmd.Parameters.Add(new SqlParameter("@idCliente", SqlDbType.Int)).Value = hoja.IdCliente;
                 else
                     Cmd.Parameters.Add(new SqlParameter("@idCliente", SqlDbType.Int)).Value = DBNull.Value;
 
@@ -574,7 +600,7 @@ namespace Datos.Petcenter
                 return Dt;
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -607,7 +633,7 @@ namespace Datos.Petcenter
 
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -650,7 +676,7 @@ namespace Datos.Petcenter
                 return Dt;
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -680,7 +706,7 @@ namespace Datos.Petcenter
 
                 return string.Empty;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -709,7 +735,7 @@ namespace Datos.Petcenter
 
                 return string.Empty;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -732,8 +758,8 @@ namespace Datos.Petcenter
                 Cmd.Connection = objTx.Connection;
                 Cmd.Transaction = objTx;
 
-                Cmd.Parameters.Add(new SqlParameter("@idcita", SqlDbType.Int)).Value = objParam.idCita;
-                Cmd.Parameters.Add(new SqlParameter("@idEmpleado", SqlDbType.Int)).Value = objParam.idEmpleado;
+                Cmd.Parameters.Add(new SqlParameter("@idcita", SqlDbType.Int)).Value = objParam.IdCita;
+                Cmd.Parameters.Add(new SqlParameter("@idEmpleado", SqlDbType.Int)).Value = objParam.IdEmpleado;
                 Cmd.Parameters.Add(new SqlParameter("@numhojaservicio", SqlDbType.Int)).Value = objParam.NumHojaServicio;
                 Cmd.Parameters.Add(new SqlParameter("@Observaciones", SqlDbType.VarChar,250)).Value = objParam.Observaciones;
                 Cmd.Parameters.Add(new SqlParameter("@fechaRegistro", SqlDbType.Date)).Value = objParam.FechaEmision;
@@ -742,7 +768,7 @@ namespace Datos.Petcenter
 
                 return string.Empty;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -768,7 +794,7 @@ namespace Datos.Petcenter
                 Cmd.Connection = objTx.Connection;
                 Cmd.Transaction = objTx;
 
-                Cmd.Parameters.Add(new SqlParameter("@idHojaServicio", SqlDbType.Int)).Value = objParam.idHojaServicio;
+                Cmd.Parameters.Add(new SqlParameter("@idHojaServicio", SqlDbType.Int)).Value = objParam.IdHojaServicio;
                 if (objParam.FechaEmision != string.Empty)
                     Cmd.Parameters.Add(new SqlParameter("@FechaEmision", SqlDbType.Date)).Value = objParam.FechaEmision;
                 else
@@ -779,7 +805,7 @@ namespace Datos.Petcenter
                 Cmd.ExecuteNonQuery();
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -801,11 +827,11 @@ namespace Datos.Petcenter
                 Cmd.Connection = objTx.Connection;
                 Cmd.Transaction = objTx;
 
-                Cmd.Parameters.Add(new SqlParameter("@idHojaServicio", SqlDbType.Int)).Value = objParam.idHojaServicio;
+                Cmd.Parameters.Add(new SqlParameter("@idHojaServicio", SqlDbType.Int)).Value = objParam.IdHojaServicio;
                 Cmd.ExecuteNonQuery();
 
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
@@ -821,6 +847,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -833,11 +860,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@idCita", SqlDbType.Int)).Value = idCita;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -850,6 +877,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -892,7 +920,7 @@ namespace Datos.Petcenter
                 return Dt;
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -910,6 +938,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -922,11 +951,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@idHojaServicio", SqlDbType.Int)).Value = idHojaServicio;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -939,6 +968,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -955,7 +985,7 @@ namespace Datos.Petcenter
                 Cmd.Connection = objTx.Connection;
                 Cmd.Transaction = objTx;
 
-                Cmd.Parameters.Add(new SqlParameter("@iddetalleHojaServicio", SqlDbType.Int)).Value = detalle.iddetalleHojaServicio;
+                Cmd.Parameters.Add(new SqlParameter("@iddetalleHojaServicio", SqlDbType.Int)).Value = detalle.IdDetalleHojaServicio;
 
                 if (detalle.HoraInicio != string.Empty)
                     Cmd.Parameters.Add(new SqlParameter("@HoraInicio", SqlDbType.VarChar, 10)).Value = detalle.HoraInicio;
@@ -971,7 +1001,7 @@ namespace Datos.Petcenter
                 Cmd.ExecuteNonQuery();
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -1020,7 +1050,7 @@ namespace Datos.Petcenter
                 return Dt;
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -1034,7 +1064,7 @@ namespace Datos.Petcenter
 
 
         //ingreso de kardex de material
-        public static string InsertarMovHardexMaterial(KardexMaterial objParam, SqlTransaction objTx)
+        public static string InsertarMovKardexMaterial(KardexMaterial objParam, SqlTransaction objTx)
         {
             SqlCommand Cmd = new SqlCommand();
 
@@ -1046,7 +1076,7 @@ namespace Datos.Petcenter
                 Cmd.Connection = objTx.Connection;
                 Cmd.Transaction = objTx;
 
-                Cmd.Parameters.Add(new SqlParameter("@idMaterial", SqlDbType.Int)).Value = objParam.idMaterial;
+                Cmd.Parameters.Add(new SqlParameter("@idMaterial", SqlDbType.Int)).Value = objParam.IdMaterial;
                 Cmd.Parameters.Add(new SqlParameter("@FecMovimiento", SqlDbType.Date)).Value = objParam.FechaMovimiento;
                 Cmd.Parameters.Add(new SqlParameter("@TipoMovimiento", SqlDbType.Char,3)).Value = objParam.TipoMovimiento;
                 Cmd.Parameters.Add(new SqlParameter("@Cantidad", SqlDbType.Decimal)).Value = objParam.Cantidad;
@@ -1056,7 +1086,7 @@ namespace Datos.Petcenter
 
                 return string.Empty;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -1083,11 +1113,11 @@ namespace Datos.Petcenter
                 Cmd.Connection = objTx.Connection;
                 Cmd.Transaction = objTx;
 
-                Cmd.Parameters.Add(new SqlParameter("@idKardexMaterial", SqlDbType.Int)).Value = objParam.idKardexMaterial;
+                Cmd.Parameters.Add(new SqlParameter("@idKardexMaterial", SqlDbType.Int)).Value = objParam.IdKardexMaterial;
                 Cmd.ExecuteNonQuery();
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -1178,7 +1208,7 @@ namespace Datos.Petcenter
                 return Dt;
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -1207,6 +1237,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -1217,11 +1248,11 @@ namespace Datos.Petcenter
                 Cmd.Connection = Cnn;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1234,6 +1265,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1244,6 +1276,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -1255,11 +1288,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@idServicio", SqlDbType.Int)).Value = idServicio;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1272,6 +1305,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1282,6 +1316,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -1293,11 +1328,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@idServicio", SqlDbType.Int)).Value = idServicio;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1310,6 +1345,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1320,6 +1356,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -1330,11 +1367,10 @@ namespace Datos.Petcenter
                 Cmd.Connection = Cnn;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
-
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1347,6 +1383,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1357,6 +1394,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -1367,11 +1405,11 @@ namespace Datos.Petcenter
                 Cmd.Connection = Cnn;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1384,6 +1422,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1400,6 +1439,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -1412,11 +1452,10 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@idCita", SqlDbType.Int)).Value = idCita;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1429,6 +1468,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1439,6 +1479,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -1451,11 +1492,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@idCita", SqlDbType.Int)).Value = idCita;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1468,6 +1509,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1544,7 +1586,7 @@ namespace Datos.Petcenter
                 return Dt;
 
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -1562,6 +1604,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable("Empleados" + rolID);
 
 
             try
@@ -1576,11 +1619,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@detalleCitaID", SqlDbType.VarChar,8000)).Value = detalleCitaID;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable("Empleados" + rolID);
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1593,6 +1636,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1604,6 +1648,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -1617,11 +1662,11 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@idServicio", SqlDbType.Int)).Value = idServicio;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
+                
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+               
 
             }
             catch (Exception ex)
@@ -1634,6 +1679,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1665,7 +1711,7 @@ namespace Datos.Petcenter
 
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch
             {
                 return "";
             }
@@ -1695,7 +1741,7 @@ namespace Datos.Petcenter
                
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch
             {
                 return "";
                 throw;
@@ -1726,6 +1772,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -1736,11 +1783,10 @@ namespace Datos.Petcenter
                 Cmd.Connection = Cnn;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
+                
                 dap.Fill(Dt);
-
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1753,6 +1799,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1767,6 +1814,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -1782,11 +1830,10 @@ namespace Datos.Petcenter
                     Cmd.Parameters.Add(new SqlParameter("@idDetalleCita", SqlDbType.Int)).Value = DBNull.Value;
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1799,6 +1846,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1811,6 +1859,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -1837,11 +1886,11 @@ namespace Datos.Petcenter
 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
+                
                 dap.Fill(Dt);
 
                 return Dt.Tables[0];
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1854,6 +1903,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1872,6 +1922,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -1888,11 +1939,10 @@ namespace Datos.Petcenter
 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+               
 
             }
             catch (Exception ex)
@@ -1905,6 +1955,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1914,6 +1965,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -1930,11 +1982,10 @@ namespace Datos.Petcenter
 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1947,6 +1998,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1956,6 +2008,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataSet Dt = new DataSet();
 
             try
             {
@@ -1972,11 +2025,10 @@ namespace Datos.Petcenter
 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataSet Dt = new DataSet();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -1989,6 +2041,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -1998,6 +2051,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -2015,11 +2069,10 @@ namespace Datos.Petcenter
 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -2032,6 +2085,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -2041,6 +2095,7 @@ namespace Datos.Petcenter
             string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
             SqlConnection Cnn = new SqlConnection(Conn);
             SqlCommand Cmd = new SqlCommand();
+            DataTable Dt = new DataTable();
 
             try
             {
@@ -2058,11 +2113,10 @@ namespace Datos.Petcenter
 
 
                 SqlDataAdapter dap = new SqlDataAdapter(Cmd);
-                DataTable Dt = new DataTable();
                 dap.Fill(Dt);
 
                 return Dt;
-                Dt = null;
+                
 
             }
             catch (Exception ex)
@@ -2075,6 +2129,7 @@ namespace Datos.Petcenter
                 Cnn.Close();
                 Cnn = null;
                 Cmd = null;
+                Dt = null;
 
             }
         }
@@ -2098,7 +2153,7 @@ namespace Datos.Petcenter
 
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch
             {
                 return "";
             }
@@ -2128,7 +2183,7 @@ namespace Datos.Petcenter
 
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch
             {
                 return "";
             }
@@ -2158,7 +2213,7 @@ namespace Datos.Petcenter
 
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch (Exception ex)
+            catch 
             {
                 return "";
             }

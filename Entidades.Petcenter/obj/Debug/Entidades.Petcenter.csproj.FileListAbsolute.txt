@@ -36,3 +36,7 @@ D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.pdb
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.dll
 D:\Descargas\PetCenter-Peluqueria v19.0\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.pdb
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.dll
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\bin\Debug\Entidades.Petcenter.pdb
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.dll
+C:\Users\MAQ\Desktop\PetCenter-Peluqueria\Entidades.Petcenter\obj\Debug\Entidades.Petcenter.pdb

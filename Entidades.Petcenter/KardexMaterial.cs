@@ -7,8 +7,8 @@ namespace Entidades.Petcenter
 {
   public  class KardexMaterial
     {
-        public int idKardexMaterial { set; get; }
-        public int idMaterial { set; get; }
+        public int IdKardexMaterial { set; get; }
+        public int IdMaterial { set; get; }
         public string Material { set; get; }
         public string FechaMovimiento { set; get; }
         public string TipoMovimiento { set; get; }

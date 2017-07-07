@@ -23,8 +23,8 @@ namespace Web.Petcenter
                 }
                 else
                 {
-                    Seguridad seg = (Seguridad)Session["_Seguridad"];
-                    if (seg.indHabilitado == 0)
+                    Seguridad Seg = (Seguridad)Session["_Seguridad"];
+                    if (Seg.IndiceHabilitado == 0)
                         Response.Redirect("Default.aspx");
                 }
                 this.CargaCombo();
@@ -34,18 +34,18 @@ namespace Web.Petcenter
 
         private void CargaCombo()
         {
-            Utilidades.CargaCombo(ref cboTipoMov, AtencionPeluqueriaBuss.ParametroListar("006"), "Parametro", "DscParametro", true);
+            Utilidades.CargaCombo(ref cboTipoMov, AtencionPeluqueriaBuss.ParametroListar("006"), Utilitario.Comun.Dominios.Parametro, Utilitario.Comun.Dominios.DescripcionParametro, true);
         }
 
         private void ConfigurarFechas()
         {
             try
             {
-                System.Globalization.CultureInfo objCulture = new System.Globalization.CultureInfo("es-PE");
-                txtfecharegistro.Text = DateTime.Today.ToString("dd/MM/yyyy", objCulture);
+                System.Globalization.CultureInfo Culture = new System.Globalization.CultureInfo("es-PE");
+                txtfecharegistro.Text = DateTime.Today.ToString("dd/MM/yyyy", Culture);
 
             }
-            catch (Exception ex)
+            catch 
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }
@@ -67,25 +67,25 @@ namespace Web.Petcenter
                     return;
                 }
 
-                int idmaterial = Utilidades.ToInt(txtcodmaterial.Text);
-                DataTable data = AtencionPeluqueriaBuss.GetDatosMaterial(idmaterial);
+                int IdMaterial = Utilidades.ToInt(txtcodmaterial.Text);
+                DataTable Data = AtencionPeluqueriaBuss.GetDatosMaterial(IdMaterial);
 
-                decimal cantidad = Utilidades.ToDecimal(txtcantidad.Text);
+                decimal Cantidad = Utilidades.ToDecimal(txtcantidad.Text);
 
-                if (cantidad == 0)
+                if (Cantidad == 0)
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Ingrese la cantidad.'});", true);
                     return;
                 }
 
-                if (data.Rows.Count > 0)
+                if (Data.Rows.Count > 0)
                 {
 
-                    this.txtnommaterial.Text = data.Rows[0]["Nombre"].ToString();
-                    this.txtDescripciónmat.Text = data.Rows[0]["Descripcion"].ToString();
-                    this.txtcategoria.Text = data.Rows[0]["Categoria"].ToString();
-                    this.txtmodelo.Text = data.Rows[0]["Modelo"].ToString();
-                    this.txtundmedida.Text = data.Rows[0]["UnidadMedida"].ToString();
+                    this.txtnommaterial.Text = Data.Rows[0]["Nombre"].ToString();
+                    this.txtDescripciónmat.Text = Data.Rows[0]["Descripcion"].ToString();
+                    this.txtcategoria.Text = Data.Rows[0]["Categoria"].ToString();
+                    this.txtmodelo.Text = Data.Rows[0]["Modelo"].ToString();
+                    this.txtundmedida.Text = Data.Rows[0]["UnidadMedida"].ToString();
 
                 }
                 else
@@ -96,19 +96,19 @@ namespace Web.Petcenter
                 }
 
 
-                KardexMaterial kardex = new KardexMaterial();
+                KardexMaterial Kardex = new KardexMaterial();
 
-                kardex.FechaMovimiento = txtfecharegistro.Text;
-                kardex.Cantidad = Utilidades.ToDecimal(txtcantidad.Text);
-                kardex.PrecioCompra = Utilidades.ToDecimal(txtpreciocompra.Text);
-                kardex.TipoMovimiento = cboTipoMov.SelectedValue;
-                kardex.idMaterial = Utilidades.ToInt(txtcodmaterial.Text);
-                kardex.NumGuia = txtnumguia.Text.ToUpper();
-                AtencionPeluqueriaBuss.GrabarKardexMaterial(kardex, 1);
+                Kardex.FechaMovimiento = txtfecharegistro.Text;
+                Kardex.Cantidad = Utilidades.ToDecimal(txtcantidad.Text);
+                Kardex.PrecioCompra = Utilidades.ToDecimal(txtpreciocompra.Text);
+                Kardex.TipoMovimiento = cboTipoMov.SelectedValue;
+                Kardex.IdMaterial = Utilidades.ToInt(txtcodmaterial.Text);
+                Kardex.NumGuia = txtnumguia.Text.ToUpper();
+                AtencionPeluqueriaBuss.GrabarKardexMaterial(Kardex, 1);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Movimiento de kardex ingresado correctamente.'});", true);
                 this.limpiarform();
             }
-            catch (Exception ex)
+            catch
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }
@@ -118,21 +118,21 @@ namespace Web.Petcenter
         {
             try
             {
-                int idmaterial = Utilidades.ToInt(txtcodmaterial.Text);
-                if (idmaterial > 0)
+                int IdMaterial = Utilidades.ToInt(txtcodmaterial.Text);
+                if (IdMaterial > 0)
                 {
 
-                    DataTable data = AtencionPeluqueriaBuss.GetDatosMaterial(idmaterial);
+                    DataTable Data = AtencionPeluqueriaBuss.GetDatosMaterial(IdMaterial);
 
 
-                    if (data.Rows.Count > 0)
+                    if (Data.Rows.Count > 0)
                     {
 
-                        this.txtnommaterial.Text = data.Rows[0]["Nombre"].ToString();
-                        this.txtDescripciónmat.Text = data.Rows[0]["Descripcion"].ToString();
-                        this.txtcategoria.Text = data.Rows[0]["Categoria"].ToString();
-                        this.txtmodelo.Text = data.Rows[0]["Modelo"].ToString();
-                        this.txtundmedida.Text = data.Rows[0]["UnidadMedida"].ToString();
+                        this.txtnommaterial.Text = Data.Rows[0]["Nombre"].ToString();
+                        this.txtDescripciónmat.Text = Data.Rows[0]["Descripcion"].ToString();
+                        this.txtcategoria.Text = Data.Rows[0]["Categoria"].ToString();
+                        this.txtmodelo.Text = Data.Rows[0]["Modelo"].ToString();
+                        this.txtundmedida.Text = Data.Rows[0]["UnidadMedida"].ToString();
 
                     }
                     else
@@ -150,7 +150,7 @@ namespace Web.Petcenter
 
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }
@@ -161,20 +161,20 @@ namespace Web.Petcenter
         {
             try
             {
-                Material mat = new Material();
-                mat.Nombre = txtnombrepopup.Text;
-                mat.DscMaterial = txtdescripcionpopup.Text;
-                mat.Categoria = txtcategoriapopup.Text;
-                mat.Modelo = txtmodelopopup.Text;
+                Material MaterialEntidad = new Material();
+                MaterialEntidad.Nombre = txtnombrepopup.Text;
+                MaterialEntidad.DscMaterial = txtdescripcionpopup.Text;
+                MaterialEntidad.Categoria = txtcategoriapopup.Text;
+                MaterialEntidad.Modelo = txtmodelopopup.Text;
 
-                DataTable material = AtencionPeluqueriaBuss.BusquedaMaterial(mat);
-                ViewState["_datapopup"] = material;
+                DataTable Materiales = AtencionPeluqueriaBuss.BusquedaMaterial(MaterialEntidad);
+                ViewState["_datapopup"] = Materiales;
 
-                this.grvResultadoPopup.DataSource = material;
+                this.grvResultadoPopup.DataSource = Materiales;
                 this.grvResultadoPopup.DataBind();
                 this.upModal.Update();
             }
-            catch (Exception ex)
+            catch
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }

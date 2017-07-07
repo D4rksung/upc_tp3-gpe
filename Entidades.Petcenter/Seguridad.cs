@@ -7,9 +7,9 @@ namespace Entidades.Petcenter
 {
   public  class Seguridad
     {
-        public int idUsuario { set; get; }
-        public string strConexion { set; get; }
-        public int indHabilitado { set; get; }
+        public int IdUsuario { set; get; }
+        public string Conexion { set; get; }
+        public int IndiceHabilitado { set; get; }
         public string Nombres { set; get; }
     }
 }

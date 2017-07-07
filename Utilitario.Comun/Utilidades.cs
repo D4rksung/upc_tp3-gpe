@@ -10,9 +10,9 @@ namespace Utilitario.Comun
    public class Utilidades
     {
 
-        public static void CargaCombo(ref DropDownList objCombo, DataTable dtLista, string strValueField, string strTextField, bool blnInsertSeleccione = true)
+        public static void CargaCombo(ref DropDownList objCombo, DataTable lista, string valueField, string textField, bool insertSeleccione = true)
         {
-            if (dtLista == null)
+            if (lista == null)
             {
                 objCombo.DataSource = null;
                 if (objCombo.Items.Count > 0)
@@ -25,13 +25,13 @@ namespace Utilitario.Comun
             }
             else
             {
-                objCombo.DataValueField = strValueField;
-                objCombo.DataTextField = strTextField;
-                objCombo.DataSource = dtLista;
+                objCombo.DataValueField = valueField;
+                objCombo.DataTextField = textField;
+                objCombo.DataSource = lista;
                 objCombo.DataBind();
             }
 
-            if (blnInsertSeleccione)
+            if (insertSeleccione)
             {
                 objCombo.Items.Insert(0, new ListItem("SELECCIONE", "0"));
             }

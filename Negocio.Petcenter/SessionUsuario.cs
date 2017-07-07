@@ -12,10 +12,18 @@ namespace Negocio.Petcenter
 
         private static SessionUsuario instance = null;
 
+        /// <summary>
+        /// 
+        /// </summary>
         private SessionUsuario() {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <returns></returns>
         public static SessionUsuario GetInstance()
         {
             if (instance == null)

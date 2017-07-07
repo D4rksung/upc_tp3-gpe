@@ -7,7 +7,7 @@ namespace Entidades.Petcenter
 {
   public  class Material
     {
-        public int idMaterial { set; get; }
+        public int IdMaterial { set; get; }
         public string DscMaterial { set; get; }
         public string Nombre { set; get; }
         public string Categoria { set; get; }

@@ -29,7 +29,7 @@ namespace Negocio.Petcenter
             return Datos.Petcenter.Graficos.ObtenerGraficaIndicadorDeEficienciaDeRecurso(opcion);
         }
 
-        public static DataSet BuscarGrafico4(int opcion)
+        public static DataSet BuscarGraficoIndicadorDePenetraciónPorServicioYSede(int opcion)
         {
             return Datos.Petcenter.Graficos.BuscarGrafico4(opcion);
         }

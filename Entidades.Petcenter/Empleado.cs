@@ -8,16 +8,16 @@ namespace Entidades.Petcenter
   public  class Empleado
     {
 
-        public int idcliente {set;get;}
-        public string numeroDocumento { set; get; }
-        public string nombreCliente { set; get; }
-        public string apellidoCliente { set; get; }
-        public string direccion { set; get; }
-        public string telefono { set; get; }
-        public string fechaNacimiento { set; get; }
-        public string emailCliente { set; get; }
-        public int idEmpleado { set; get; }
-        public string nombreEmpleado { set; get; }
+        public int IdCliente {set;get;}
+        public string NumeroDocumento { set; get; }
+        public string NombreCliente { set; get; }
+        public string ApellidoCliente { set; get; }
+        public string Direccion { set; get; }
+        public string Telefono { set; get; }
+        public string FechaNacimiento { set; get; }
+        public string EmailCliente { set; get; }
+        public int IdEmpleado { set; get; }
+        public string NombreEmpleado { set; get; }
 
     }
 }

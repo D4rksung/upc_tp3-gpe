@@ -6,14 +6,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\USUARIO\Desktop\abc</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\Miguel\Desktop\ABCDE</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="ActualizaHojaServicio.aspx">
-      <publishTime>06/22/2017 18:04:22</publishTime>
+      <publishTime>07/02/2017 01:29:51</publishTime>
+    </File>
+    <File Include="ActualizaKardex.aspx">
+      <publishTime>07/06/2017 02:56:41</publishTime>
+    </File>
+    <File Include="ActualizaKardexJefe.aspx">
+      <publishTime>07/03/2017 12:51:34</publishTime>
     </File>
     <File Include="ActualizaProgramacion.aspx">
-      <publishTime>06/22/2017 18:04:06</publishTime>
+      <publishTime>07/06/2017 02:42:50</publishTime>
     </File>
     <File Include="ActualizarHojaServicio.aspx">
       <publishTime>06/13/2017 03:29:23</publishTime>
@@ -26,6 +32,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="ActualizarProgramaciondeAtencion.aspx">
       <publishTime>06/15/2017 03:08:04</publishTime>
+    </File>
+    <File Include="ActualizaSectorCanil.aspx">
+      <publishTime>07/04/2017 00:55:05</publishTime>
     </File>
     <File Include="assets/css/animate.min.css">
       <publishTime>06/19/2017 19:59:13</publishTime>
@@ -979,40 +988,43 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/26/2016 17:02:53</publishTime>
     </File>
     <File Include="bin/Datos.Petcenter.dll">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
     </File>
     <File Include="bin/Datos.Petcenter.pdb">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
     </File>
     <File Include="bin/Entidades.Petcenter.dll">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
     </File>
     <File Include="bin/Entidades.Petcenter.pdb">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>07/04/2017 00:06:18</publishTime>
     </File>
     <File Include="bin/log4net.dll">
       <publishTime>10/13/2016 16:55:44</publishTime>
     </File>
     <File Include="bin/Negocio.Petcenter.dll">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
     </File>
     <File Include="bin/Negocio.Petcenter.pdb">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>06/18/2017 13:57:10</publishTime>
     </File>
     <File Include="bin/Utilitario.Comun.dll">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
     </File>
     <File Include="bin/Utilitario.Comun.pdb">
-      <publishTime>06/22/2017 18:10:27</publishTime>
+      <publishTime>07/06/2017 17:12:23</publishTime>
     </File>
     <File Include="bin/Web.Petcenter.dll">
-      <publishTime>06/22/2017 18:10:28</publishTime>
+      <publishTime>07/06/2017 19:26:42</publishTime>
     </File>
     <File Include="bin/Web.Petcenter.pdb">
-      <publishTime>06/22/2017 18:10:28</publishTime>
+      <publishTime>07/06/2017 19:26:42</publishTime>
     </File>
     <File Include="Content/bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.css">
       <publishTime>06/21/2017 22:40:51</publishTime>
@@ -1357,13 +1369,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2017 19:36:35</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>06/19/2017 20:54:08</publishTime>
+      <publishTime>07/01/2017 23:16:32</publishTime>
     </File>
     <File Include="EditarHojaServicio.aspx">
       <publishTime>12/04/2016 18:24:09</publishTime>
     </File>
     <File Include="EditarKardexMaterial.aspx">
       <publishTime>12/04/2016 11:17:49</publishTime>
+    </File>
+    <File Include="ExportarSectorCanil.aspx">
+      <publishTime>07/04/2017 00:35:05</publishTime>
     </File>
     <File Include="GestionHojaServicio.aspx">
       <publishTime>06/20/2017 17:50:40</publishTime>
@@ -1378,7 +1393,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2017 17:51:08</publishTime>
     </File>
     <File Include="IMAGES/loader.gif">
-      <publishTime>06/21/2017 23:17:10</publishTime>
+      <publishTime>07/01/2017 23:18:16</publishTime>
     </File>
     <File Include="IMAGES/Lucas.jpg">
       <publishTime>06/20/2017 17:51:08</publishTime>
@@ -1390,19 +1405,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2017 21:55:04</publishTime>
     </File>
     <File Include="MasterGraficos.Master">
-      <publishTime>06/20/2017 21:55:21</publishTime>
+      <publishTime>07/03/2017 17:26:04</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>06/20/2017 02:33:15</publishTime>
     </File>
     <File Include="PaginaMaestra.Master">
-      <publishTime>06/22/2017 18:07:32</publishTime>
+      <publishTime>07/04/2017 00:48:36</publishTime>
     </File>
     <File Include="PaginaMaestra2.Master">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
+    <File Include="RequerimientoMaterial.aspx">
+      <publishTime>07/02/2017 01:29:50</publishTime>
+    </File>
     <File Include="ResumenGeneralGrafico.aspx">
-      <publishTime>06/22/2017 14:53:16</publishTime>
+      <publishTime>07/06/2017 03:39:36</publishTime>
+    </File>
+    <File Include="ResumenGeneralGrafico2.aspx">
+      <publishTime>06/27/2017 20:41:28</publishTime>
     </File>
     <File Include="Scripts/bootstrap/bootstrap.js">
       <publishTime>11/24/2016 19:43:12</publishTime>
@@ -1429,7 +1450,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2017 00:36:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/22/2017 18:10:41</publishTime>
+      <publishTime>07/07/2017 00:04:47</publishTime>
     </File>
   </ItemGroup>
 </Project>

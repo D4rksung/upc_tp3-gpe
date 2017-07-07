@@ -325,8 +325,8 @@
                                                                     <asp:Button ID="ibtnAnular" runat="server" AlternateText="Anular" CausesValidation="false" Visible='<%# Eval("Anular") %>'
                                                                         CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Anular" Text="Anular" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
 
-                                                                    <asp:Button ID="ibtnCerrar" runat="server" AlternateText="Cerrar" CausesValidation="false" Visible='<%# Eval("Cerrar") %>'
-                                                                        CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Cerrar" Text="Cerrar" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
+                                                                    <asp:Button ID="ibtnCerrar" runat="server" AlternateText="Enviar" CausesValidation="false" Visible='<%# Eval("Cerrar") %>'
+                                                                        CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Cerrar" Text="Eviar" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
                                                                     
                                                                     <asp:Button ID="ibtnRecepcionar" runat="server" AlternateText="Recepcionar" CausesValidation="false" Visible='<%# Eval("Recepcionar") %>'
                                                                         CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Recepcionar" Text="Recepcionar" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />

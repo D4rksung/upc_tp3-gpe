@@ -8,9 +8,9 @@ namespace Entidades.Petcenter
    public class Servicio
     {
 
-       public int idServicio { set; get; }
-       public string nombre {set;get;}
-       public string descripcion { set; get; }
+       public int IdServicio { set; get; }
+       public string Nombre {set;get;}
+       public string Descripcion { set; get; }
 
     }
 }

@@ -25,85 +25,85 @@ namespace Web.Petcenter
         }
         private void BindChart()
         {
-            DataTable dsChartData = new DataTable();
-            StringBuilder strScript = new StringBuilder();
+            DataTable ChartData = new DataTable();
+            StringBuilder Script = new StringBuilder();
 
             try
             {
-                dsChartData = Negocio.Petcenter.Graficos.ObtenerGraficaRent1().Tables[0]; 
+                ChartData = Negocio.Petcenter.Graficos.ObtenerGraficaRent1().Tables[0]; 
 
-                strScript.Append(@"<script type='text/javascript'>
+                Script.Append(@"<script type='text/javascript'>
                     google.load('visualization', '1', {packages: ['corechart']});</script>
 
                     <script type='text/javascript'>
                     function drawVisualization() {       
                     var data = google.visualization.arrayToDataTable([
-                    ['"+ dsChartData.Rows[0]["ID"] + "', '" + dsChartData.Rows[0]["TEXTO1"] + "', '" + dsChartData.Rows[0]["TEXTO2"] + "', '" + dsChartData.Rows[0]["TEXTO3"] + "', '" + dsChartData.Rows[0]["TEXTO4"] + "', '" + dsChartData.Rows[0]["TEXTO5"] + "'],");
-               
-                dsChartData.Rows.RemoveAt(0);
-                foreach (DataRow row in dsChartData.Rows)
+                    ['"+ ChartData.Rows[0]["ID"] + "', '" + ChartData.Rows[0]["TEXTO1"] + "', '" + ChartData.Rows[0]["TEXTO2"] + "', '" + ChartData.Rows[0]["TEXTO3"] + "', '" + ChartData.Rows[0]["TEXTO4"] + "', '" + ChartData.Rows[0]["TEXTO5"] + "'],");
+
+                ChartData.Rows.RemoveAt(0);
+                foreach (DataRow row in ChartData.Rows)
                 {
-                    strScript.Append("['" + row["ID"] + "'," + row["TEXTO1"] + "," +
+                    Script.Append("['" + row["ID"] + "'," + row["TEXTO1"] + "," +
                         row["TEXTO2"] + "," + row["TEXTO3"] + "," + row["TEXTO4"] + "," + row["TEXTO5"] + "],");
                 }
-                strScript.Remove(strScript.Length - 1, 1);
-                strScript.Append("]);");
+                Script.Remove(Script.Length - 1, 1);
+                Script.Append("]);");
 
-                strScript.Append("var options = { title : '', vAxis: {title: ''},  hAxis: {title: 'Meses'}, seriesType: 'bars', series: {4: {type: 'area'}} };");
-                strScript.Append(" var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));  chart.draw(data, options); } google.setOnLoadCallback(drawVisualization);");
-                strScript.Append(" </script>");
+                Script.Append("var options = { title : '', vAxis: {title: ''},  hAxis: {title: 'Meses'}, seriesType: 'bars', series: {4: {type: 'area'}} };");
+                Script.Append(" var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));  chart.draw(data, options); } google.setOnLoadCallback(drawVisualization);");
+                Script.Append(" </script>");
 
-                ltScripts.Text = strScript.ToString();
+                ltScripts.Text = Script.ToString();
             }
             catch
             {
             }
             finally
             {
-                dsChartData.Dispose();
-                strScript.Clear();
+                ChartData.Dispose();
+                Script.Clear();
             }
         }
 
         private void BindChart2()
         {
-            DataTable dsChartData = new DataTable();
-            StringBuilder strScript = new StringBuilder();
+            DataTable ChartData = new DataTable();
+            StringBuilder Script = new StringBuilder();
 
             try
             {
-                dsChartData = Negocio.Petcenter.Graficos.ObtenerGraficaRent2().Tables[0];
+                ChartData = Negocio.Petcenter.Graficos.ObtenerGraficaRent2().Tables[0];
 
-                strScript.Append(@"<script type='text/javascript'>
+                Script.Append(@"<script type='text/javascript'>
                     google.load('visualization', '1', {packages: ['corechart']});</script>
 
                     <script type='text/javascript'>
                     function drawVisualization() {       
                     var data = google.visualization.arrayToDataTable([
-                    ['" + dsChartData.Rows[0]["ID"] + "', '" + dsChartData.Rows[0]["TEXTO1"] + "', '" + dsChartData.Rows[0]["TEXTO2"] + "', '" + dsChartData.Rows[0]["TEXTO3"] +  "'],");
+                    ['" + ChartData.Rows[0]["ID"] + "', '" + ChartData.Rows[0]["TEXTO1"] + "', '" + ChartData.Rows[0]["TEXTO2"] + "', '" + ChartData.Rows[0]["TEXTO3"] +  "'],");
 
-                dsChartData.Rows.RemoveAt(0);
-                foreach (DataRow row in dsChartData.Rows)
+                ChartData.Rows.RemoveAt(0);
+                foreach (DataRow row in ChartData.Rows)
                 {
-                    strScript.Append("['" + row["ID"] + "'," + row["TEXTO1"] + "," +
+                    Script.Append("['" + row["ID"] + "'," + row["TEXTO1"] + "," +
                         row["TEXTO2"] + "," + row["TEXTO3"] +  "],");
                 }
-                strScript.Remove(strScript.Length - 1, 1);
-                strScript.Append("]);");
+                Script.Remove(Script.Length - 1, 1);
+                Script.Append("]);");
 
-                strScript.Append("var options = { title : '', vAxis: {title: ''},  hAxis: {title: 'Meses'}, seriesType: 'bars', series: {2: {type: 'area'}} };");
-                strScript.Append(" var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));  chart.draw(data, options); } google.setOnLoadCallback(drawVisualization);");
-                strScript.Append(" </script>");
+                Script.Append("var options = { title : '', vAxis: {title: ''},  hAxis: {title: 'Meses'}, seriesType: 'bars', series: {2: {type: 'area'}} };");
+                Script.Append(" var chart = new google.visualization.ComboChart(document.getElementById('chart_div2'));  chart.draw(data, options); } google.setOnLoadCallback(drawVisualization);");
+                Script.Append(" </script>");
 
-                ltScripts2.Text = strScript.ToString();
+                ltScripts2.Text = Script.ToString();
             }
             catch
             {
             }
             finally
             {
-                dsChartData.Dispose();
-                strScript.Clear();
+                ChartData.Dispose();
+                Script.Clear();
             }
         }
 

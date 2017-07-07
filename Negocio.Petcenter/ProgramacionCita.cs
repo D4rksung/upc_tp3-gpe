@@ -12,124 +12,140 @@ namespace Negocio.Petcenter
     {
 
 
-        /// <summary>Descripción breve del método</summary> 
-        /// <remarks>Descripción detallada del método</remarks> 
-        /// <param name="idServicio">Descripción parámetro 1</param> 
-        /// <returns>Información valor de retorno</returns>
-        public bool GrabarProgramación(int idServicio, string idCita, DataTable dtEmpleados, int idDetalleCita, int idSector, int accion, string MotivoAnulacion)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="idServicio"></param>
+        /// <param name="idCita"></param>
+        /// <param name="dtEmpleados"></param>
+        /// <param name="idDetalleCita"></param>
+        /// <param name="idSector"></param>
+        /// <param name="accion"></param>
+        /// <param name="motivoAnulacion"></param>
+        /// <returns></returns>
+        public bool GrabarProgramación(int idServicio, string idCita, DataTable dtEmpleados, int idDetalleCita, int idSector, int accion, string motivoAnulacion)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                if (accion == 1)
-                    Resultado = AtencionPeluqueriaDAO.ActualizarProgramacion(idServicio, dtEmpleados, idDetalleCita, idSector, idCita, txOle);
-                else if (accion == 2)
-                    Resultado = AtencionPeluqueriaDAO.AnularProgramacion(idDetalleCita, idServicio, MotivoAnulacion, idCita, txOle);
+                if (accion == Utilitario.Comun.AccionProgramacion.Actualizar)
+                    Resultado = AtencionPeluqueriaDAO.ActualizarProgramacion(idServicio, dtEmpleados, idDetalleCita, idSector, idCita, TxOle);
+                else if (accion == Utilitario.Comun.AccionProgramacion.Anular)
+                    Resultado = AtencionPeluqueriaDAO.AnularProgramacion(idDetalleCita, idServicio, motivoAnulacion, idCita, TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch 
             {
-                txOle.Rollback();
-                cnnDS.Close();
+                TxOle.Rollback();
+                CnnDS.Close();
                 throw;
-                return false;
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
         /// <summary>
+        /// 
         /// </summary>
+        /// <remarks></remarks>
         /// <param name="idDetalleCita"></param>
         /// <param name="dt"></param>
         /// <param name="txtComents"></param>
         /// <returns></returns>
-        public bool GrabarHojadeServicio(Int32 idDetalleCita, DataTable dt, String txtComents)
+        public bool GrabarHojadeServicio(Int32 idDetalleCita, DataTable dt, String coments)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.ActualizarHojaServicio(idDetalleCita, dt, txtComents, txOle);
+                Resultado = AtencionPeluqueriaDAO.ActualizarHojaServicio(idDetalleCita, dt, coments, TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch
             {
-                txOle.Rollback();
-                cnnDS.Close();
-                throw;
+                TxOle.Rollback();
+                CnnDS.Close();
                 return false;
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
+
         /// <summary>
-        /// Algo
+        /// 
         /// </summary>
+        /// <remarks></remarks>
         /// <param name="dt"></param>
         /// <returns></returns>
         public Boolean GrabarMovimientoAtencion(DataTable dt)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarMovimientoAtencion(dt, txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarMovimientoAtencion(dt, TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch 
             {
-                txOle.Rollback();
-                cnnDS.Close();
+                TxOle.Rollback();
+                CnnDS.Close();
                 throw;
-                return false;
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="idDetalleCita"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public DataTable GrabarHojadeServicioComents(Int32 idDetalleCita, String text)
         {
 
@@ -138,173 +154,213 @@ namespace Negocio.Petcenter
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="idMovimiento"></param>
+        /// <param name="dt"></param>
+        /// <param name="fechaMov"></param>
+        /// <param name="tipoMov"></param>
+        /// <param name="motivoMov"></param>
+        /// <param name="idAlmacen"></param>
+        /// <returns></returns>
         public Boolean GrabarMovimiento(int idMovimiento, DataTable dt, String fechaMov, String tipoMov, String motivoMov, Int32 idAlmacen)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarMovimiento(idMovimiento, dt, fechaMov, tipoMov, motivoMov, idAlmacen, txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarMovimiento(idMovimiento, dt, fechaMov, tipoMov, motivoMov, idAlmacen, TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch 
             {
-                txOle.Rollback();
-                cnnDS.Close();
+                TxOle.Rollback();
+                CnnDS.Close();
                 throw;
-                return false;
+ 
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="idMovimiento"></param>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public Boolean GrabarMovimientoTipo(Int32 idMovimiento, String tipo)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarMovimientoTipo(idMovimiento,tipo,  txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarMovimientoTipo(idMovimiento,tipo,  TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch
             {
-                txOle.Rollback();
-                cnnDS.Close();
+                TxOle.Rollback();
+                CnnDS.Close();
                 throw;
-                return false;
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
 
-        public bool GrabarEliminarCanilSector(Int32 id, String Tipo)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="id"></param>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
+        public bool GrabarEliminarCanilSector(Int32 id, String tipo)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarEliminarCanilSector(id, Tipo, txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarEliminarCanilSector(id, tipo, TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch
             {
-                txOle.Rollback();
-                cnnDS.Close();
+                TxOle.Rollback();
+                CnnDS.Close();
                 throw;
-                return false;
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
 
-        public bool GrabarCanil(Int32 idCanil, String Tamanio, String Especie, String Estado, String observaciones)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="idCanil"></param>
+        /// <param name="tamanio"></param>
+        /// <param name="especie"></param>
+        /// <param name="estado"></param>
+        /// <param name="observaciones"></param>
+        /// <returns></returns>
+        public bool GrabarCanil(Int32 idCanil, String tamanio, String especie, String estado, String observaciones)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarCanil(idCanil, Tamanio, Especie, Estado, observaciones, txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarCanil(idCanil, tamanio, especie, estado, observaciones, TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch
             {
-                txOle.Rollback();
-                cnnDS.Close();
+                TxOle.Rollback();
+                CnnDS.Close();
                 throw;
-                return false;
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
 
-        public bool GrabarSector(Int32 idSector, String Servicio, String   Estado, String observaciones)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks></remarks>
+        /// <param name="idSector"></param>
+        /// <param name="servicio"></param>
+        /// <param name="estado"></param>
+        /// <param name="observaciones"></param>
+        /// <returns></returns>
+        public bool GrabarSector(Int32 idSector, String servicio, String   estado, String observaciones)
         {
-            string conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
+            string Conn = System.Configuration.ConfigurationManager.ConnectionStrings["database"].ToString();
 
-            SqlConnection cnnDS = new SqlConnection();
-            SqlTransaction txOle = null;
+            SqlConnection CnnDS = new SqlConnection();
+            SqlTransaction TxOle = null;
             string Resultado = string.Empty;
 
             try
             {
-                cnnDS.ConnectionString = conn;
-                cnnDS.Open();
-                txOle = cnnDS.BeginTransaction();
+                CnnDS.ConnectionString = Conn;
+                CnnDS.Open();
+                TxOle = CnnDS.BeginTransaction();
 
-                Resultado = AtencionPeluqueriaDAO.GrabarSector(idSector, Servicio,  Estado, observaciones, txOle);
+                Resultado = AtencionPeluqueriaDAO.GrabarSector(idSector, servicio,  estado, observaciones, TxOle);
 
-                txOle.Commit();
-                cnnDS.Close();
+                TxOle.Commit();
+                CnnDS.Close();
                 return (Resultado != String.Empty);
             }
-            catch (Exception ex)
+            catch 
             {
-                txOle.Rollback();
-                cnnDS.Close();
+                TxOle.Rollback();
+                CnnDS.Close();
                 throw;
-                return false;
             }
             finally
             {
-                cnnDS = null;
-                txOle = null;
+                CnnDS = null;
+                TxOle = null;
             }
         }
     }

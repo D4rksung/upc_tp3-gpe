@@ -13,7 +13,7 @@ namespace Web.Petcenter
 {
     public partial class ActualizaHojaServicio : System.Web.UI.Page
     {
-        Int32 marcaGrid = 0;
+        Int32 MarcaGrid = 0;
         public static DataTable dtComents = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,8 +27,8 @@ namespace Web.Petcenter
 
         void CargarDetalle()
         {
-            DataTable data = AtencionPeluqueriaBuss.BuscarServicioHoy(0, txtfechaIni.Text, txtFechaFinal.Text);
-            grvresultado.DataSource = data;
+            DataTable Data = AtencionPeluqueriaBuss.BuscarServicioHoy(0, txtfechaIni.Text, txtFechaFinal.Text);
+            grvresultado.DataSource = Data;
             grvresultado.DataBind();
 
         }
@@ -36,7 +36,7 @@ namespace Web.Petcenter
         void CargarDataDetalle(Int32 idHojaServicio, Int32 tipo)
         {
             idTipo.Value = tipo.ToString();
-            DataSet data = AtencionPeluqueriaBuss.BuscarServicioDetalle(idHojaServicio);
+            DataSet Data = AtencionPeluqueriaBuss.BuscarServicioDetalle(idHojaServicio);
 
             if (tipo == 0)
             {
@@ -65,25 +65,25 @@ namespace Web.Petcenter
                 btnSend.Visible = false;
                 gvMateriales.Enabled = true;
             }
-            if (data.Tables[0].Rows.Count > 0)
+            if (Data.Tables[0].Rows.Count > 0)
             {
-                imgMascota.ImageUrl = data.Tables[0].Rows[0]["Foto"].ToString();
+                imgMascota.ImageUrl = Data.Tables[0].Rows[0]["Foto"].ToString();
 
-                txtNombreMascota.Text = data.Tables[0].Rows[0]["nombreMascota"].ToString();
-                txtEspecieMascota.Text = data.Tables[0].Rows[0]["especieMascota"].ToString();
-                txtRazaMascota.Text = data.Tables[0].Rows[0]["razaMascota"].ToString();
-                txtAlertas.Text = data.Tables[0].Rows[0]["observaciones"].ToString();
-                txtEstado.Text = data.Tables[0].Rows[0]["estado"].ToString();
-                txtServicio.Text = data.Tables[0].Rows[0]["Servicio"].ToString();
+                txtNombreMascota.Text = Data.Tables[0].Rows[0]["nombreMascota"].ToString();
+                txtEspecieMascota.Text = Data.Tables[0].Rows[0]["especieMascota"].ToString();
+                txtRazaMascota.Text = Data.Tables[0].Rows[0]["razaMascota"].ToString();
+                txtAlertas.Text = Data.Tables[0].Rows[0]["observaciones"].ToString();
+                txtEstado.Text = Data.Tables[0].Rows[0]["estado"].ToString();
+                txtServicio.Text = Data.Tables[0].Rows[0]["Servicio"].ToString();
                 lblModalPTitle2.Text = txtServicio.Text;
-                gvComents.DataSource = data.Tables[2];
+                gvComents.DataSource = Data.Tables[2];
                 gvComents.DataBind();
-                dtComents = data.Tables[2];
+                dtComents = Data.Tables[2];
 
-                gvMateriales.DataSource = data.Tables[1];
+                gvMateriales.DataSource = Data.Tables[1];
                 gvMateriales.DataBind();
 
-                gvTracking.DataSource = data.Tables[3];
+                gvTracking.DataSource = Data.Tables[3];
                 gvTracking.DataBind();
             }  //detalle
 
@@ -103,16 +103,16 @@ namespace Web.Petcenter
                 e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvresultado, "Select$" + e.Row.RowIndex);
                 e.Row.ToolTip = "Ver Detalle";
 
-                Int32 horaCita = Int32.Parse(grvresultado.DataKeys[e.Row.RowIndex].Values[1].ToString().Split(':')[0]);
-                String fechaCita = grvresultado.DataKeys[e.Row.RowIndex].Values[2].ToString();
-                DateTime dt = new DateTime(Int32.Parse(fechaCita.Substring(6, 4)), Int32.Parse(fechaCita.Substring(3, 2)), Int32.Parse(fechaCita.Substring(0, 2)));
-                DateTime dtActual = DateTime.Now;
+                Int32 HoraCita = Int32.Parse(grvresultado.DataKeys[e.Row.RowIndex].Values[1].ToString().Split(':')[0]);
+                String FechaCita = grvresultado.DataKeys[e.Row.RowIndex].Values[2].ToString();
+                DateTime Dt = new DateTime(Int32.Parse(FechaCita.Substring(6, 4)), Int32.Parse(FechaCita.Substring(3, 2)), Int32.Parse(FechaCita.Substring(0, 2)));
+                DateTime DtActual = DateTime.Now;
 
                 Int32 horaActual = DateTime.Now.Hour;
-                if (horaActual < horaCita && marcaGrid < 2 && dt.ToShortDateString() == dtActual.ToShortDateString())
+                if (horaActual < HoraCita && MarcaGrid < 2 && Dt.ToShortDateString() == DtActual.ToShortDateString())
                 {
                     e.Row.BackColor = ColorTranslator.FromHtml("#E8E5F5");
-                    marcaGrid++;
+                    MarcaGrid++;
                 }
 
 
@@ -165,24 +165,24 @@ namespace Web.Petcenter
 
         protected void btnGuardarP_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("MaterialID");
-            dt.Columns.Add("Cantidad", typeof(Int32));
+            DataTable Dt = new DataTable();
+            Dt.Columns.Add("MaterialID");
+            Dt.Columns.Add("Cantidad", typeof(Int32));
 
             foreach (GridViewRow gvRow in gvMateriales.Rows)
             {
-                DataRow dr = dt.NewRow();
+                DataRow Dr = Dt.NewRow();
                 Int32 rowIndex = gvRow.RowIndex;
                 Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
                 Int32 idTipo = (Int32)gvMateriales.DataKeys[rowIndex]["idUnidadMedida"];
                 TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
                 CheckBox chkCantidad = (CheckBox)gvRow.Cells[0].FindControl("chkCantidad");
-                dr[0] = idMaterial;
-                dr[1] =  (idTipo == 1 ? (chkCantidad.Checked ? "1":"0"): txtCantidad.Text) ;
-                dt.Rows.Add(dr);
+                Dr[0] = idMaterial;
+                Dr[1] =  (idTipo == 1 ? (chkCantidad.Checked ? "1":"0"): txtCantidad.Text) ;
+                Dt.Rows.Add(Dr);
 
             }
-            if (dt.Select("Cantidad>0").Count() == 0)
+            if (Dt.Select("Cantidad>0").Count() == 0)
             {
                 lblModalValTitle.Text = "Error";
                 lblVal.Text = "Ocurrio un error en el sistema: Debe de ingresar al menos la cantidad de un material que se utilizó para el servicio";
@@ -194,7 +194,7 @@ namespace Web.Petcenter
             {
                 if (gvComents.Rows.Count > 0 || txtComent.Text != "")
                 {
-                    if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), dt, txtComent.Text) != null)
+                    if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), Dt, txtComent.Text))
                     {
 
                         lblMensajeTitulo.Text = "Informativo";
@@ -271,25 +271,25 @@ namespace Web.Petcenter
         }
         protected void btnEjecutar_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("MaterialID");
-            dt.Columns.Add("Cantidad", typeof(Int32));
+            DataTable Dt = new DataTable();
+            Dt.Columns.Add("MaterialID");
+            Dt.Columns.Add("Cantidad", typeof(Int32));
 
             foreach (GridViewRow gvRow in gvMateriales.Rows)
             {
-                DataRow dr = dt.NewRow();
+                DataRow Dr = Dt.NewRow();
                 Int32 rowIndex = gvRow.RowIndex;
                 Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
                 Int32 idTipo = (Int32)gvMateriales.DataKeys[rowIndex]["idUnidadMedida"];
                 TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
                 CheckBox chkCantidad = (CheckBox)gvRow.Cells[0].FindControl("chkCantidad");
-                dr[0] = idMaterial;
-                dr[1] = (idTipo == 1 ? (chkCantidad.Checked ? "1" : "0") : txtCantidad.Text);
-                dt.Rows.Add(dr);
+                Dr[0] = idMaterial;
+                Dr[1] = (idTipo == 1 ? (chkCantidad.Checked ? "1" : "0") : txtCantidad.Text);
+                Dt.Rows.Add(Dr);
 
             }
 
-            if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), dt, txtComent.Text ) != null)
+            if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), Dt, txtComent.Text ))
             {
                 String mensaje = "";
                 if (idTipo.Value == "1")

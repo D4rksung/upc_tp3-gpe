@@ -17,11 +17,11 @@ namespace Web.Petcenter
             if (!Page.IsPostBack)
             {
 
-                DataSet data = Negocio.Petcenter.Graficos.BuscarResumen();
-                lblServicioHoy.Text = data.Tables[0].Rows[0]["ServicioHoy"].ToString();
-                lblServicioPendientes.Text = data.Tables[0].Rows[0]["ServicioPendientes"].ToString();
-                lblServicioFinalizados.Text = data.Tables[0].Rows[0]["ServicioFinalizados"].ToString();
-                lblTotalEmpleados.Text = data.Tables[0].Rows[0]["TotalEmpleados"].ToString();
+                DataSet Data = Negocio.Petcenter.Graficos.BuscarResumen();
+                lblServicioHoy.Text = Data.Tables[0].Rows[0]["ServicioHoy"].ToString();
+                lblServicioPendientes.Text = Data.Tables[0].Rows[0]["ServicioPendientes"].ToString();
+                lblServicioFinalizados.Text = Data.Tables[0].Rows[0]["ServicioFinalizados"].ToString();
+                lblTotalEmpleados.Text = Data.Tables[0].Rows[0]["TotalEmpleados"].ToString();
                 CargarCombos();
                 CargarGrid(0);
             }
@@ -29,10 +29,10 @@ namespace Web.Petcenter
         void CargarCombos()
         {
 
-            Utilidades.CargaCombo(ref cboGrafico1, AtencionPeluqueriaBuss.GetServicio(), "idServicio", "descripcion", true);
-            Utilidades.CargaCombo(ref cbografico4, AtencionPeluqueriaBuss.GetRoles("0"), "idRol", "descripcion", true);
-            Utilidades.CargaCombo(ref filtroservicio, AtencionPeluqueriaBuss.GetServicio(), "idServicio", "descripcion", true);
-            Utilidades.CargaCombo(ref cboGrafico2, AtencionPeluqueriaBuss.GetServicio(), "idServicio", "descripcion", true);
+            Utilidades.CargaCombo(ref cboGrafico1, AtencionPeluqueriaBuss.GetServicio(), Utilitario.Comun.Dominios.IdServicio, Utilitario.Comun.Dominios.DescripcionServicio, true);
+            Utilidades.CargaCombo(ref cbografico4, AtencionPeluqueriaBuss.GetRoles("0"), Utilitario.Comun.Dominios.IdRol, Utilitario.Comun.Dominios.DescripcionRol, true);
+            Utilidades.CargaCombo(ref filtroservicio, AtencionPeluqueriaBuss.GetServicio(), Utilitario.Comun.Dominios.IdServicio, Utilitario.Comun.Dominios.DescripcionServicio, true);
+            Utilidades.CargaCombo(ref cboGrafico2, AtencionPeluqueriaBuss.GetServicio(), Utilitario.Comun.Dominios.IdServicio, Utilitario.Comun.Dominios.DescripcionServicio, true);
             
         }
 
@@ -42,8 +42,8 @@ namespace Web.Petcenter
         }
         void CargarGrid(Int32 valor)
         {
-            DataSet data = Negocio.Petcenter.Graficos.BuscarGrafico4(valor);
-            gvEmpleados.DataSource = data;
+            DataSet Data = Negocio.Petcenter.Graficos.BuscarGraficoIndicadorDePenetraciónPorServicioYSede(valor);
+            gvEmpleados.DataSource = Data;
             gvEmpleados.DataBind();
         }
     }

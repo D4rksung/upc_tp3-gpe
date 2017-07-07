@@ -14,7 +14,7 @@ namespace Web.Petcenter
 {
     public partial class ActualizaKardex : System.Web.UI.Page
     {
-        public static DataTable dtMateriales;
+        public static DataTable DtMateriales;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -27,27 +27,27 @@ namespace Web.Petcenter
         
         void CargarDetalle()
         {
-            DataTable data = AtencionPeluqueriaBuss.BuscarMovimientos(Int32.Parse(cboAlmacen.SelectedValue), txtfechaIni.Text, txtFechaFinal.Text, "",cboTipo.SelectedValue,cboEstado.SelectedValue, txtNumReq.Text);
-            grvresultado.DataSource = data;
+            DataTable Data = AtencionPeluqueriaBuss.BuscarMovimientos(Int32.Parse(cboAlmacen.SelectedValue), txtfechaIni.Text, txtFechaFinal.Text, "",cboTipo.SelectedValue,cboEstado.SelectedValue, txtNumReq.Text);
+            grvresultado.DataSource = Data;
             grvresultado.DataBind();
             
         }
         void CargarDetalle2()
         {
 
-            DataTable data2 = AtencionPeluqueriaBuss.BuscarMateriales(Int32.Parse(cboAlmacenV.SelectedValue), txtFechaMovHasta.Text,"");
-            grvresultado2.DataSource = data2;
+            DataTable Data2 = AtencionPeluqueriaBuss.BuscarMateriales(Int32.Parse(cboAlmacenV.SelectedValue), txtFechaMovHasta.Text,"");
+            grvresultado2.DataSource = Data2;
             grvresultado2.DataBind();
         }
         private void CargarCombo()
         {
-            Utilidades.CargaCombo(ref cboAlmacenV, AtencionPeluqueriaBuss.GetAlmacen(), "idAlmacen", "descripcion", true);
+            Utilidades.CargaCombo(ref cboAlmacenV, AtencionPeluqueriaBuss.GetAlmacen(), Utilitario.Comun.Dominios.IdAlmacen, Utilitario.Comun.Dominios.DescripcionAlmacen, true);
 
 
-            Utilidades.CargaCombo(ref cboAlmacen, AtencionPeluqueriaBuss.GetAlmacen(), "idAlmacen", "descripcion", true);
-            Utilidades.CargaCombo(ref cboTipo, AtencionPeluqueriaBuss.GetParametros("013"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref cboEstado, AtencionPeluqueriaBuss.GetParametros("011"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref cboTipoReq, AtencionPeluqueriaBuss.GetParametros("013"), "ID", "DESCR", true);
+            Utilidades.CargaCombo(ref cboAlmacen, AtencionPeluqueriaBuss.GetAlmacen(), Utilitario.Comun.Dominios.IdAlmacen, Utilitario.Comun.Dominios.DescripcionAlmacen, true);
+            Utilidades.CargaCombo(ref cboTipo, AtencionPeluqueriaBuss.GetParametros("013"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
+            Utilidades.CargaCombo(ref cboEstado, AtencionPeluqueriaBuss.GetParametros("011"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
+            Utilidades.CargaCombo(ref cboTipoReq, AtencionPeluqueriaBuss.GetParametros("013"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
              
         }
 
@@ -150,35 +150,35 @@ namespace Web.Petcenter
         void CargarDataDetalle(Int32 idMaterial, Int32 tipo)
         {
 
-            DataTable data2 = AtencionPeluqueriaBuss.BuscarMaterialesMov(idMaterial);
-            gvMaterialesV.DataSource = data2;
+            DataTable Data2 = AtencionPeluqueriaBuss.BuscarMaterialesMovimiento(idMaterial);
+            gvMaterialesV.DataSource = Data2;
             gvMaterialesV.DataBind();
         }
         protected void btnGrabar_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("IdDetReqMaterial");
-            dt.Columns.Add("Precio", typeof(Decimal));
-            dt.Columns.Add("Cantidad", typeof(Decimal));
+            DataTable Dt = new DataTable();
+            Dt.Columns.Add("IdDetReqMaterial");
+            Dt.Columns.Add("Precio", typeof(Decimal));
+            Dt.Columns.Add("Cantidad", typeof(Decimal));
 
             foreach (GridViewRow gvRow in grvresultado3.Rows)
             {
-                DataRow dr = dt.NewRow();
+                DataRow Dr = Dt.NewRow();
                 Int32 rowIndex = gvRow.RowIndex;
                 Int32 idMaterial = (Int32)grvresultado3.DataKeys[rowIndex]["idMovimiento"];
                 TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
                 if (Decimal.Parse(txtCantidad.Text) > 0)
                 {
-                    dr[0] = idMaterial;
-                    dr[1] = 0;
-                    dr[2] = txtCantidad.Text;
-                    dt.Rows.Add(dr);
+                    Dr[0] = idMaterial;
+                    Dr[1] = 0;
+                    Dr[2] = txtCantidad.Text;
+                    Dt.Rows.Add(Dr);
                 }
             }
 
-            if (dt.Rows.Count > 0)
+            if (Dt.Rows.Count > 0)
             {
-                if ((new ProgramacionCita()).GrabarMovimientoAtencion(dt))
+                if ((new ProgramacionCita()).GrabarMovimientoAtencion(Dt))
                 {
                     lblMensajeTitulo.Text = "Informativo";
                     lblMensaje.Text = "Informativo: Se procedió a registrar las cantidades recibidas.";
@@ -204,28 +204,28 @@ namespace Web.Petcenter
         void CargarDataDetalle3(Int32 idMovimiento)
         {
 
-            DataTable data2 = AtencionPeluqueriaBuss.BuscarMovimientosAtencion(idMovimiento);
-            grvresultado3.DataSource = data2;
+            DataTable Data2 = AtencionPeluqueriaBuss.BuscarMovimientosAtencion(idMovimiento);
+            grvresultado3.DataSource = Data2;
             grvresultado3.DataBind();
         }
         void CargarDataDetalle2(Int32 idMovimiento, Int32 tipo, Int32 almacenID)
         {
-            DataSet ds = AtencionPeluqueriaBuss.BuscarMaterialesDispo(idMovimiento, almacenID);
-            DataTable data2 = ds.Tables[0];
-            gvMateriales.DataSource = data2;
+            DataSet Ds = AtencionPeluqueriaBuss.BuscarMaterialesDispositivo(idMovimiento, almacenID);
+            DataTable Data2 = Ds.Tables[0];
+            gvMateriales.DataSource = Data2;
             gvMateriales.DataBind();
-            dtMateriales = data2;
+            DtMateriales = Data2;
 
             txtNroReq.Text = "";
             txtFechaReq.Text = "";
             cboTipoReq.ClearSelection();
-            if (ds.Tables[1].Rows.Count > 0)
+            if (Ds.Tables[1].Rows.Count > 0)
             {
-                txtNroReq.Text = ds.Tables[1].Rows[0]["NroReq"].ToString();
-                txtFechaReq.Text = ds.Tables[1].Rows[0]["FECHAMOV"].ToString();
-                cboTipoReq.SelectedValue = ds.Tables[1].Rows[0]["TipoMovimiento"].ToString();
-                txtSede.Text = ds.Tables[1].Rows[0]["Sede"].ToString();
-                idAlmacen.Value = ds.Tables[1].Rows[0]["IdAlmacen"].ToString();
+                txtNroReq.Text = Ds.Tables[1].Rows[0]["NroReq"].ToString();
+                txtFechaReq.Text = Ds.Tables[1].Rows[0]["FECHAMOV"].ToString();
+                cboTipoReq.SelectedValue = Ds.Tables[1].Rows[0]["TipoMovimiento"].ToString();
+                txtSede.Text = Ds.Tables[1].Rows[0]["Sede"].ToString();
+                idAlmacen.Value = Ds.Tables[1].Rows[0]["IdAlmacen"].ToString();
             }
 
             if (tipo == 3)
@@ -373,21 +373,21 @@ namespace Web.Petcenter
             Boolean VAL = true;
             String MENSAJE = " ";
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("MaterialID");
-            dt.Columns.Add("Precio", typeof(Decimal));
-            dt.Columns.Add("Cantidad", typeof(Decimal));
+            DataTable Dt = new DataTable();
+            Dt.Columns.Add("MaterialID");
+            Dt.Columns.Add("Precio", typeof(Decimal));
+            Dt.Columns.Add("Cantidad", typeof(Decimal));
 
             foreach (GridViewRow gvRow in gvMateriales.Rows)
             {
-                DataRow dr = dt.NewRow();
+                DataRow Dr = Dt.NewRow();
                 Int32 rowIndex = gvRow.RowIndex;
                 Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
                 TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
-                dr[0] = idMaterial;
-                dr[1] = 0;
-                dr[2] = txtCantidad.Text;
-                dt.Rows.Add(dr);
+                Dr[0] = idMaterial;
+                Dr[1] = 0;
+                Dr[2] = txtCantidad.Text;
+                Dt.Rows.Add(Dr);
 
             }
 
@@ -402,7 +402,7 @@ namespace Web.Petcenter
                 MENSAJE = MENSAJE + " el tipo de requerimiento";
                 VAL = false;
             }
-            else if (gvMateriales.Rows.Count==0 || dt.Select("Cantidad>0").Count() == 0)
+            else if (gvMateriales.Rows.Count==0 || Dt.Select("Cantidad>0").Count() == 0)
             {
                 MENSAJE = MENSAJE + " lista de materiales";
                 VAL = false;
@@ -416,7 +416,7 @@ namespace Web.Petcenter
                
             if (VAL )
             {
-                if ((new ProgramacionCita()).GrabarMovimiento(Int32.Parse(idMovimiento.Value), dt, txtFechaReq.Text,  cboTipoReq.SelectedValue, "0", Int32.Parse(idAlmacen.Value )))
+                if ((new ProgramacionCita()).GrabarMovimiento(Int32.Parse(idMovimiento.Value), Dt, txtFechaReq.Text,  cboTipoReq.SelectedValue, "0", Int32.Parse(idAlmacen.Value )))
                 {
 
                     lblMensajeTitulo.Text = "Informativo";
@@ -478,31 +478,31 @@ namespace Web.Petcenter
                 Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
                 TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
 
-                DataRow dr = dtMateriales.Select("IdMaterial=" + idMaterial.ToString())[0];
-                dr[4] = txtCantidad.Text;
+                DataRow Dr = DtMateriales.Select("IdMaterial=" + idMaterial.ToString())[0];
+                Dr[4] = txtCantidad.Text;
 
 
             }
 
-            if (dtMateriales.Select("IdMaterial=" + combobox.SelectedValue).Count() == 0)
+            if (DtMateriales.Select("IdMaterial=" + combobox.SelectedValue).Count() == 0)
             {
-                DataTable ds = AtencionPeluqueriaBuss.BuscarMaterialesxCodigo(Int32.Parse(combobox.SelectedValue), Int32.Parse(idAlmacen.Value));
+                DataTable Ds = AtencionPeluqueriaBuss.BuscarMaterialesxCodigo(Int32.Parse(combobox.SelectedValue), Int32.Parse(idAlmacen.Value));
 
-                DataRow dr = dtMateriales.NewRow();
+                DataRow Dr = DtMateriales.NewRow();
 
-                if (ds.Rows.Count > 0)
+                if (Ds.Rows.Count > 0)
                 {
-                    dr[0] = ds.Rows[0]["IdMaterial"].ToString();
-                    dr[1]= ds.Rows[0]["material"].ToString();
-                    dr[2] = ds.Rows[0]["descripcion"].ToString();
-                    dr[3] = ds.Rows[0]["umedida"].ToString();
-                    dr[4] = ds.Rows[0]["Cantidad"].ToString();
-                    dr[5] = ds.Rows[0]["Precio"].ToString();
-                    dtMateriales.Rows.Add(dr);
+                    Dr[0] = Ds.Rows[0]["IdMaterial"].ToString();
+                    Dr[1]= Ds.Rows[0]["material"].ToString();
+                    Dr[2] = Ds.Rows[0]["descripcion"].ToString();
+                    Dr[3] = Ds.Rows[0]["umedida"].ToString();
+                    Dr[4] = Ds.Rows[0]["Cantidad"].ToString();
+                    Dr[5] = Ds.Rows[0]["Precio"].ToString();
+                    DtMateriales.Rows.Add(Dr);
                 }
 
 
-                gvMateriales.DataSource = dtMateriales;
+                gvMateriales.DataSource = DtMateriales;
                 gvMateriales.DataBind();
             }
             else

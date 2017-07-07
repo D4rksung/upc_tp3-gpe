@@ -24,7 +24,7 @@ namespace Web.Petcenter
                 else
                 {
                     Seguridad seg = (Seguridad)Session["_Seguridad"];
-                    if (seg.indHabilitado == 0)
+                    if (seg.IndiceHabilitado == 0)
                         Response.Redirect("Default.aspx");
                 }
                 this.CargaCombo();
@@ -35,7 +35,7 @@ namespace Web.Petcenter
 
         private void CargaCombo()
         {
-            Utilidades.CargaCombo(ref cbojaula, AtencionPeluqueriaBuss.ParametroListar("005"), "Parametro", "DscParametro", true);
+            Utilidades.CargaCombo(ref cbojaula, AtencionPeluqueriaBuss.ParametroListar("005"), Utilitario.Comun.Dominios.Parametro, Utilitario.Comun.Dominios.DescripcionParametro, true);
         }
 
         private void ConfigurarFechas()
@@ -46,7 +46,7 @@ namespace Web.Petcenter
                 txtfecharegistro.Text = DateTime.Today.AddMonths(-1).ToString("dd/MM/yyyy", objCulture);
 
             }
-            catch (Exception ex)
+            catch 
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }
@@ -61,28 +61,28 @@ namespace Web.Petcenter
         {
             try
             {
-                int idcita = Utilidades.ToInt(txtcodigocita.Text);
-                if (idcita > 0)
+                int IdCita = Utilidades.ToInt(txtcodigocita.Text);
+                if (IdCita > 0)
                 {
 
-                    DataSet data = AtencionPeluqueriaBuss.GetDatosCita(idcita);
+                    DataSet Data = AtencionPeluqueriaBuss.GetDatosCita(IdCita);
 
 
-                    if (data.Tables[0].Rows.Count > 0)
+                    if (Data.Tables[0].Rows.Count > 0)
                     {
 
-                        txtcodigocliente.Text = data.Tables[0].Rows[0]["idcliente"].ToString();
-                        txtnombrecliente.Text = data.Tables[0].Rows[0]["NombreCliente"].ToString();
-                        txtcodigomascota.Text = data.Tables[0].Rows[0]["idMascota"].ToString();
-                        txtnombremascota.Text = data.Tables[0].Rows[0]["nombreMascota"].ToString();
-                        txtespeciemascota.Text = data.Tables[0].Rows[0]["descripcionEspecie"].ToString();
-                        txtedadmascota.Text = data.Tables[0].Rows[0]["Edad"].ToString();
-                        txtsexomascota.Text = data.Tables[0].Rows[0]["DscSexoMascota"].ToString();
-                        txttamañomascota.Text = data.Tables[0].Rows[0]["tamaño"].ToString();
+                        txtcodigocliente.Text = Data.Tables[0].Rows[0]["idcliente"].ToString();
+                        txtnombrecliente.Text = Data.Tables[0].Rows[0]["NombreCliente"].ToString();
+                        txtcodigomascota.Text = Data.Tables[0].Rows[0]["idMascota"].ToString();
+                        txtnombremascota.Text = Data.Tables[0].Rows[0]["nombreMascota"].ToString();
+                        txtespeciemascota.Text = Data.Tables[0].Rows[0]["descripcionEspecie"].ToString();
+                        txtedadmascota.Text = Data.Tables[0].Rows[0]["Edad"].ToString();
+                        txtsexomascota.Text = Data.Tables[0].Rows[0]["DscSexoMascota"].ToString();
+                        txttamañomascota.Text = Data.Tables[0].Rows[0]["tamaño"].ToString();
 
                         //detalle
 
-                        this.grvresultado.DataSource = data.Tables[1];
+                        this.grvresultado.DataSource = Data.Tables[1];
                         this.grvresultado.DataBind();
 
                     }
@@ -101,7 +101,7 @@ namespace Web.Petcenter
 
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }
@@ -117,25 +117,25 @@ namespace Web.Petcenter
                     return;
                 }
 
-                int idcita = Utilidades.ToInt(txtcodigocita.Text);
-                DataSet data = AtencionPeluqueriaBuss.GetDatosCita(idcita);
+                int IdCita = Utilidades.ToInt(txtcodigocita.Text);
+                DataSet Data = AtencionPeluqueriaBuss.GetDatosCita(IdCita);
 
 
-                if (data.Tables[0].Rows.Count > 0)
+                if (Data.Tables[0].Rows.Count > 0)
                 {
 
-                    txtcodigocliente.Text = data.Tables[0].Rows[0]["idcliente"].ToString();
-                    txtnombrecliente.Text = data.Tables[0].Rows[0]["NombreCliente"].ToString();
-                    txtcodigomascota.Text = data.Tables[0].Rows[0]["idMascota"].ToString();
-                    txtnombremascota.Text = data.Tables[0].Rows[0]["nombreMascota"].ToString();
-                    txtespeciemascota.Text = data.Tables[0].Rows[0]["descripcionEspecie"].ToString();
-                    txtedadmascota.Text = data.Tables[0].Rows[0]["Edad"].ToString();
-                    txtsexomascota.Text = data.Tables[0].Rows[0]["DscSexoMascota"].ToString();
-                    txttamañomascota.Text = data.Tables[0].Rows[0]["tamaño"].ToString();
+                    txtcodigocliente.Text = Data.Tables[0].Rows[0]["idcliente"].ToString();
+                    txtnombrecliente.Text = Data.Tables[0].Rows[0]["NombreCliente"].ToString();
+                    txtcodigomascota.Text = Data.Tables[0].Rows[0]["idMascota"].ToString();
+                    txtnombremascota.Text = Data.Tables[0].Rows[0]["nombreMascota"].ToString();
+                    txtespeciemascota.Text = Data.Tables[0].Rows[0]["descripcionEspecie"].ToString();
+                    txtedadmascota.Text = Data.Tables[0].Rows[0]["Edad"].ToString();
+                    txtsexomascota.Text = Data.Tables[0].Rows[0]["DscSexoMascota"].ToString();
+                    txttamañomascota.Text = Data.Tables[0].Rows[0]["tamaño"].ToString();
 
                     //detalle
 
-                    this.grvresultado.DataSource = data.Tables[1];
+                    this.grvresultado.DataSource = Data.Tables[1];
                     this.grvresultado.DataBind();
 
                 }
@@ -145,17 +145,17 @@ namespace Web.Petcenter
                     return;
                 }
 
-                HojaServicio hoja = new HojaServicio();
-                hoja.idEmpleado = 1;
-                hoja.FechaEmision = txtfecharegistro.Text;
-                hoja.NumHojaServicio = 0;
-                hoja.Canil = cbojaula.SelectedValue;
-                hoja.idCita = Utilidades.ToInt(txtcodigocita.Text);
-                hoja.Observaciones = txtobservaciones.Text.ToUpper();
-                AtencionPeluqueriaBuss.GrabarHojaServicio(hoja, null, 1);
+                HojaServicio Hoja = new HojaServicio();
+                Hoja.IdEmpleado = 1;
+                Hoja.FechaEmision = txtfecharegistro.Text;
+                Hoja.NumHojaServicio = 0;
+                Hoja.Canil = cbojaula.SelectedValue;
+                Hoja.IdCita = Utilidades.ToInt(txtcodigocita.Text);
+                Hoja.Observaciones = txtobservaciones.Text.ToUpper();
+                AtencionPeluqueriaBuss.GrabarHojaServicio(Hoja, null, 1);
                 Response.Redirect("ActualizarHojaServicio.aspx");
             }
-            catch (Exception ex)
+            catch
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }
@@ -168,18 +168,18 @@ namespace Web.Petcenter
         {
             try
             {
-                Cita cita = new Cita();
-                cita.FechaInicial = txtfechainicita.Text;
-                cita.FechaFinal = txtfechafincita.Text;
-                cita.Cliente = txtnombreclicita.Text;
+                Cita CitaEntidad = new Cita();
+                CitaEntidad.FechaInicial = txtfechainicita.Text;
+                CitaEntidad.FechaFinal = txtfechafincita.Text;
+                CitaEntidad.Cliente = txtnombreclicita.Text;
 
-                DataTable citas = AtencionPeluqueriaBuss.BusquedaCita(cita);
+                DataTable Citas = AtencionPeluqueriaBuss.BusquedaCita(CitaEntidad);
 
-                this.grvResultadoPopup.DataSource = citas;
+                this.grvResultadoPopup.DataSource = Citas;
                 this.grvResultadoPopup.DataBind();
                 this.upModal.Update();
             }
-            catch (Exception ex)
+            catch
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
             }
@@ -190,9 +190,9 @@ namespace Web.Petcenter
         protected void grvResultadoPopup_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             int index = grvResultadoPopup.SelectedIndex;
-            string idcita = grvResultadoPopup.DataKeys[index].Values[0].ToString();
-            txtcodigocita.Text = idcita;
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal2", "callbusqueda(" + idcita + ");", true);
+            string IdCita = grvResultadoPopup.DataKeys[index].Values[0].ToString();
+            txtcodigocita.Text = IdCita;
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal2", "callbusqueda(" + IdCita + ");", true);
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal('hide');", true);
         }
 

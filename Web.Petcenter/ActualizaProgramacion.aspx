@@ -179,18 +179,18 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <asp:Button ID="ibtnProgramar" runat="server" AlternateText="Programar" CausesValidation="false" Visible='<%# Eval("Programar") %>'
-                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Programar" Text="Programar" CssClass="btn btn-default" Style="width: 60px; height: 20px" Font-Size="X-Small" />
+                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Programar" Text="Programar" CssClass="btn btn-default" Style="width: 80px; height: 20px" Font-Size="X-Small" />
 
 
 
                                                                         <asp:Button ID="ibtnModificar" runat="server" AlternateText="Modificar" CausesValidation="false" Visible='<%# Eval("Modificar") %>'
-                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Modificar" Text="Modificar" CssClass="btn btn-default" Style="width: 60px; height: 20px" Font-Size="X-Small" />
+                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Modificar" Text="Modificar" CssClass="btn btn-default" Style="width: 80px; height: 20px" Font-Size="X-Small" />
 
 
                                                                         <asp:Button ID="ibtnAnular" runat="server" AlternateText="Anular" CausesValidation="false" Visible='<%#Eval("Modificar") %>'
-                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Anular" Text="Anular" CssClass="btn btn-default" Style="width: 60px; height: 20px" Font-Size="X-Small" />
+                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Anular" Text="Anular" CssClass="btn btn-default" Style="width: 80px; height: 20px" Font-Size="X-Small" />
                                                                         <div style="margin-left: auto; cursor:default; margin-right: auto; text-align: center;" Visible='<%#Eval("Anulado") %>'>
-                                                                        <asp:Label ID="lblAnulado"  Text="Anulado" runat="server" Visible='<%#Eval("Anulado") %>'  Style="width: 60px; height: 20px; text-align:center; "  Font-Size="X-Small"  ></asp:Label>
+                                                                        <asp:Label ID="lblAnulado"  Text="Anulado" runat="server" Visible='<%#Eval("Anulado") %>'  Style="width: 80px; height: 20px; text-align:center; "  Font-Size="X-Small"  ></asp:Label>
                                                                             </div>
                                                                     </div>
                                                                 </div>

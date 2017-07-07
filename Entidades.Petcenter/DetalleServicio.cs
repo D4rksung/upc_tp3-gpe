@@ -7,7 +7,7 @@ namespace Entidades.Petcenter
 {
    public class DetalleServicio
     {
-        public int iddetalleHojaServicio { set; get; }
+        public int IdDetalleHojaServicio { set; get; }
         public string Estado { set; get; }
         public string HoraInicio { set; get; }
         public string HoraFin { set; get; }

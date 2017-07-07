@@ -18,71 +18,71 @@ namespace Web.Petcenter
         {
             if (!Page.IsPostBack)
             {
-                Int32 colDetalle = 1;
-                Int32 conta = 0;
-                DataTable data = AtencionPeluqueriaBuss.BuscarCanil(0, Request.QueryString["txtfechaIni"], Request.QueryString["txtFechaFinal"], Request.QueryString["cboRecurso"] , Request.QueryString["cboEstado"]  );
-                DataTable data2 = AtencionPeluqueriaBuss.BuscarSector(0, Request.QueryString["txtfechaIni"], Request.QueryString["txtFechaFinal"], Request.QueryString["cboRecurso"], Request.QueryString["cboEstado"]);
+                Int32 ColumnaDetalle = 1;
+                Int32 Contador = 0;
+                DataTable Data = AtencionPeluqueriaBuss.BuscarCanil(0, Request.QueryString["txtfechaIni"], Request.QueryString["txtFechaFinal"], Request.QueryString["cboRecurso"] , Request.QueryString["cboEstado"]  );
+                DataTable Data2 = AtencionPeluqueriaBuss.BuscarSector(0, Request.QueryString["txtfechaIni"], Request.QueryString["txtFechaFinal"], Request.QueryString["cboRecurso"], Request.QueryString["cboEstado"]);
 
 
-                string name = Convert.ToString(DateTime.Now.Ticks);
+                string Name = Convert.ToString(DateTime.Now.Ticks);
 
                 using (ExcelPackage package = new ExcelPackage())
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("BASE");
+                    ExcelWorksheet WorkSheet = package.Workbook.Worksheets.Add("BASE");
 
 
-                    Int32 int_fila = 2;
-                    Int32 int_col = 1;
+                    Int32 Fila = 2;
+                    
 
-                    if (data.Rows.Count > 0 && (Request.QueryString["cboRecurso"] =="0" || Request.QueryString["cboRecurso"]=="" || Request.QueryString["cboRecurso"]=="1"))
+                    if (Data.Rows.Count > 0 && (Request.QueryString["cboRecurso"] =="0" || Request.QueryString["cboRecurso"]=="" || Request.QueryString["cboRecurso"]=="1"))
                     {
-                        ExcelRange range = worksheet.Cells[2, 1, 2, 6];
+                        ExcelRange range = WorkSheet.Cells[2, 1, 2, 6];
                         range.Merge = true;
-                        worksheet.Cells[int_fila, 1].Style.Font.SetFromFont(new Font("Calibri", 16, FontStyle.Bold));
-                        worksheet.Cells[int_fila, 1].Style.Font.Color.SetColor(Color.Black);
-                        worksheet.Cells[int_fila, 1].Value = "Listado de Canil";
+                        WorkSheet.Cells[Fila, 1].Style.Font.SetFromFont(new Font("Calibri", 16, FontStyle.Bold));
+                        WorkSheet.Cells[Fila, 1].Style.Font.Color.SetColor(Color.Black);
+                        WorkSheet.Cells[Fila, 1].Value = "Listado de Canil";
                         range.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
-                        int_fila = int_fila + 2;
+                        Fila = Fila + 2;
 
-                        worksheet.Cells[int_fila, 1].Value = "CODIGO";
-                        worksheet.Cells[int_fila, 2].Value = "NOMBRE";
-                        worksheet.Cells[int_fila, 3].Value = "TAMAÑO";
-                        worksheet.Cells[int_fila, 4].Value = "ESTADO";
-                        worksheet.Cells[int_fila, 5].Value = "ESPECIE";
-                        worksheet.Cells[int_fila, 6].Value = "OBSERVACIONES";
+                        WorkSheet.Cells[Fila, 1].Value = "CODIGO";
+                        WorkSheet.Cells[Fila, 2].Value = "NOMBRE";
+                        WorkSheet.Cells[Fila, 3].Value = "TAMAÑO";
+                        WorkSheet.Cells[Fila, 4].Value = "ESTADO";
+                        WorkSheet.Cells[Fila, 5].Value = "ESPECIE";
+                        WorkSheet.Cells[Fila, 6].Value = "OBSERVACIONES";
 
 
-                        ExcelRange rangoDeCeldasNameT2 = worksheet.Cells[int_fila, 1, int_fila, 6];
-                        rangoDeCeldasNameT2.Style.Border.Top.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT2.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT2.Style.Border.Right.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT2.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT2.Style.Font.Color.SetColor(Color.Black);
-                        rangoDeCeldasNameT2.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        rangoDeCeldasNameT2.Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml("#FACA2C"));
-                        rangoDeCeldasNameT2.Style.Font.Bold = true;
-                        rangoDeCeldasNameT2.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
-                        rangoDeCeldasNameT2.Style.WrapText = true;
-                        
+                        ExcelRange RangoDeCeldasNameT2 = WorkSheet.Cells[Fila, 1, Fila, 6];
+                        RangoDeCeldasNameT2.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT2.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT2.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT2.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT2.Style.Font.Color.SetColor(Color.Black);
+                        RangoDeCeldasNameT2.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        RangoDeCeldasNameT2.Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml("#FACA2C"));
+                        RangoDeCeldasNameT2.Style.Font.Bold = true;
+                        RangoDeCeldasNameT2.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
+                        RangoDeCeldasNameT2.Style.WrapText = true;
 
-                        colDetalle = 1;
-                        conta = 0;
-                        foreach (DataRow dr2 in data.Rows)
+
+                        ColumnaDetalle = 1;
+                        Contador = 0;
+                        foreach (DataRow dr2 in Data.Rows)
                         {
-                            int_fila = int_fila + 1;
-                            colDetalle = 1;
-                            foreach (DataColumn dr in data.Columns)
+                            Fila = Fila + 1;
+                            ColumnaDetalle = 1;
+                            foreach (DataColumn dr in Data.Columns)
                             {
-                                if (colDetalle <= 6)
+                                if (ColumnaDetalle <= 6)
                                 {
-                                    worksheet.Cells[int_fila, colDetalle].Value = dr2[dr.ColumnName];
+                                    WorkSheet.Cells[Fila, ColumnaDetalle].Value = dr2[dr.ColumnName];
                                 }
-                                colDetalle = colDetalle + 1;
-                                conta = conta + 1;
+                                ColumnaDetalle = ColumnaDetalle + 1;
+                                Contador = Contador + 1;
                             }
 
-                            ExcelRange rangeCab6 = worksheet.Cells[int_fila, 1, int_fila, 6];
+                            ExcelRange rangeCab6 = WorkSheet.Cells[Fila, 1, Fila, 6];
 
                             rangeCab6.Style.Border.Top.Style = ExcelBorderStyle.Thin;
                             rangeCab6.Style.Border.Left.Style = ExcelBorderStyle.Thin;
@@ -96,76 +96,76 @@ namespace Web.Petcenter
 
 
                         }
-                        int_fila = int_fila + 2;
+                        Fila = Fila + 2;
                     }
 
-                    if (data2.Rows.Count > 0 && (Request.QueryString["cboRecurso"] == "0" || Request.QueryString["cboRecurso"] == "" || Request.QueryString["cboRecurso"] == "2"))
+                    if (Data2.Rows.Count > 0 && (Request.QueryString["cboRecurso"] == "0" || Request.QueryString["cboRecurso"] == "" || Request.QueryString["cboRecurso"] == "2"))
                     { 
-                        ExcelRange range5 = worksheet.Cells[int_fila, 1, int_fila, 6];
+                        ExcelRange range5 = WorkSheet.Cells[Fila, 1, Fila, 6];
                         range5.Merge = true;
-                        worksheet.Cells[int_fila, 1].Style.Font.SetFromFont(new Font("Calibri", 16, FontStyle.Bold));
-                        worksheet.Cells[int_fila, 1].Style.Font.Color.SetColor(Color.Black);
-                        worksheet.Cells[int_fila, 1].Value = "Listado de Sectores";
+                        WorkSheet.Cells[Fila, 1].Style.Font.SetFromFont(new Font("Calibri", 16, FontStyle.Bold));
+                        WorkSheet.Cells[Fila, 1].Style.Font.Color.SetColor(Color.Black);
+                        WorkSheet.Cells[Fila, 1].Value = "Listado de Sectores";
                         range5.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
 
 
-                        int_fila = int_fila + 2;
-                        int_col = 1;
-                        worksheet.Cells[int_fila, 1].Value = "CODIGO";
-                        worksheet.Cells[int_fila, 2].Value = "NOMBRE";
-                        worksheet.Cells[int_fila, 3].Value = "SERVICIO";
-                        worksheet.Cells[int_fila, 4].Value = "ESTADO";
-                        worksheet.Cells[int_fila, 5].Value = "OBSERVACIONES";
-                        ExcelRange rangoDeCeldasName5 = worksheet.Cells[int_fila, 5, int_fila, 6];
-                        rangoDeCeldasName5.Merge = true;
+                        Fila = Fila + 2;
+ 
+                        WorkSheet.Cells[Fila, 1].Value = "CODIGO";
+                        WorkSheet.Cells[Fila, 2].Value = "NOMBRE";
+                        WorkSheet.Cells[Fila, 3].Value = "SERVICIO";
+                        WorkSheet.Cells[Fila, 4].Value = "ESTADO";
+                        WorkSheet.Cells[Fila, 5].Value = "OBSERVACIONES";
+                        ExcelRange RangoDeCeldasName5 = WorkSheet.Cells[Fila, 5, Fila, 6];
+                        RangoDeCeldasName5.Merge = true;
 
 
-                        ExcelRange rangoDeCeldasNameT4 = worksheet.Cells[int_fila, 1, int_fila, 6];
-                        rangoDeCeldasNameT4.Style.Border.Top.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT4.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT4.Style.Border.Right.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT4.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
-                        rangoDeCeldasNameT4.Style.Font.Color.SetColor(Color.Black);
-                        rangoDeCeldasNameT4.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        rangoDeCeldasNameT4.Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml("#FACA2C"));
-                        rangoDeCeldasNameT4.Style.Font.Bold = true;
-                        rangoDeCeldasNameT4.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
-                        rangoDeCeldasNameT4.Style.WrapText = true;
+                        ExcelRange RangoDeCeldasNameT4 = WorkSheet.Cells[Fila, 1, Fila, 6];
+                        RangoDeCeldasNameT4.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT4.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT4.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT4.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        RangoDeCeldasNameT4.Style.Font.Color.SetColor(Color.Black);
+                        RangoDeCeldasNameT4.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        RangoDeCeldasNameT4.Style.Fill.BackgroundColor.SetColor(System.Drawing.ColorTranslator.FromHtml("#FACA2C"));
+                        RangoDeCeldasNameT4.Style.Font.Bold = true;
+                        RangoDeCeldasNameT4.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
+                        RangoDeCeldasNameT4.Style.WrapText = true;
                         
 
-                        colDetalle = 1;
-                        conta = 0;
-                        foreach (DataRow dr3 in data2.Rows)
+                        ColumnaDetalle = 1;
+                        Contador = 0;
+                        foreach (DataRow dr3 in Data2.Rows)
                         {
-                            int_fila = int_fila + 1;
-                            colDetalle = 1;
-                            foreach (DataColumn dr4 in data2.Columns)
+                            Fila = Fila + 1;
+                            ColumnaDetalle = 1;
+                            foreach (DataColumn dr4 in Data2.Columns)
                             {
-                                if (colDetalle <= 5)
+                                if (ColumnaDetalle <= 5)
                                 {
-                                    worksheet.Cells[int_fila, colDetalle].Value = dr3[dr4.ColumnName];
-                                    if (colDetalle == 5)
+                                    WorkSheet.Cells[Fila, ColumnaDetalle].Value = dr3[dr4.ColumnName];
+                                    if (ColumnaDetalle == 5)
                                     {
-                                        ExcelRange rangoDeCeldasNamecol5 = worksheet.Cells[int_fila, 5, int_fila, 6];
-                                        rangoDeCeldasNamecol5.Merge = true;
+                                        ExcelRange RangoDeCeldasNamecol5 = WorkSheet.Cells[Fila, 5, Fila, 6];
+                                        RangoDeCeldasNamecol5.Merge = true;
 
                                     }
                                 }
-                                colDetalle = colDetalle + 1;
-                                conta = conta + 1;
+                                ColumnaDetalle = ColumnaDetalle + 1;
+                                Contador = Contador + 1;
                             }
 
-                            ExcelRange rangeCab8 = worksheet.Cells[int_fila, 1, int_fila, 6];
+                            ExcelRange RangeCab8 = WorkSheet.Cells[Fila, 1, Fila, 6];
 
-                            rangeCab8.Style.Border.Top.Style = ExcelBorderStyle.Thin;
-                            rangeCab8.Style.Border.Left.Style = ExcelBorderStyle.Thin;
-                            rangeCab8.Style.Border.Right.Style = ExcelBorderStyle.Thin;
-                            rangeCab8.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
-                            rangeCab8.Style.Border.BorderAround(ExcelBorderStyle.Thin);
-                            rangeCab8.Style.Font.Color.SetColor(Color.Black);
-                            rangeCab8.Style.Font.Bold = false;
-                            rangeCab8.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
-                            rangeCab8.Style.WrapText = true;
+                            RangeCab8.Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                            RangeCab8.Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                            RangeCab8.Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                            RangeCab8.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                            RangeCab8.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                            RangeCab8.Style.Font.Color.SetColor(Color.Black);
+                            RangeCab8.Style.Font.Bold = false;
+                            RangeCab8.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
+                            RangeCab8.Style.WrapText = true;
 
 
 
@@ -178,20 +178,20 @@ namespace Web.Petcenter
 
 
                     }
-                        ExcelColumn col1 = worksheet.Column(1);
-                        ExcelColumn col2 = worksheet.Column(2);
-                        ExcelColumn col3 = worksheet.Column(3);
-                        ExcelColumn col4 = worksheet.Column(4);
-                        ExcelColumn col5 = worksheet.Column(5);
-                        ExcelColumn col6 = worksheet.Column(6);
+                        ExcelColumn Col1 = WorkSheet.Column(1);
+                        ExcelColumn Col2 = WorkSheet.Column(2);
+                        ExcelColumn Col3 = WorkSheet.Column(3);
+                        ExcelColumn Col4 = WorkSheet.Column(4);
+                        ExcelColumn Col5 = WorkSheet.Column(5);
+                        ExcelColumn Col6 = WorkSheet.Column(6);
 
 
-                        col1.Width = 20;
-                        col2.Width = 20;
-                        col3.Width = 20;
-                        col4.Width = 20;
-                        col5.Width = 20;
-                        col6.Width = 40;
+                        Col1.Width = 20;
+                        Col2.Width = 20;
+                        Col3.Width = 20;
+                        Col4.Width = 20;
+                        Col5.Width = 20;
+                        Col6.Width = 40;
 
                         Response.Clear();
                         Response.ContentType = "application/xlsx";

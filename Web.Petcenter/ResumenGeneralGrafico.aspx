@@ -380,7 +380,7 @@
             var senddata = "{idServcio:\"" + valor + "\"}";
             $.ajax({
                 type: "POST",
-                url: 'ServicioGraficas.asmx/Grafico1',
+                url: 'ServicioGraficas.asmx/ObtenerGraficaDemandaSemanal',
                 data: senddata,
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
@@ -430,7 +430,7 @@
             var senddata = "{opcion:\"" + valor + "\"}";
             $.ajax({
                 type: "POST",
-                url: 'ServicioGraficas.asmx/Grafico2',
+                url: 'ServicioGraficas.asmx/ObtenerGraficaIndicadorDeActividadPorEmpleado',
                 data: senddata,
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
@@ -493,7 +493,7 @@
             var senddata = "{sede:\"" + valor + "\"}";
             $.ajax({
                 type: "POST",
-                url: 'ServicioGraficas.asmx/Grafico3',
+                url: 'ServicioGraficas.asmx/ObtenerGraficaIndicadorDeEficienciaDeRecurso',
                 data: senddata,
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',

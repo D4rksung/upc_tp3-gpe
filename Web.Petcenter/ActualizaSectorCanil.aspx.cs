@@ -28,30 +28,30 @@ namespace Web.Petcenter
 
         void CargarDetalleCanil()
         {
-            DataTable data = AtencionPeluqueriaBuss.BuscarCanil(0, txtfechaIni.Text, txtFechaFinal.Text, cboRecurso.SelectedValue, cboEstado.SelectedValue);
-            grvresultado.DataSource = data;
+            DataTable Data = AtencionPeluqueriaBuss.BuscarCanil(0, txtfechaIni.Text, txtFechaFinal.Text, cboRecurso.SelectedValue, cboEstado.SelectedValue);
+            grvresultado.DataSource = Data;
             grvresultado.DataBind();
 
         }
 
         void CargarDetalleSector()
         {
-            DataTable data = AtencionPeluqueriaBuss.BuscarSector(0, txtfechaIni.Text, txtFechaFinal.Text, cboRecurso.SelectedValue, cboEstado.SelectedValue);
-            grvresultado2.DataSource = data;
+            DataTable Data = AtencionPeluqueriaBuss.BuscarSector(0, txtfechaIni.Text, txtFechaFinal.Text, cboRecurso.SelectedValue, cboEstado.SelectedValue);
+            grvresultado2.DataSource = Data;
             grvresultado2.DataBind();
 
         }
         private void CargarCombos()
         {
-            Utilidades.CargaCombo(ref cboRecurso, AtencionPeluqueriaBuss.GetParametrosGEN("Recurso"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref cboEstado, AtencionPeluqueriaBuss.GetParametrosGEN("Estado"), "ID", "DESCR", true);
+            Utilidades.CargaCombo(ref cboRecurso, AtencionPeluqueriaBuss.GetParametrosGEN("Recurso"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
+            Utilidades.CargaCombo(ref cboEstado, AtencionPeluqueriaBuss.GetParametrosGEN("Estado"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
 
-            Utilidades.CargaCombo(ref cboEstadoCanil, AtencionPeluqueriaBuss.GetParametrosGEN("Estado"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref cboTamanioCanil, AtencionPeluqueriaBuss.GetParametrosGEN("TamanioCanil"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref cboEspecieCanil, AtencionPeluqueriaBuss.GetParametrosGEN("EspecieCanil"), "ID", "DESCR", true);
+            Utilidades.CargaCombo(ref cboEstadoCanil, AtencionPeluqueriaBuss.GetParametrosGEN("Estado"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
+            Utilidades.CargaCombo(ref cboTamanioCanil, AtencionPeluqueriaBuss.GetParametrosGEN("TamanioCanil"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
+            Utilidades.CargaCombo(ref cboEspecieCanil, AtencionPeluqueriaBuss.GetParametrosGEN("EspecieCanil"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
 
-            Utilidades.CargaCombo(ref cboEstadoSector, AtencionPeluqueriaBuss.GetParametrosGEN("Estado"), "ID", "DESCR", true);
-            Utilidades.CargaCombo(ref cboServicioSector, AtencionPeluqueriaBuss.GetParametrosGEN("ServicioSector"), "ID", "DESCR", true);
+            Utilidades.CargaCombo(ref cboEstadoSector, AtencionPeluqueriaBuss.GetParametrosGEN("Estado"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
+            Utilidades.CargaCombo(ref cboServicioSector, AtencionPeluqueriaBuss.GetParametrosGEN("ServicioSector"), Utilitario.Comun.Dominios.ID, Utilitario.Comun.Dominios.Descripcion, true);
 
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace Web.Petcenter
 
             void CargarDataDetalleCanil(Int32 idCanil, Int32 tipo)
         {
-            DataSet ds = AtencionPeluqueriaBuss.BuscarCanilDetalle(idCanil);
+            DataSet Ds = AtencionPeluqueriaBuss.BuscarCanilDetalle(idCanil);
 
             txtCodigoCanil.Text = "";
             txtNombreCanil.Text = "";
@@ -94,14 +94,14 @@ namespace Web.Petcenter
             cboEstadoCanil.ClearSelection();
             txtObservacionesCanil.Text = "";
 
-            if (ds.Tables[0].Rows.Count > 0)
+            if (Ds.Tables[0].Rows.Count > 0)
             {
-                txtCodigoCanil.Text = ds.Tables[0].Rows[0]["CodigoCanil"].ToString();
-                txtNombreCanil.Text = ds.Tables[0].Rows[0]["NombreCanil"].ToString();
-                cboTamanioCanil.SelectedValue = ds.Tables[0].Rows[0]["TamanioCanil"].ToString();
-                cboEspecieCanil.SelectedValue = ds.Tables[0].Rows[0]["EspecieCanil"].ToString();
-                cboEstadoCanil.SelectedValue = ds.Tables[0].Rows[0]["EstadoCanil"].ToString();
-                txtObservacionesCanil.Text = ds.Tables[0].Rows[0]["ObservacionesCanil"].ToString();
+                txtCodigoCanil.Text = Ds.Tables[0].Rows[0]["CodigoCanil"].ToString();
+                txtNombreCanil.Text = Ds.Tables[0].Rows[0]["NombreCanil"].ToString();
+                cboTamanioCanil.SelectedValue = Ds.Tables[0].Rows[0]["TamanioCanil"].ToString();
+                cboEspecieCanil.SelectedValue = Ds.Tables[0].Rows[0]["EspecieCanil"].ToString();
+                cboEstadoCanil.SelectedValue = Ds.Tables[0].Rows[0]["EstadoCanil"].ToString();
+                txtObservacionesCanil.Text = Ds.Tables[0].Rows[0]["ObservacionesCanil"].ToString();
             }
 
             if (tipo ==0)
@@ -140,7 +140,7 @@ namespace Web.Petcenter
 
         void CargarDataDetalleSector(Int32 idSector, Int32 tipo)
         {
-            DataSet ds = AtencionPeluqueriaBuss.BuscarSectorDetalle(idSector);
+            DataSet Ds = AtencionPeluqueriaBuss.BuscarSectorDetalle(idSector);
 
             txtCodigoSector.Text = "";
             txtNombreSector.Text = "";
@@ -148,13 +148,13 @@ namespace Web.Petcenter
             cboEstadoSector.ClearSelection();
             txtObservacionesSector.Text = "";
 
-            if (ds.Tables[0].Rows.Count > 0)
+            if (Ds.Tables[0].Rows.Count > 0)
             {
-                txtCodigoSector.Text = ds.Tables[0].Rows[0]["CodigoSector"].ToString();
-                txtNombreSector.Text = ds.Tables[0].Rows[0]["NombreSector"].ToString();
-                cboServicioSector.SelectedValue = ds.Tables[0].Rows[0]["ServicioSector"].ToString();
-                cboEstadoSector.SelectedValue = ds.Tables[0].Rows[0]["EstadoSector"].ToString();
-                txtObservacionesSector.Text = ds.Tables[0].Rows[0]["ObservacionesSector"].ToString();
+                txtCodigoSector.Text = Ds.Tables[0].Rows[0]["CodigoSector"].ToString();
+                txtNombreSector.Text = Ds.Tables[0].Rows[0]["NombreSector"].ToString();
+                cboServicioSector.SelectedValue = Ds.Tables[0].Rows[0]["ServicioSector"].ToString();
+                cboEstadoSector.SelectedValue = Ds.Tables[0].Rows[0]["EstadoSector"].ToString();
+                txtObservacionesSector.Text = Ds.Tables[0].Rows[0]["ObservacionesSector"].ToString();
             }
 
             if (tipo == 0)
@@ -456,13 +456,13 @@ namespace Web.Petcenter
         }
         protected void grvresultado2_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in grvresultado2.Rows)
+            foreach (GridViewRow fila in grvresultado2.Rows)
             {
 
-                if (row.RowIndex == grvresultado2.SelectedIndex)
+                if (fila.RowIndex == grvresultado2.SelectedIndex)
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
-                    row.ToolTip = string.Empty;
+                    fila.BackColor = ColorTranslator.FromHtml("#E5E5E5");
+                    fila.ToolTip = string.Empty;
                     idSector.Value = grvresultado2.SelectedDataKey.Values[0].ToString();
                     CargarDataDetalleSector(Int32.Parse(idSector.Value), 3);
                     lblModalSTitle.Text = "Detalle de Sector";
@@ -471,8 +471,8 @@ namespace Web.Petcenter
                 }
                 else
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    row.ToolTip = "Ver Detalle";
+                    fila.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                    fila.ToolTip = "Ver Detalle";
                 }
             }
         }
@@ -490,13 +490,13 @@ namespace Web.Petcenter
         }
         protected void grvresultado_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in grvresultado.Rows)
+            foreach (GridViewRow fila in grvresultado.Rows)
             {
 
-                if (row.RowIndex == grvresultado.SelectedIndex)
+                if (fila.RowIndex == grvresultado.SelectedIndex)
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
-                    row.ToolTip = string.Empty;
+                    fila.BackColor = ColorTranslator.FromHtml("#E5E5E5");
+                    fila.ToolTip = string.Empty;
                     idCanil.Value = grvresultado.SelectedDataKey.Values[0].ToString();
                     CargarDataDetalleCanil(Int32.Parse(idCanil.Value), 3);
                     lblModalPTitle.Text = "Detalle de Canil";
@@ -505,8 +505,8 @@ namespace Web.Petcenter
                 }
                 else
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    row.ToolTip = "Ver Detalle";
+                    fila.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                    fila.ToolTip = "Ver Detalle";
                 }
             }
         }
