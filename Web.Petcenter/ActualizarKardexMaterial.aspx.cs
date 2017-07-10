@@ -13,11 +13,28 @@ namespace Web.Petcenter
 {
     public partial class ActualizarKardexMaterial : System.Web.UI.Page
     {
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        System.Text.StringBuilder msgError = new System.Text.StringBuilder();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                ListarKardex();
+                try
+                {
+
+                    ListarKardex();
+
+                }
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
+                
             }
 
         }

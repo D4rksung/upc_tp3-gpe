@@ -15,14 +15,29 @@ namespace Web.Petcenter
 {
     public partial class ActualizaSectorCanil : System.Web.UI.Page
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        System.Text.StringBuilder msgError = new System.Text.StringBuilder();
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!Page.IsPostBack)
             {
-                CargarDetalleCanil();
-                CargarDetalleSector();
-                CargarCombos();
+                try
+                {
+
+                    CargarDetalleCanil();
+                    CargarDetalleSector();
+                    CargarCombos();
+
+                }
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
             }
         }
 
@@ -56,7 +71,11 @@ namespace Web.Petcenter
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (cboRecurso.SelectedValue == "0")
+
+            try
+            {
+
+                if (cboRecurso.SelectedValue == "0")
             {
                 divCanil.Visible = true;
                 divSector.Visible = true;
@@ -73,6 +92,17 @@ namespace Web.Petcenter
             }
             CargarDetalleCanil();
             CargarDetalleSector();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
         protected void btnExportar_Click(object sender, EventArgs e)
         {
@@ -82,8 +112,7 @@ namespace Web.Petcenter
 
             
         } 
-
-            void CargarDataDetalleCanil(Int32 idCanil, Int32 tipo)
+        void CargarDataDetalleCanil(Int32 idCanil, Int32 tipo)
         {
             DataSet Ds = AtencionPeluqueriaBuss.BuscarCanilDetalle(idCanil);
 
@@ -137,7 +166,6 @@ namespace Web.Petcenter
             }
 
         }
-
         void CargarDataDetalleSector(Int32 idSector, Int32 tipo)
         {
             DataSet Ds = AtencionPeluqueriaBuss.BuscarSectorDetalle(idSector);
@@ -189,110 +217,194 @@ namespace Web.Petcenter
         }
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            
+
+            try
+            {
+
                 idCanil.Value = "0";
                 CargarDataDetalleCanil(Int32.Parse(idCanil.Value), 0);
                 lblModalPTitle.Text = "Nuevo Canil";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
                 upModalP.Update();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+            
           
         }
         protected void grvresultado_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Editar")
-            {
-                idCanil.Value = e.CommandArgument.ToString();
-                CargarDataDetalleCanil(Int32.Parse(idCanil.Value), 2);
-
-                lblModalPTitle.Text = "Modificar Canil";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                upModalP.Update();
-                //EDITAR
-            }
-            if (e.CommandName == "Eliminar")
+            try
             {
 
-                id.Value = e.CommandArgument.ToString();
-                lblConfirmacionTitulo.Text = "Confirmación";
-                idTipo.Value = "C";
-                lblConfirmacion.Text = "Confirmación:¿Desea continuar con la anulación del canil?";
-                lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
-                upModalConfirmacion.Update();
+                if (e.CommandName == "Editar")
+                {
+                    idCanil.Value = e.CommandArgument.ToString();
+                    CargarDataDetalleCanil(Int32.Parse(idCanil.Value), 2);
+
+                    lblModalPTitle.Text = "Modificar Canil";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                    upModalP.Update();
+                    //EDITAR
+                }
+                if (e.CommandName == "Eliminar")
+                {
+
+                    id.Value = e.CommandArgument.ToString();
+                    lblConfirmacionTitulo.Text = "Confirmación";
+                    idTipo.Value = "C";
+                    lblConfirmacion.Text = "Confirmación:¿Desea continuar con la anulación del canil?";
+                    lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
+                    upModalConfirmacion.Update();
+                }
+
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
 
         }
 
         protected void grvresultado2_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Editar")
-            {
-                idSector.Value = e.CommandArgument.ToString();
-                CargarDataDetalleSector(Int32.Parse(idSector.Value), 2);
 
-                lblModalSTitle.Text = "Modificar Sector";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal();", true);
-                upModalP.Update();
-                //EDITAR
-            }
-            if (e.CommandName == "Eliminar")
+            try
             {
 
-                id.Value = e.CommandArgument.ToString();
-                lblConfirmacionTitulo.Text = "Confirmación";
-                idTipo.Value = "S";
-                lblConfirmacion.Text = "Confirmación:¿Desea continuar con la anulación del canil?";
-                lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
-                upModalConfirmacion.Update();
+                if (e.CommandName == "Editar")
+                {
+                    idSector.Value = e.CommandArgument.ToString();
+                    CargarDataDetalleSector(Int32.Parse(idSector.Value), 2);
+
+                    lblModalSTitle.Text = "Modificar Sector";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal();", true);
+                    upModalP.Update();
+                    //EDITAR
+                }
+                if (e.CommandName == "Eliminar")
+                {
+
+                    id.Value = e.CommandArgument.ToString();
+                    lblConfirmacionTitulo.Text = "Confirmación";
+                    idTipo.Value = "S";
+                    lblConfirmacion.Text = "Confirmación:¿Desea continuar con la anulación del canil?";
+                    lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
+                    upModalConfirmacion.Update();
+                }
+
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
 
         }
 
         protected void gvResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvresultado.PageIndex = e.NewPageIndex;
-            CargarDetalleCanil();
+            try
+            {
+
+                grvresultado.PageIndex = e.NewPageIndex;
+                CargarDetalleCanil();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
 
         protected void gvResultado2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvresultado2.PageIndex = e.NewPageIndex;
-            CargarDetalleSector();
+            try
+            {
+
+                grvresultado2.PageIndex = e.NewPageIndex;
+                CargarDetalleSector();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
         protected void btnsi_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal('hide');", true);
 
-
-            if ((new ProgramacionCita()).GrabarEliminarCanilSector(Int32.Parse(id.Value), idTipo.Value))
+            try
             {
-                lblMensajeTitulo.Text = "Informativo";
-                if (idTipo.Value == "S")
+
+                if ((new ProgramacionCita()).GrabarEliminarCanilSector(Int32.Parse(id.Value), idTipo.Value))
                 {
-                    lblMensaje.Text = "Información: Se realizó la anulación del Sector.";
+                    lblMensajeTitulo.Text = "Informativo";
+                    if (idTipo.Value == "S")
+                    {
+                        lblMensaje.Text = "Información: Se realizó la anulación del Sector.";
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "Información: Se realizó la anulación del Canil.";
+                    }
+                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal('hide');", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal('hide');", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                    upModalMensaje.Update();
                 }
                 else
                 {
-                    lblMensaje.Text = "Información: Se realizó la anulación del Canil.";
+
+
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Error: Valide la información con el administrador del sistema.";
+                    lblVal.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                    upModalVal.Update();
+
+
                 }
-                lblMensaje.ForeColor = System.Drawing.Color.Blue;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal('hide');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal('hide');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                upModalMensaje.Update();
+
             }
-            else
+            catch (Exception ex)
             {
-
-
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Error: Valide la información con el administrador del sistema.";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
-
-
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
 
         }
@@ -303,69 +415,82 @@ namespace Web.Petcenter
             Boolean VAL = true;
             String MENSAJE = " ";
 
+            try
+            {
 
-
-            if (cboTamanioCanil.SelectedValue=="0")
-            {
-                MENSAJE = MENSAJE + " Tamaño del canil";
-                VAL = false;
-            }
-            else if (cboEspecieCanil.SelectedValue == "0")
-            {
-                MENSAJE = MENSAJE + " Especie";
-                VAL = false;
-            }
-            else if (cboEstadoCanil.SelectedValue == "0")
-            {
-                MENSAJE = MENSAJE + " Estado";
-                VAL = false;
-            }
-            else
-            {
-                MENSAJE = "";
-                VAL = true;
-
-            }
-
-            if (VAL)
-            {
-                if ((new ProgramacionCita()).GrabarCanil(Int32.Parse(idCanil.Value), cboTamanioCanil.SelectedValue, cboEspecieCanil.SelectedValue, cboEstadoCanil.SelectedValue, txtObservacionesCanil.Text))
+                if (cboTamanioCanil.SelectedValue == "0")
                 {
+                    MENSAJE = MENSAJE + " Tamaño del canil";
+                    VAL = false;
+                }
+                else if (cboEspecieCanil.SelectedValue == "0")
+                {
+                    MENSAJE = MENSAJE + " Especie";
+                    VAL = false;
+                }
+                else if (cboEstadoCanil.SelectedValue == "0")
+                {
+                    MENSAJE = MENSAJE + " Estado";
+                    VAL = false;
+                }
+                else
+                {
+                    MENSAJE = "";
+                    VAL = true;
 
-                    lblMensajeTitulo.Text = "Informativo";
-                    lblMensaje.Text = "Informativo: Se procedió a registrar el canil";
-                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                }
 
-                    idCanil.Value = "0";
-                    cboTamanioCanil.ClearSelection();
-                    cboEspecieCanil.ClearSelection();
-                    cboEstadoCanil.ClearSelection();
+                if (VAL)
+                {
+                    if ((new ProgramacionCita()).GrabarCanil(Int32.Parse(idCanil.Value), cboTamanioCanil.SelectedValue, cboEspecieCanil.SelectedValue, cboEstadoCanil.SelectedValue, txtObservacionesCanil.Text))
+                    {
 
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                    upModalMensaje.Update();
+                        lblMensajeTitulo.Text = "Informativo";
+                        lblMensaje.Text = "Informativo: Se procedió a registrar el canil";
+                        lblMensaje.ForeColor = System.Drawing.Color.Blue;
 
+                        idCanil.Value = "0";
+                        cboTamanioCanil.ClearSelection();
+                        cboEspecieCanil.ClearSelection();
+                        cboEstadoCanil.ClearSelection();
+
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                        upModalMensaje.Update();
+
+                    }
+                    else
+                    {
+
+
+                        lblModalValTitle.Text = "Error";
+                        lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                        lblVal.ForeColor = System.Drawing.Color.Red;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                        upModalVal.Update();
+
+                    }
                 }
                 else
                 {
 
-
                     lblModalValTitle.Text = "Error";
-                    lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                    lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar " + MENSAJE;
                     lblVal.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                     upModalVal.Update();
-
                 }
-            }
-            else
-            {
 
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar " + MENSAJE;
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+            
         }
 
 
@@ -376,72 +501,98 @@ namespace Web.Petcenter
             String MENSAJE = " ";
 
 
+            try
+            {
 
-            if (cboServicioSector.SelectedValue == "0")
-            {
-                MENSAJE = MENSAJE + " Servicio";
-                VAL = false;
-            }
-            else if (cboEstadoSector.SelectedValue == "0")
-            {
-                MENSAJE = MENSAJE + " Estado";
-                VAL = false;
-            }
-            else
-            {
-                MENSAJE = "";
-                VAL = true;
-
-            }
-
-            if (VAL)
-            {
-                if ((new ProgramacionCita()).GrabarSector(Int32.Parse(idSector.Value), cboServicioSector.SelectedValue, cboEstadoSector.SelectedValue, txtObservacionesSector.Text))
+                if (cboServicioSector.SelectedValue == "0")
                 {
+                    MENSAJE = MENSAJE + " Servicio";
+                    VAL = false;
+                }
+                else if (cboEstadoSector.SelectedValue == "0")
+                {
+                    MENSAJE = MENSAJE + " Estado";
+                    VAL = false;
+                }
+                else
+                {
+                    MENSAJE = "";
+                    VAL = true;
 
-                    lblMensajeTitulo.Text = "Informativo";
-                    lblMensaje.Text = "Informativo: Se procedió a registrar el sector";
-                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                }
 
-                    idSector.Value = "0";
-                    cboServicioSector.ClearSelection();
-                    cboEstadoSector.ClearSelection();
+                if (VAL)
+                {
+                    if ((new ProgramacionCita()).GrabarSector(Int32.Parse(idSector.Value), cboServicioSector.SelectedValue, cboEstadoSector.SelectedValue, txtObservacionesSector.Text))
+                    {
 
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                    upModalMensaje.Update();
+                        lblMensajeTitulo.Text = "Informativo";
+                        lblMensaje.Text = "Informativo: Se procedió a registrar el sector";
+                        lblMensaje.ForeColor = System.Drawing.Color.Blue;
 
+                        idSector.Value = "0";
+                        cboServicioSector.ClearSelection();
+                        cboEstadoSector.ClearSelection();
+
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                        upModalMensaje.Update();
+
+                    }
+                    else
+                    {
+
+
+                        lblModalValTitle.Text = "Error";
+                        lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                        lblVal.ForeColor = System.Drawing.Color.Red;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                        upModalVal.Update();
+
+                    }
                 }
                 else
                 {
 
-
                     lblModalValTitle.Text = "Error";
-                    lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                    lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar " + MENSAJE;
                     lblVal.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                     upModalVal.Update();
-
                 }
-            }
-            else
-            {
 
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar " + MENSAJE;
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal('hide');", true);
-            CargarDetalleCanil();
-            CargarDetalleSector();
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalM1", "UpdateDatos();", true);
+            try
+            {
 
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal('hide');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal('hide');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal('hide');", true);
+                CargarDetalleCanil();
+                CargarDetalleSector();
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalM1", "UpdateDatos();", true);
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
         protected void grvresultado2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -456,25 +607,39 @@ namespace Web.Petcenter
         }
         protected void grvresultado2_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow fila in grvresultado2.Rows)
+            try
             {
 
-                if (fila.RowIndex == grvresultado2.SelectedIndex)
+                foreach (GridViewRow fila in grvresultado2.Rows)
                 {
-                    fila.BackColor = ColorTranslator.FromHtml("#E5E5E5");
-                    fila.ToolTip = string.Empty;
-                    idSector.Value = grvresultado2.SelectedDataKey.Values[0].ToString();
-                    CargarDataDetalleSector(Int32.Parse(idSector.Value), 3);
-                    lblModalSTitle.Text = "Detalle de Sector";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal();", true);
-                    upModalS.Update();
+
+                    if (fila.RowIndex == grvresultado2.SelectedIndex)
+                    {
+                        fila.BackColor = ColorTranslator.FromHtml("#E5E5E5");
+                        fila.ToolTip = string.Empty;
+                        idSector.Value = grvresultado2.SelectedDataKey.Values[0].ToString();
+                        CargarDataDetalleSector(Int32.Parse(idSector.Value), 3);
+                        lblModalSTitle.Text = "Detalle de Sector";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalS", "$('#myModalS').modal();", true);
+                        upModalS.Update();
+                    }
+                    else
+                    {
+                        fila.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                        fila.ToolTip = "Ver Detalle";
+                    }
                 }
-                else
-                {
-                    fila.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    fila.ToolTip = "Ver Detalle";
-                }
+
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
 
         protected void grvresultado_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -490,25 +655,39 @@ namespace Web.Petcenter
         }
         protected void grvresultado_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow fila in grvresultado.Rows)
+            try
             {
 
-                if (fila.RowIndex == grvresultado.SelectedIndex)
+                foreach (GridViewRow fila in grvresultado.Rows)
                 {
-                    fila.BackColor = ColorTranslator.FromHtml("#E5E5E5");
-                    fila.ToolTip = string.Empty;
-                    idCanil.Value = grvresultado.SelectedDataKey.Values[0].ToString();
-                    CargarDataDetalleCanil(Int32.Parse(idCanil.Value), 3);
-                    lblModalPTitle.Text = "Detalle de Canil";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                    upModalP.Update();
+
+                    if (fila.RowIndex == grvresultado.SelectedIndex)
+                    {
+                        fila.BackColor = ColorTranslator.FromHtml("#E5E5E5");
+                        fila.ToolTip = string.Empty;
+                        idCanil.Value = grvresultado.SelectedDataKey.Values[0].ToString();
+                        CargarDataDetalleCanil(Int32.Parse(idCanil.Value), 3);
+                        lblModalPTitle.Text = "Detalle de Canil";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                        upModalP.Update();
+                    }
+                    else
+                    {
+                        fila.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                        fila.ToolTip = "Ver Detalle";
+                    }
                 }
-                else
-                {
-                    fila.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    fila.ToolTip = "Ver Detalle";
-                }
+
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
 
     }

@@ -13,22 +13,39 @@ namespace Web.Petcenter
 {
     public partial class EditarHojaServicio : System.Web.UI.Page
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        System.Text.StringBuilder msgError = new System.Text.StringBuilder();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                if (Session["_Seguridad"] == null)
+
+                try
                 {
-                    Response.Redirect("Default.aspx");
-                }
-                else
-                {
-                    Seguridad seg = (Seguridad)Session["_Seguridad"];
-                    if (seg.IndiceHabilitado == 0)
+
+                    if (Session["_Seguridad"] == null)
+                    {
                         Response.Redirect("Default.aspx");
+                    }
+                    else
+                    {
+                        Seguridad seg = (Seguridad)Session["_Seguridad"];
+                        if (seg.IndiceHabilitado == 0)
+                            Response.Redirect("Default.aspx");
+                    }
+                    this.CargaCombo();
+                    this.ConfigurarFechas();
+
                 }
-                this.CargaCombo();
-                this.ConfigurarFechas();
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
+                
             }
 
         }
@@ -101,9 +118,13 @@ namespace Web.Petcenter
 
                 }
             }
-            catch 
+            catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
         }
 
@@ -155,9 +176,13 @@ namespace Web.Petcenter
                 AtencionPeluqueriaBuss.GrabarHojaServicio(Hoja, null, 1);
                 Response.Redirect("ActualizarHojaServicio.aspx");
             }
-            catch
+            catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
         }
 
@@ -179,9 +204,13 @@ namespace Web.Petcenter
                 this.grvResultadoPopup.DataBind();
                 this.upModal.Update();
             }
-            catch
+            catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
         }
 

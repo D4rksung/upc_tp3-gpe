@@ -13,6 +13,9 @@ namespace Web.Petcenter
 {
     public partial class ActualizaHojaServicio : System.Web.UI.Page
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        System.Text.StringBuilder msgError = new System.Text.StringBuilder();
+
         Int32 MarcaGrid = 0;
         public static DataTable dtComents = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
@@ -21,12 +24,27 @@ namespace Web.Petcenter
             {
                 //txtfechaIni.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 //txtFechaFinal.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                CargarDetalle();
+                try
+                {
+
+                    CargarDetalle();
+
+                }
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
+                
             }
         }
 
         void CargarDetalle()
         {
+
             DataTable Data = AtencionPeluqueriaBuss.BuscarServicioHoy(0, txtfechaIni.Text, txtFechaFinal.Text);
             grvresultado.DataSource = Data;
             grvresultado.DataBind();
@@ -35,6 +53,7 @@ namespace Web.Petcenter
 
         void CargarDataDetalle(Int32 idHojaServicio, Int32 tipo)
         {
+
             idTipo.Value = tipo.ToString();
             DataSet Data = AtencionPeluqueriaBuss.BuscarServicioDetalle(idHojaServicio);
 
@@ -85,13 +104,27 @@ namespace Web.Petcenter
 
                 gvTracking.DataSource = Data.Tables[3];
                 gvTracking.DataBind();
-            }  //detalle
+            }  //detalle           
 
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            CargarDetalle();
+            
+            try
+            {
+
+                CargarDetalle();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
         }
 
         protected void grvresultado_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -144,22 +177,53 @@ namespace Web.Petcenter
         {
             if (e.CommandName == "Ejecutar")
             {
-                idHojaServicio.Value = e.CommandArgument.ToString();
-                CargarDataDetalle(Int32.Parse(idHojaServicio.Value), 1);
 
-                lblModalPTitle.Text = "Hoja de servicio peluquería";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                upModalP.Update();
-                //EDITAR
+                try
+                {
+
+                    idHojaServicio.Value = e.CommandArgument.ToString();
+                    CargarDataDetalle(Int32.Parse(idHojaServicio.Value), 1);
+
+                    lblModalPTitle.Text = "Hoja de servicio peluquería";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                    upModalP.Update();
+                    //EDITAR
+
+                }
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
+
             }
             if (e.CommandName == "Finalizar")
             {
-                idHojaServicio.Value = e.CommandArgument.ToString();
 
-                CargarDataDetalle(Int32.Parse(idHojaServicio.Value), 2);
-                lblModalPTitle.Text = "Hoja de servicio peluquería";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                upModalP.Update();
+                try
+                {
+
+                    idHojaServicio.Value = e.CommandArgument.ToString();
+
+                    CargarDataDetalle(Int32.Parse(idHojaServicio.Value), 2);
+                    lblModalPTitle.Text = "Hoja de servicio peluquería";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                    upModalP.Update();
+
+                }
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
+
+                
             }
         }
 
@@ -169,73 +233,86 @@ namespace Web.Petcenter
             Dt.Columns.Add("MaterialID");
             Dt.Columns.Add("Cantidad", typeof(Int32));
 
-            foreach (GridViewRow gvRow in gvMateriales.Rows)
+            try
             {
-                DataRow Dr = Dt.NewRow();
-                Int32 rowIndex = gvRow.RowIndex;
-                Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
-                Int32 idTipo = (Int32)gvMateriales.DataKeys[rowIndex]["idUnidadMedida"];
-                TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
-                CheckBox chkCantidad = (CheckBox)gvRow.Cells[0].FindControl("chkCantidad");
-                Dr[0] = idMaterial;
-                Dr[1] =  (idTipo == 1 ? (chkCantidad.Checked ? "1":"0"): txtCantidad.Text) ;
-                Dt.Rows.Add(Dr);
 
-            }
-            if (Dt.Select("Cantidad>0").Count() == 0)
-            {
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurrio un error en el sistema: Debe de ingresar al menos la cantidad de un material que se utilizó para el servicio";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
-            }
-            else
-            {
-                if (gvComents.Rows.Count > 0 || txtComent.Text != "")
+                foreach (GridViewRow gvRow in gvMateriales.Rows)
                 {
-                    if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), Dt, txtComent.Text))
+                    DataRow Dr = Dt.NewRow();
+                    Int32 rowIndex = gvRow.RowIndex;
+                    Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
+                    Int32 idTipo = (Int32)gvMateriales.DataKeys[rowIndex]["idUnidadMedida"];
+                    TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
+                    CheckBox chkCantidad = (CheckBox)gvRow.Cells[0].FindControl("chkCantidad");
+                    Dr[0] = idMaterial;
+                    Dr[1] = (idTipo == 1 ? (chkCantidad.Checked ? "1" : "0") : txtCantidad.Text);
+                    Dt.Rows.Add(Dr);
+
+                }
+                if (Dt.Select("Cantidad>0").Count() == 0)
+                {
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Ocurrio un error en el sistema: Debe de ingresar al menos la cantidad de un material que se utilizó para el servicio";
+                    lblVal.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                    upModalVal.Update();
+                }
+                else
+                {
+                    if (gvComents.Rows.Count > 0 || txtComent.Text != "")
                     {
+                        if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), Dt, txtComent.Text))
+                        {
 
-                        lblMensajeTitulo.Text = "Informativo";
-                        lblMensaje.Text = "Informativo: Se procedió a finalizar el servicio.";
-                        lblMensaje.ForeColor = System.Drawing.Color.Blue;
-                        txtComent.Text = "";
+                            lblMensajeTitulo.Text = "Informativo";
+                            lblMensaje.Text = "Informativo: Se procedió a finalizar el servicio.";
+                            lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                            txtComent.Text = "";
 
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                        upModalMensaje.Update();
-                        ActualizarParent();
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                            upModalMensaje.Update();
+                            ActualizarParent();
+
+                        }
+                        else
+                        {
+
+
+                            lblModalValTitle.Text = "Error";
+                            lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                            lblVal.ForeColor = System.Drawing.Color.Red;
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                            upModalVal.Update();
+
+                        }
 
                     }
                     else
                     {
 
-
                         lblModalValTitle.Text = "Error";
-                        lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                        lblVal.Text = "Ocurrio un error en el sistema: Debe de ingresar comentario sobre lo realizado para finalizar el servicio";
+
                         lblVal.ForeColor = System.Drawing.Color.Red;
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                         upModalVal.Update();
-
                     }
-
                 }
-                else
-                {
 
-                    lblModalValTitle.Text = "Error";
-                    lblVal.Text = "Ocurrio un error en el sistema: Debe de ingresar comentario sobre lo realizado para finalizar el servicio";
-
-                    lblVal.ForeColor = System.Drawing.Color.Red;
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                    upModalVal.Update();
-                }
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+            
         }
         void ActualizarParent()
         {
-
-
             string script = "$(document).ready(function () { $('[id*=btnBuscar]').click(); });";
             ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
         }
@@ -258,16 +335,44 @@ namespace Web.Petcenter
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
+            try
+            {
 
-            gvComents.DataSource = ((new ProgramacionCita()).GrabarHojadeServicioComents(Int32.Parse(idHojaServicio.Value), txtComent.Text));
-            gvComents.DataBind();
-            txtComent.Text = "";
-            upModalP.Update();
+                gvComents.DataSource = ((new ProgramacionCita()).GrabarHojadeServicioComents(Int32.Parse(idHojaServicio.Value), txtComent.Text));
+                gvComents.DataBind();
+                txtComent.Text = "";
+                upModalP.Update();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
         protected void gvResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvresultado.PageIndex = e.NewPageIndex;
-            CargarDetalle();
+
+            try
+            {
+
+                grvresultado.PageIndex = e.NewPageIndex;
+                CargarDetalle();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
         protected void btnEjecutar_Click(object sender, EventArgs e)
         {
@@ -275,52 +380,67 @@ namespace Web.Petcenter
             Dt.Columns.Add("MaterialID");
             Dt.Columns.Add("Cantidad", typeof(Int32));
 
-            foreach (GridViewRow gvRow in gvMateriales.Rows)
+            try
             {
-                DataRow Dr = Dt.NewRow();
-                Int32 rowIndex = gvRow.RowIndex;
-                Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
-                Int32 idTipo = (Int32)gvMateriales.DataKeys[rowIndex]["idUnidadMedida"];
-                TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
-                CheckBox chkCantidad = (CheckBox)gvRow.Cells[0].FindControl("chkCantidad");
-                Dr[0] = idMaterial;
-                Dr[1] = (idTipo == 1 ? (chkCantidad.Checked ? "1" : "0") : txtCantidad.Text);
-                Dt.Rows.Add(Dr);
 
-            }
 
-            if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), Dt, txtComent.Text ))
-            {
-                String mensaje = "";
-                if (idTipo.Value == "1")
+                foreach (GridViewRow gvRow in gvMateriales.Rows)
                 {
-                    mensaje = "Informativo: Se procedió a ejecutar el servicio";
+                    DataRow Dr = Dt.NewRow();
+                    Int32 rowIndex = gvRow.RowIndex;
+                    Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
+                    Int32 idTipo = (Int32)gvMateriales.DataKeys[rowIndex]["idUnidadMedida"];
+                    TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
+                    CheckBox chkCantidad = (CheckBox)gvRow.Cells[0].FindControl("chkCantidad");
+                    Dr[0] = idMaterial;
+                    Dr[1] = (idTipo == 1 ? (chkCantidad.Checked ? "1" : "0") : txtCantidad.Text);
+                    Dt.Rows.Add(Dr);
+
                 }
 
-                lblMensajeTitulo.Text = "Informativo";
-                lblMensaje.Text = mensaje;
-                lblMensaje.ForeColor = System.Drawing.Color.Blue;
-                txtComent.Text = "";
+                if ((new ProgramacionCita()).GrabarHojadeServicio(Int32.Parse(idHojaServicio.Value), Dt, txtComent.Text))
+                {
+                    String mensaje = "";
+                    if (idTipo.Value == "1")
+                    {
+                        mensaje = "Informativo: Se procedió a ejecutar el servicio";
+                    }
+
+                    lblMensajeTitulo.Text = "Informativo";
+                    lblMensaje.Text = mensaje;
+                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                    txtComent.Text = "";
 
 
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                upModalMensaje.Update();
-                ActualizarParent();
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                    upModalMensaje.Update();
+                    ActualizarParent();
+                }
+                else
+                {
+
+
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                    lblVal.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                    upModalVal.Update();
+
+
+                }
+
+
             }
-            else
+            catch (Exception ex)
             {
-
-
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
-
-
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
-
-        
         }
+
+
     }
 }

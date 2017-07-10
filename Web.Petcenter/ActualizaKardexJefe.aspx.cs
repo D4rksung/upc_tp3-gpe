@@ -14,14 +14,31 @@ namespace Web.Petcenter
 {
     public partial class ActualizaKardexJefe : System.Web.UI.Page
     {
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        System.Text.StringBuilder msgError = new System.Text.StringBuilder();
         public static DataTable DtMateriales;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                CargarCombo();
-                CargarDetalle();
-                CargarDetalle2();
+                try
+                {
+
+                    CargarCombo();
+                    CargarDetalle();
+                    CargarDetalle2();
+
+                }
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
+                
             }
         }
         
@@ -53,13 +70,43 @@ namespace Web.Petcenter
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            CargarDetalle();
+
+            try
+            {
+
+                CargarDetalle();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
         }
 
 
         protected void btnBuscar2_Click(object sender, EventArgs e)
         {
-            CargarDetalle2();
+
+            try
+            {
+
+                CargarDetalle2();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
 
         protected void grvresultado_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -86,64 +133,110 @@ namespace Web.Petcenter
         }
         protected void grvresultado2_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in grvresultado2.Rows)
+
+            try
             {
 
-                if (row.RowIndex == grvresultado2.SelectedIndex)
+                foreach (GridViewRow row in grvresultado2.Rows)
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
-                    row.ToolTip = string.Empty;
-                    //divDetalle.Visible = true;
-                    //divDetalle.Style.Add("width", "380px");
-                    //upModalConfirmacion.Update();
-                    idMaterial.Value = grvresultado2.SelectedDataKey.Values[0].ToString();
-                    CargarDataDetalle(Int32.Parse(idMaterial.Value), 0);
-                    lblModalPTitleV.Text = "Detalle de Movimiento";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalV", "$('#myModalV').modal();", true);
-                    upModalV.Update();
+
+                    if (row.RowIndex == grvresultado2.SelectedIndex)
+                    {
+                        row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
+                        row.ToolTip = string.Empty;
+                        //divDetalle.Visible = true;
+                        //divDetalle.Style.Add("width", "380px");
+                        //upModalConfirmacion.Update();
+                        idMaterial.Value = grvresultado2.SelectedDataKey.Values[0].ToString();
+                        CargarDataDetalle(Int32.Parse(idMaterial.Value), 0);
+                        lblModalPTitleV.Text = "Detalle de Movimiento";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalV", "$('#myModalV').modal();", true);
+                        upModalV.Update();
+                    }
+                    else
+                    {
+                        row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                        row.ToolTip = "Ver Detalle";
+                    }
                 }
-                else
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    row.ToolTip = "Ver Detalle";
-                }
+
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+            
         }
 
         protected void grvresultado_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in grvresultado.Rows)
+
+            try
             {
 
-                if (row.RowIndex == grvresultado.SelectedIndex)
+                foreach (GridViewRow row in grvresultado.Rows)
                 {
-                    row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
-                    row.ToolTip = string.Empty;
-                    idMovimiento.Value = grvresultado.SelectedDataKey.Values[0].ToString();
-                    CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 3,0);
 
-                    lblModalPTitle.Text = "Detalle del requerimiento";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                    upModalP.Update();
+                    if (row.RowIndex == grvresultado.SelectedIndex)
+                    {
+                        row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
+                        row.ToolTip = string.Empty;
+                        idMovimiento.Value = grvresultado.SelectedDataKey.Values[0].ToString();
+                        CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 3, 0);
 
+                        lblModalPTitle.Text = "Detalle del requerimiento";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                        upModalP.Update();
+
+                    }
+                    else
+                    {
+                        row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                        row.ToolTip = "Ver Detalle";
+                    }
                 }
-                else
-                {
-                    row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                    row.ToolTip = "Ver Detalle";
-                }
+
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+            
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal('hide');", true);
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal('hide');", true);
-            CargarDetalle();
-            CargarDetalle2();
-            UpdatePanel1.Update();
-            UpdatePanel2.Update();
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalM1", "UpdateDatos();", true);
+
+            try
+            {
+
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal('hide');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal('hide');", true);
+                CargarDetalle();
+                CargarDetalle2();
+                UpdatePanel1.Update();
+                UpdatePanel2.Update();
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalM1", "UpdateDatos();", true);
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
 
         }
         void CargarDataDetalle(Int32 idMaterial, Int32 tipo)
@@ -204,110 +297,196 @@ namespace Web.Petcenter
         }
         protected void gvResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvresultado.PageIndex = e.NewPageIndex;
-            CargarDetalle();
+
+            try
+            {
+
+                grvresultado.PageIndex = e.NewPageIndex;
+                CargarDetalle();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
         }
         protected void gvMaterialesV_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            gvMaterialesV.PageIndex = e.NewPageIndex;
-            CargarDataDetalle(Int32.Parse(idMaterial.Value), 0);
+
+            try
+            {
+
+                gvMaterialesV.PageIndex = e.NewPageIndex;
+                CargarDataDetalle(Int32.Parse(idMaterial.Value), 0);
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
         }
         protected void gvResultado2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvresultado2.PageIndex = e.NewPageIndex;
-            CargarDetalle2();
+
+            try
+            {
+
+                grvresultado2.PageIndex = e.NewPageIndex;
+                CargarDetalle2();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+            
         }
         protected void grvresultado_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Modificar")
-            {
-                idMovimiento.Value = e.CommandArgument.ToString();
-                CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 1,0);
 
-                lblModalPTitle.Text = "Registro de Movimiento";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                upModalP.Update();
-                //EDITAR
-            }
-            if (e.CommandName == "Aprobar")
+            try
             {
 
-                idMovimientoT.Value = e.CommandArgument.ToString();
-                idTipo.Value = "P";
-                lblConfirmacionTitulo.Text = "Confirmación";
-                lblConfirmacion.Text = "Confirmación:¿Desea aprobar requerimiento de Material?";
-                lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
-                upModalConfirmacion.Update();
+                if (e.CommandName == "Modificar")
+                {
+                    idMovimiento.Value = e.CommandArgument.ToString();
+                    CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 1, 0);
+
+                    lblModalPTitle.Text = "Registro de Movimiento";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                    upModalP.Update();
+                    //EDITAR
+                }
+                if (e.CommandName == "Aprobar")
+                {
+
+                    idMovimientoT.Value = e.CommandArgument.ToString();
+                    idTipo.Value = "P";
+                    lblConfirmacionTitulo.Text = "Confirmación";
+                    lblConfirmacion.Text = "Confirmación:¿Desea aprobar requerimiento de Material?";
+                    lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
+                    upModalConfirmacion.Update();
+                }
+                if (e.CommandName == "Rechazar")
+                {
+
+                    idMovimientoT.Value = e.CommandArgument.ToString();
+                    idTipo.Value = "R";
+
+                    lblConfirmacionTitulo.Text = "Confirmación";
+                    lblConfirmacion.Text = "Confirmación:¿Desea rechazar requerimiento de Material?";
+                    lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
+                    upModalConfirmacion.Update();
+                }
+
             }
-            if (e.CommandName == "Rechazar")
+            catch (Exception ex)
             {
-
-                idMovimientoT.Value = e.CommandArgument.ToString();
-                idTipo.Value = "R";
-
-                lblConfirmacionTitulo.Text = "Confirmación";
-                lblConfirmacion.Text = "Confirmación:¿Desea rechazar requerimiento de Material?";
-                lblConfirmacion.ForeColor = System.Drawing.Color.Blue;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal();", true);
-                upModalConfirmacion.Update();
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
+
+            
         }
         protected void btnsi_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal('hide');", true);
-           
-
-            if ((new ProgramacionCita()).GrabarMovimientoTipo(Int32.Parse(idMovimientoT.Value), idTipo.Value))
+            try
             {
-                lblMensajeTitulo.Text = "Informativo";
-                if (idTipo.Value == "P")
+
+                if ((new ProgramacionCita()).GrabarMovimientoTipo(Int32.Parse(idMovimientoT.Value), idTipo.Value))
                 {
-                    lblMensaje.Text = "Información: Se realizó la aprobación del requerimiento de materiales.";
+                    lblMensajeTitulo.Text = "Informativo";
+                    if (idTipo.Value == "P")
+                    {
+                        lblMensaje.Text = "Información: Se realizó la aprobación del requerimiento de materiales.";
+                    }
+                    else
+                    {
+                        lblMensaje.Text = "Información: Se rechazó el requerimiento de materiales.";
+                    }
+                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal('hide');", true);
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                    upModalMensaje.Update();
                 }
                 else
                 {
-                    lblMensaje.Text = "Información: Se rechazó el requerimiento de materiales.";
+
+
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Error: Valide la información con el administrador del sistema.";
+                    lblVal.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                    upModalVal.Update();
+
+
                 }
-                lblMensaje.ForeColor = System.Drawing.Color.Blue;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal('hide');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                upModalMensaje.Update();
+
             }
-            else
+            catch (Exception ex)
             {
-
-
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Error: Valide la información con el administrador del sistema.";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
-
-
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
+
+            
 
         }
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
 
-            if (cboAlmacen.SelectedValue != "0")
+            try
             {
-                idMovimiento.Value = "0";
-                idAlmacen.Value = cboAlmacen.SelectedValue;
-                txtSede.Text = cboAlmacen.SelectedItem.Text;
-                CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 0, Int32.Parse(idAlmacen.Value));
-                lblModalPTitle.Text = "Registro de material";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                upModalP.Update();
+
+                if (cboAlmacen.SelectedValue != "0")
+                {
+                    idMovimiento.Value = "0";
+                    idAlmacen.Value = cboAlmacen.SelectedValue;
+                    txtSede.Text = cboAlmacen.SelectedItem.Text;
+                    CargarDataDetalle2(Int32.Parse(idMovimiento.Value), 0, Int32.Parse(idAlmacen.Value));
+                    lblModalPTitle.Text = "Registro de material";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                    upModalP.Update();
+                }
+                else
+                {
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Ocurrio un error en el sistema: Debe seleccionar la sede";
+                    lblVal.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                    upModalVal.Update();
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurrio un error en el sistema: Debe seleccionar la sede";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
         }
         protected void btnGuardarP_Click(object sender, EventArgs e)
@@ -321,85 +500,100 @@ namespace Web.Petcenter
             Dt.Columns.Add("Precio", typeof(Decimal));
             Dt.Columns.Add("Cantidad", typeof(Decimal));
 
-            foreach (GridViewRow gvRow in gvMateriales.Rows)
+            try
             {
-                DataRow Dr = Dt.NewRow();
-                Int32 rowIndex = gvRow.RowIndex;
-                Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
-                TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
-                Dr[0] = idMaterial;
-                Dr[1] = 0;
-                Dr[2] = txtCantidad.Text;
-                Dt.Rows.Add(Dr);
 
-            }
+                foreach (GridViewRow gvRow in gvMateriales.Rows)
+                {
+                    DataRow Dr = Dt.NewRow();
+                    Int32 rowIndex = gvRow.RowIndex;
+                    Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
+                    TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
+                    Dr[0] = idMaterial;
+                    Dr[1] = 0;
+                    Dr[2] = txtCantidad.Text;
+                    Dt.Rows.Add(Dr);
+
+                }
 
 
-            if (txtFechaReq.Text == "")
-            {
-                MENSAJE = MENSAJE + " la Fecha del requerimiento";
-                VAL = false;
-            }
-            else if (cboTipoReq.SelectedValue =="0")
-            {
-                MENSAJE = MENSAJE + " el tipo de requerimiento";
-                VAL = false;
-            }
-            else if (gvMateriales.Rows.Count == 0 || Dt.Select("Cantidad>0").Count() == 0)
-            {
-                MENSAJE = MENSAJE + " lista de materiales";
-                VAL = false;
-            }
-            else
-            {
-                MENSAJE = "";
-                VAL = true;
+                if (txtFechaReq.Text == "")
+                {
+                    MENSAJE = MENSAJE + " la Fecha del requerimiento";
+                    VAL = false;
+                }
+                else if (cboTipoReq.SelectedValue == "0")
+                {
+                    MENSAJE = MENSAJE + " el tipo de requerimiento";
+                    VAL = false;
+                }
+                else if (gvMateriales.Rows.Count == 0 || Dt.Select("Cantidad>0").Count() == 0)
+                {
+                    MENSAJE = MENSAJE + " lista de materiales";
+                    VAL = false;
+                }
+                else
+                {
+                    MENSAJE = "";
+                    VAL = true;
 
-            }
-               
-            if (VAL)
-            {
-                if ((new ProgramacionCita()).GrabarMovimiento(Int32.Parse(idMovimiento.Value), Dt, txtFechaReq.Text,  cboTipoReq.SelectedValue, "0", Int32.Parse(idAlmacen.Value )))
+                }
+
+                if (VAL)
                 {
 
-                    lblMensajeTitulo.Text = "Informativo";
-                    lblMensaje.Text = "Informativo: Se procedió a registrar el requerimiento.";
-                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                    if ((new ProgramacionCita()).GrabarMovimiento(Int32.Parse(idMovimiento.Value), Dt, txtFechaReq.Text, cboTipoReq.SelectedValue, "0", Int32.Parse(idAlmacen.Value)))
+                    {
 
-                    txtNroReq.Text = "";
-                    txtFechaReq.Text = "";
-                    txtSede.Text = "";
-                    cboTipoReq.ClearSelection();
+                        lblMensajeTitulo.Text = "Informativo";
+                        lblMensaje.Text = "Informativo: Se procedió a registrar el requerimiento.";
+                        lblMensaje.ForeColor = System.Drawing.Color.Blue;
 
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                    upModalMensaje.Update();
+                        txtNroReq.Text = "";
+                        txtFechaReq.Text = "";
+                        txtSede.Text = "";
+                        cboTipoReq.ClearSelection();
 
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                        upModalMensaje.Update();
+
+                    }
+                    else
+                    {
+
+
+                        lblModalValTitle.Text = "Error";
+                        lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                        lblVal.ForeColor = System.Drawing.Color.Red;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                        upModalVal.Update();
+
+                    }
                 }
                 else
                 {
 
-
                     lblModalValTitle.Text = "Error";
-                    lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                    lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar " + MENSAJE;
                     lblVal.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                     upModalVal.Update();
-
                 }
-            }
-            else
-            {
 
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar " + MENSAJE;
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+            
         }
         void ActualizarParent()
         {
-
 
             string script = "$(document).ready(function () { $('[id*=btnBuscar]').click(); });";
             ClientScript.RegisterStartupScript(this.GetType(), "load", script, true);
@@ -415,50 +609,66 @@ namespace Web.Petcenter
 
         protected void combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow gvRow in gvMateriales.Rows)
+
+            try
             {
-                Int32 rowIndex = gvRow.RowIndex;
-                Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
-                TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
 
-                DataRow Dr = DtMateriales.Select("IdMaterial=" + idMaterial.ToString())[0];
-                Dr[4] = txtCantidad.Text;
-
-
-            }
-
-            if (DtMateriales.Select("IdMaterial=" + combobox.SelectedValue).Count() == 0)
-            {
-                DataTable Ds = AtencionPeluqueriaBuss.BuscarMaterialesxCodigo(Int32.Parse(combobox.SelectedValue), Int32.Parse(idAlmacen.Value));
-
-                DataRow Dr = DtMateriales.NewRow();
-
-                if (Ds.Rows.Count > 0)
+                foreach (GridViewRow gvRow in gvMateriales.Rows)
                 {
-                    Dr[0] = Ds.Rows[0]["IdMaterial"].ToString();
-                    Dr[1]= Ds.Rows[0]["material"].ToString();
-                    Dr[2] = Ds.Rows[0]["descripcion"].ToString();
-                    Dr[3] = Ds.Rows[0]["umedida"].ToString();
-                    Dr[4] = Ds.Rows[0]["Cantidad"].ToString();
-                    Dr[5] = Ds.Rows[0]["Precio"].ToString();
-                    Dr[6] = "0";
-                    DtMateriales.Rows.Add(Dr);
+                    Int32 rowIndex = gvRow.RowIndex;
+                    Int32 idMaterial = (Int32)gvMateriales.DataKeys[rowIndex]["IdMaterial"];
+                    TextBox txtCantidad = (TextBox)gvRow.Cells[0].FindControl("txtCantidad");
+
+                    DataRow Dr = DtMateriales.Select("IdMaterial=" + idMaterial.ToString())[0];
+                    Dr[4] = txtCantidad.Text;
+
+
                 }
 
+                if (DtMateriales.Select("IdMaterial=" + combobox.SelectedValue).Count() == 0)
+                {
+                    DataTable Ds = AtencionPeluqueriaBuss.BuscarMaterialesxCodigo(Int32.Parse(combobox.SelectedValue), Int32.Parse(idAlmacen.Value));
 
-                gvMateriales.DataSource = DtMateriales;
-                gvMateriales.DataBind();
+                    DataRow Dr = DtMateriales.NewRow();
+
+                    if (Ds.Rows.Count > 0)
+                    {
+                        Dr[0] = Ds.Rows[0]["IdMaterial"].ToString();
+                        Dr[1] = Ds.Rows[0]["material"].ToString();
+                        Dr[2] = Ds.Rows[0]["descripcion"].ToString();
+                        Dr[3] = Ds.Rows[0]["umedida"].ToString();
+                        Dr[4] = Ds.Rows[0]["Cantidad"].ToString();
+                        Dr[5] = Ds.Rows[0]["Precio"].ToString();
+                        Dr[6] = "0";
+                        DtMateriales.Rows.Add(Dr);
+                    }
+
+
+                    gvMateriales.DataSource = DtMateriales;
+                    gvMateriales.DataBind();
+                }
+                else
+                {
+
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "El material ya fue ingresado;";
+                    lblVal.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                    upModalVal.Update();
+                }
+                combobox.SelectedValue = "0";
+
             }
-            else
+            catch (Exception ex)
             {
-
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "El material ya fue ingresado;";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
-            combobox.SelectedValue = "0";
+
+            
         }
     }
     }

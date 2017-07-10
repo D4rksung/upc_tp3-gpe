@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -15,6 +16,10 @@ namespace Web.Petcenter
 {
     public partial class ActualizaProgramacion : System.Web.UI.Page
     {
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        System.Text.StringBuilder msgError = new System.Text.StringBuilder();
+ 
         public static DataTable EmpleadosAsig = new DataTable();
         public static DataTable Servicios = new DataTable();
         public static DataTable EmpleadosTotal = new DataTable();
@@ -24,15 +29,28 @@ namespace Web.Petcenter
         {
             if (!Page.IsPostBack)
             {
-                HtmlGenericControl DivProgramacion = (HtmlGenericControl)this.Master.FindControl("liprogramacion");
-                DivProgramacion.Attributes.Add("class", "dropdown active");
+                try
+                {
+                    HtmlGenericControl DivProgramacion = (HtmlGenericControl)this.Master.FindControl("liprogramacion");
+                    DivProgramacion.Attributes.Add("class", "dropdown active");
 
-                HtmlGenericControl DivInicio = (HtmlGenericControl)this.Master.FindControl("liinicio");
-                DivInicio.Attributes.Add("class", "");
+                    HtmlGenericControl DivInicio = (HtmlGenericControl)this.Master.FindControl("liinicio");
+                    DivInicio.Attributes.Add("class", "");
 
-                this.CargaCombo();
-                this.CargaListado();
-                //this.CargarInfoSession();
+                    this.CargaCombo();
+                    this.CargaListado();
+
+                }
+                catch (Exception ex)
+                {
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                }
+               
+
             }
         }
         void CargarInfoSession()
@@ -54,10 +72,9 @@ namespace Web.Petcenter
                     }
                 }
 
-                //divDetalle.Visible = true;
-                //divDetalle.Style.Add("width", "380px");
+   
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mydetallegrilla", "$('#mydetallegrilla').modal();", true);
-                //upModalConfirmacion.Update();
+       
                 CargarDataDetalle(Int32.Parse(Session["idCitaDetalle"].ToString()));
 
             }
@@ -82,7 +99,21 @@ namespace Web.Petcenter
         }
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            CargaListado();
+
+            try
+            {
+                CargaListado();
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+          
         }
         protected void grvresultado_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -104,71 +135,98 @@ namespace Web.Petcenter
 
         protected void gvDetalle_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Programar")
+            try
             {
-                idDetalleCitaP.Value = e.CommandArgument.ToString().Split('|')[0];
-                idServicioP.Value = e.CommandArgument.ToString().Split('|')[1];
-                idCitaP.Value = e.CommandArgument.ToString().Split('|')[2];
-                strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
-                CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value, strServicio.Value);
 
-                lblModalPTitle.Text = "Programar Cita";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                upModalP.Update();
-                Session["idCitaDetalle"] = "";
-                //EDITAR
+                if (e.CommandName == "Programar")
+                {
+                    idDetalleCitaP.Value = e.CommandArgument.ToString().Split('|')[0];
+                    idServicioP.Value = e.CommandArgument.ToString().Split('|')[1];
+                    idCitaP.Value = e.CommandArgument.ToString().Split('|')[2];
+                    strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
+                    CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value, strServicio.Value);
+
+                    lblModalPTitle.Text = "Programar Cita";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                    upModalP.Update();
+                    Session["idCitaDetalle"] = "";
+                    //EDITAR
+                }
+                if (e.CommandName == "Modificar")
+                {
+                    idDetalleCitaP.Value = e.CommandArgument.ToString().Split('|')[0];
+                    idServicioP.Value = e.CommandArgument.ToString().Split('|')[1];
+                    idCitaP.Value = e.CommandArgument.ToString().Split('|')[2];
+                    strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
+
+                    CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value, strServicio.Value);
+                    lblModalPTitle.Text = "Modificar Cita";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
+                    upModalP.Update();
+                    Session["idCitaDetalle"] = "";
+                }
+                if (e.CommandName == "Anular")
+                {
+                    lblModalATitle.Text = "Anular Cita";
+                    idDetalleCitaA.Value = e.CommandArgument.ToString().Split('|')[0];
+                    idServicioA.Value = e.CommandArgument.ToString().Split('|')[1];
+                    idCitaA.Value = e.CommandArgument.ToString().Split('|')[2];
+                    strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
+
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal();", true);
+                    upModalA.Update();
+                    Session["idCitaDetalle"] = "";
+                }
             }
-            if (e.CommandName == "Modificar")
+            catch (Exception ex)
             {
-                idDetalleCitaP.Value = e.CommandArgument.ToString().Split('|')[0];
-                idServicioP.Value = e.CommandArgument.ToString().Split('|')[1];
-                idCitaP.Value = e.CommandArgument.ToString().Split('|')[2];
-                strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
-
-                CargarDataDetalle(idDetalleCitaP.Value, idServicioP.Value, strServicio.Value);
-                lblModalPTitle.Text = "Modificar Cita";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalP", "$('#myModalP').modal();", true);
-                upModalP.Update();
-                Session["idCitaDetalle"] = "";
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
-            if (e.CommandName == "Anular")
-            {
-                lblModalATitle.Text = "Anular Cita";
-                idDetalleCitaA.Value = e.CommandArgument.ToString().Split('|')[0];
-                idServicioA.Value = e.CommandArgument.ToString().Split('|')[1];
-                idCitaA.Value = e.CommandArgument.ToString().Split('|')[2];
-                strServicio.Value = e.CommandArgument.ToString().Split('|')[3];
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal();", true);
-                upModalA.Update();
-                Session["idCitaDetalle"] = "";
-            }
+           
         }
         protected void grvresultado_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in grvresultado.Rows)
-            {
 
-                CheckBox Marca = (CheckBox)row.Cells[0].FindControl("chkAsignacion");
-                if (!Marca.Checked)
+            try
+            {
+                foreach (GridViewRow row in grvresultado.Rows)
                 {
-                    if (row.RowIndex == grvresultado.SelectedIndex)
+
+                    CheckBox Marca = (CheckBox)row.Cells[0].FindControl("chkAsignacion");
+                    if (!Marca.Checked)
                     {
-                        row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
-                        row.ToolTip = string.Empty;
-                        //divDetalle.Visible = true;
-                        //divDetalle.Style.Add("width", "380px");
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mydetallegrilla", "$('#mydetallegrilla').modal();", true);
-                        //upModalConfirmacion.Update();
-                        CargarDataDetalle(Int32.Parse(grvresultado.SelectedDataKey.Values[0].ToString()));
-                    }
-                    else
-                    {
-                        row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                        row.ToolTip = "Ver Detalle";
+                        if (row.RowIndex == grvresultado.SelectedIndex)
+                        {
+                            row.BackColor = ColorTranslator.FromHtml("#E5E5E5");
+                            row.ToolTip = string.Empty;
+
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mydetallegrilla", "$('#mydetallegrilla').modal();", true);
+
+                            CargarDataDetalle(Int32.Parse(grvresultado.SelectedDataKey.Values[0].ToString()));
+                        }
+                        else
+                        {
+                            row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                            row.ToolTip = "Ver Detalle";
+                        }
                     }
                 }
+
             }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+           
         }
         void CargarDataDetalle(Int32 idCita)
         {
@@ -222,12 +280,6 @@ namespace Web.Petcenter
 
             Session["idCitaDetalle"] = "";
 
-            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "mydetallegrilla", "$( '#divcerrardetalle').click();", true);
-            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal7", "UpdateDatos();", true);
-            //upModalConfirmacion.Update();
-
-            //divDetalle.Visible = false;
-            //divDetalle.Style.Add("width", "0px");
         }
 
         void CargarDataDetalle(String idDetalleCita, String idServicio, String nombreServicio)
@@ -273,20 +325,20 @@ namespace Web.Petcenter
         {
             CargarEmpleados();
         }
-        void CargarEmpleados()
+       void CargarEmpleados()
         {
-            List<Empleado> ListaEmpleados = new List<Empleado>();
+            List<Empleado> lstEmpleados = new List<Empleado>();
             String Citasstr = "";
             Citasstr = idCitaA.Value;
             foreach (GridViewRow gvRow in grvresultado.Rows)
             {
                 Int32 rowIndex = gvRow.RowIndex;
                 String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
-                Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                if (Marca.Checked)
+                Int32 idCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
+                CheckBox hdnCheck = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                if (hdnCheck.Checked)
                 {
-                    Citasstr = Citasstr + ";" + IdCita.ToString();
+                    Citasstr = Citasstr + ";" + idCita.ToString();
                 }
 
             }
@@ -296,13 +348,13 @@ namespace Web.Petcenter
             {
                 if (EmpleadosAsig.AsEnumerable().Where(c => c.Field<string>("nombreEmpleado").Equals(dr["nombreEmpleado"])).Count() == 0)
                 {
-                    Empleado Obj = new Empleado();
-                    Obj.IdEmpleado = Int32.Parse(dr["idEmpleado"].ToString());
-                    Obj.NombreEmpleado = dr["nombreEmpleado"].ToString();
-                    ListaEmpleados.Add(Obj);
+                    Empleado obj = new Empleado();
+                    obj.IdEmpleado = Int32.Parse(dr["idEmpleado"].ToString());
+                    obj.NombreEmpleado = dr["nombreEmpleado"].ToString();
+                    lstEmpleados.Add(obj);
                 }
             }
-            gvEmpleados.DataSource = Empleados;
+            gvEmpleados.DataSource = lstEmpleados;
             gvEmpleados.DataBind();
             gvEmpleadosAsig.DataSource = EmpleadosAsig;
             gvEmpleadosAsig.DataBind();
@@ -340,72 +392,98 @@ namespace Web.Petcenter
         }
         protected void gvEmpleadosAsig_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //EJECUTAR
-            if (e.CommandName == "Accion")
+
+            try
             {
-                int Index = Convert.ToInt32(e.CommandArgument);
-                int Id = Convert.ToInt32(gvEmpleadosAsig.DataKeys[Index][0]);
 
-                EmpleadosAsig.Rows.Remove(EmpleadosAsig.Select("idEmpleado=" + Id)[0]);
-                CargarEmpleados();
+                //EJECUTAR
+                if (e.CommandName == "Accion")
+                {
+                    int Index = Convert.ToInt32(e.CommandArgument);
+                    int Id = Convert.ToInt32(gvEmpleadosAsig.DataKeys[Index][0]);
+
+                    EmpleadosAsig.Rows.Remove(EmpleadosAsig.Select("idEmpleado=" + Id)[0]);
+                    CargarEmpleados();
+                }
+
             }
-
-
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
 
         }
         protected void btnGuardarP_Click(object sender, EventArgs e)
         {
-            if (cboSector.SelectedValue != "0" && cboSector.SelectedValue != "" && gvEmpleadosAsig.Rows.Count > 0)
+
+            try
             {
-                String Citasstr = "";
-                Citasstr = idCitaP.Value;
-                foreach (GridViewRow gvRow in grvresultado.Rows)
+
+                if (cboSector.SelectedValue != "0" && cboSector.SelectedValue != "" && gvEmpleadosAsig.Rows.Count > 0)
                 {
-                    Int32 rowIndex = gvRow.RowIndex;
-                    String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
-                    Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                    CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                    if (Marca.Checked)
+                    String Citasstr = "";
+                    Citasstr = idCitaP.Value;
+                    foreach (GridViewRow gvRow in grvresultado.Rows)
                     {
-                        Citasstr = Citasstr + ";" + IdCita.ToString();
+                        Int32 rowIndex = gvRow.RowIndex;
+                        String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
+                        Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
+                        CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                        if (Marca.Checked)
+                        {
+                            Citasstr = Citasstr + ";" + IdCita.ToString();
+                        }
+
                     }
+                    if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioP.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaP.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 1, txtMotivoAnulacion.Text))
+                    {
+                        EmpleadosAsig = new DataTable();
+                        Servicios = new DataTable();
+                        EmpleadosTotal = new DataTable();
 
-                }
-                if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioP.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaP.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 1, txtMotivoAnulacion.Text))
-                {
-                    EmpleadosAsig = new DataTable();
-                    Servicios = new DataTable();
-                    EmpleadosTotal = new DataTable();
-
-                    lblMensajeTitulo.Text = "Informativo";
-                    lblMensaje.Text = "Informativo: Se procedió a cambiar el(los) recurso(s) asignado(s) al servicio " + strServicio.Value + ".";
-                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                        lblMensajeTitulo.Text = "Informativo";
+                        lblMensaje.Text = "Informativo: Se procedió a cambiar el(los) recurso(s) asignado(s) al servicio " + strServicio.Value + ".";
+                        lblMensaje.ForeColor = System.Drawing.Color.Blue;
 
 
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                    upModalMensaje.Update();
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                        upModalMensaje.Update();
+                    }
+                    else
+                    {
+
+
+                        lblModalValTitle.Text = "Error";
+                        lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                        lblVal.ForeColor = System.Drawing.Color.Red;
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                        upModalVal.Update();
+
+
+                    }
                 }
                 else
                 {
 
-
                     lblModalValTitle.Text = "Error";
-                    lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                    lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar el Sector y/o por lo menos un empleado.";
                     lblVal.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                     upModalVal.Update();
-
-
                 }
-            }
-            else
-            {
 
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurrio un error en el sistema: Debe ingresar el Sector y/o por lo menos un empleado.";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
 
         }
@@ -461,52 +539,80 @@ namespace Web.Petcenter
         }
         protected void btnsi_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal('hide');", true);
-            List<Cita> ListCita = new List<Cita>();
-            String Citasstr = "";
-            Citasstr = idCitaA.Value;
-            foreach (GridViewRow gvRow in grvresultado.Rows)
+
+            try
             {
-                Int32 rowIndex = gvRow.RowIndex;
-                String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
-                Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
-                CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
-                if (Marca.Checked)
+
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalConfirmacion", "$('#myModalConfirmacion').modal('hide');", true);
+                List<Cita> ListCita = new List<Cita>();
+                String Citasstr = "";
+                Citasstr = idCitaA.Value;
+                foreach (GridViewRow gvRow in grvresultado.Rows)
                 {
-                    Citasstr = Citasstr + ";" + IdCita.ToString();
+                    Int32 rowIndex = gvRow.RowIndex;
+                    String val = (string)grvresultado.DataKeys[rowIndex]["DescripcionCita"];
+                    Int32 IdCita = (Int32)grvresultado.DataKeys[rowIndex]["idCita"];
+                    CheckBox Marca = (CheckBox)gvRow.Cells[0].FindControl("chkAsignacion");
+                    if (Marca.Checked)
+                    {
+                        Citasstr = Citasstr + ";" + IdCita.ToString();
+                    }
+
+                }
+
+                if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioA.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaA.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 2, txtMotivoAnulacion.Text))
+                {
+                    lblMensajeTitulo.Text = "Informativo";
+                    lblMensaje.Text = "Informativo:Se realizó la anulación de la planificación de atención con éxito.";
+                    lblMensaje.ForeColor = System.Drawing.Color.Blue;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal('hide');", true);
+                    txtMotivoAnulacion.Text = "";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
+                    upModalMensaje.Update();
+                    txtMotivoAnulacion.Text = "";
+                }
+                else
+                {
+
+
+                    lblModalValTitle.Text = "Error";
+                    lblVal.Text = "Ocurrió un error en el sistema. Error de Base de datos.";
+                    lblVal.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
+                    upModalVal.Update();
+
+
                 }
 
             }
-
-            if ((new ProgramacionCita()).GrabarProgramación(Int32.Parse(idServicioA.Value), Citasstr, EmpleadosAsig, Int32.Parse(idDetalleCitaA.Value), Int32.Parse(cboSector.SelectedValue.ToString()), 2, txtMotivoAnulacion.Text))
+            catch (Exception ex)
             {
-                lblMensajeTitulo.Text = "Informativo";
-                lblMensaje.Text = "Informativo:Se realizó la anulación de la planificación de atención con éxito.";
-                lblMensaje.ForeColor = System.Drawing.Color.Blue;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalA", "$('#myModalA').modal('hide');", true);
-                txtMotivoAnulacion.Text = "";
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalMensaje", "$('#myModalMensaje').modal();", true);
-                upModalMensaje.Update();
-                txtMotivoAnulacion.Text = "";
-            }
-            else
-            {
-
-
-                lblModalValTitle.Text = "Error";
-                lblVal.Text = "Ocurrió un error en el sistema. Error de Base de datos.";
-                lblVal.ForeColor = System.Drawing.Color.Red;
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
-                upModalVal.Update();
-
-
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
             }
 
         }
         protected void gvResultado_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            grvresultado.PageIndex = e.NewPageIndex;
-            CargaListado();
+
+            try
+            {
+
+                grvresultado.PageIndex = e.NewPageIndex;
+                CargaListado();
+
+            }
+            catch (Exception ex)
+            {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
         }
         protected void chkAsignacion_CheckedChanged(object sender, EventArgs e)
         {

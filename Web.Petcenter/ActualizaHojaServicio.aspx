@@ -230,6 +230,9 @@
                                     <asp:BoundField DataField="NroCita" HeaderText="CÓDIGO">
                                         <ItemStyle VerticalAlign="Middle" />
                                     </asp:BoundField>
+                                    <asp:BoundField DataField="Servicio" HeaderText="SERVICIO">
+                                        <ItemStyle VerticalAlign="Middle" />
+                                    </asp:BoundField>
                                     <asp:BoundField DataField="Cliente" HeaderText="CLIENTE">
                                         <ItemStyle VerticalAlign="Middle" />
                                     </asp:BoundField>

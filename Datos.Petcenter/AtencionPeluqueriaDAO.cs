@@ -733,7 +733,6 @@ namespace Datos.Petcenter
                 Cmd.Parameters.Add(new SqlParameter("@Comentarios", SqlDbType.VarChar,5000)).Value = coments;
                 Cmd.ExecuteNonQuery();
 
-                return string.Empty;
             }
             catch
             {
@@ -743,6 +742,8 @@ namespace Datos.Petcenter
             {
                 Cmd = null;
             }
+
+            return "OK";
         }
 
         //ingreso de hoja de servicio
@@ -1741,9 +1742,9 @@ namespace Datos.Petcenter
                
                 return Cmd.ExecuteNonQuery().ToString();
             }
-            catch
+            catch(Exception ex)
             {
-                return "";
+                return ex.Message;
                 throw;
             }
             finally
