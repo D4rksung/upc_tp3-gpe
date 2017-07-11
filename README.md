@@ -1,6 +1,7 @@
 # upc_tp3-gpe
 Módulo para Gestión de Peluquería de Petcenter
 <h5>Acceso al sistema para revisión: http://apps.scordsoft.net </h5>
+<h5>Fuentes para revisión: Release tag v1.0.0 </h5>
 <ul>
 <li> v 1.0 Version Inicial con el primer caso de uso</li>
 <li>v 1.2 Hasta el caso de uso 2 Gestion de recursos</li>
