@@ -209,6 +209,7 @@ namespace Web.Petcenter
                 }
                 catch (Exception ex)
                 {
+                    lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                     msgError.Clear();
                     msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                     msgError.AppendLine("Descripción:" + ex.Message);

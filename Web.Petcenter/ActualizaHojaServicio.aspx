@@ -38,17 +38,7 @@
         }
         return 1;
     }
-<%--    $(function () {
-        $("#<%= txtfechaIni.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
 
-            $("#<%= txtFechaFinal.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
-        });--%>
 
         function PriceMask(toField) {
             if (window.event.keyCode != 13) {

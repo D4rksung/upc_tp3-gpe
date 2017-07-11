@@ -52,6 +52,11 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
                 lblmsg.Text = ex.Message;
             }
         }
@@ -90,9 +95,14 @@ namespace Web.Petcenter
                     AtencionPeluqueriaBuss.GrabarKardexMaterial(kardex, 2);
                     ListarKardex();
                 }
-                catch 
+                catch (Exception ex)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema.'});", true);
+                    msgError.Clear();
+                    msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                    msgError.AppendLine("Descripción:" + ex.Message);
+                    msgError.AppendLine("Detalle:" + ex.StackTrace);
+                    log.Error(msgError.ToString());
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Mensaje", "$.growl.warning({ title: 'Mensaje Sistema', message: 'Error interno del sistema contacte con su administrador.'});", true);
                 }
 
 

@@ -38,17 +38,7 @@
         }
         return 1;
     }
-<%--    $(function () {
-        $("#<%= txtfechaIni.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
 
-            $("#<%= txtFechaFinal.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
-        });--%>
 
         function PriceMask(toField) {
             if (window.event.keyCode != 13) {
@@ -169,7 +159,7 @@
         <div class="box">
             <div class="contenido-ficha">
                 <section>
-                    <h2 class="text-center">Actualizar hoja de servicios</h2>
+                    <h2 class="text-center">Gestión de hoja de servicio</h2>
                     <br>
                     <br>
                     <div class="row">
@@ -218,7 +208,7 @@
 
                             <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%"
                                 AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True"
-                                OnRowCommand="grvresultado_RowCommand" OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" DataKeyNames="idHojaServicio,horaCita,fechaCita">
+                                OnRowCommand="grvresultado_RowCommand" OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idHojaServicio,horaCita,fechaCita">
 
                                 <Columns>
                                     <asp:BoundField DataField="fechaCita" HeaderText="FECHA">
@@ -228,6 +218,9 @@
                                         <ItemStyle VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="NroCita" HeaderText="CÓDIGO">
+                                        <ItemStyle VerticalAlign="Middle" />
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="Servicio" HeaderText="SERVICIO">
                                         <ItemStyle VerticalAlign="Middle" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="Cliente" HeaderText="CLIENTE">
@@ -269,6 +262,8 @@
 
 
                                 </Columns>
+                                <PagerSettings Position="Top" />
+                                    <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
                                 <RowStyle Font-Size="8pt" />
                             </asp:GridView>
                             <div class="row">
@@ -440,7 +435,7 @@
 
                                                             <ItemTemplate>
 
-                                                                <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" Style="text-align: center" onkeypress="return PriceMask(this)" Visible='<%# Eval("HasNumber") %>' Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                                                <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0"  Style="text-align: center" onkeypress="return PriceMask(this)" Visible='<%# Eval("HasNumber") %>' Text='<%# Eval("Cantidad") %>'></asp:TextBox>
                                                                 <asp:CheckBox ID="chkCantidad" Width="50px" runat="server" Style="text-align: center" Checked='<%# Eval("CantidadBit") %>' Visible='<%# Eval("HasBit") %>'></asp:CheckBox>
 
 
@@ -491,7 +486,7 @@
 
                             <asp:Button runat="server" Text="Ejecutar" CssClass="btn btn-default" ID="btnEjecutar" Style="width: 30%" OnClick="btnEjecutar_Click" />
                             <asp:Button runat="server" Text="Guardar" CssClass="btn btn-default" ID="btnGuardarP" Style="width: 30%" OnClick="btnGuardarP_Click" />
-                            <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-default" ID="btnCancelarP" Style="width: 30%" />
+                            <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-danger" ID="btnCancelarP" Style="width: 30%" />
 
                         </div>
                     </div>
@@ -555,7 +550,7 @@
                         <%--fin de contenido--%>
 
                         <div class="modal-footer">
-                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-default" ID="btnAceptar" Style="width: 30%" OnClick="btnAceptar_Click" />
+                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-danger" ID="btnAceptar" Style="width: 30%" OnClick="btnAceptar_Click" />
 
                         </div>
                     </div>
@@ -579,7 +574,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <asp:Label ID="Label2" runat="server" Font-Size="14px" ForeColor="Red" Text="La Fecha Final debe ser mayor a la Fecha Inicial"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Font-Size="14px" ForeColor="Red" Text="Ocurrió un error en el sistema: La fecha fin debe de ser mayor a la fecha inicio."></asp:Label>
                         </div>
 
                         <%--fin de contenido--%>
@@ -617,7 +612,7 @@
                         <div class="modal-footer">
                             <asp:Button runat="server" Text="SI" CssClass="btn btn-default" ID="btnSi" Style="width: 30%" OnClick="btnsi_Click" />
 
-                            <button class="btn btn-info" data-dismiss="modal" style="width: 30%" aria-hidden="true">NO</button>
+                            <button class="btn btn-danger" data-dismiss="modal" style="width: 30%" aria-hidden="true">NO</button>
                         </div>
                     </div>
 

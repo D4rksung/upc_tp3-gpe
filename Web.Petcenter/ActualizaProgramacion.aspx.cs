@@ -43,6 +43,7 @@ namespace Web.Petcenter
                 }
                 catch (Exception ex)
                 {
+                    lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                     msgError.Clear();
                     msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                     msgError.AppendLine("Descripción:" + ex.Message);
@@ -106,6 +107,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -180,6 +182,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -219,6 +222,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -409,6 +413,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -458,7 +463,7 @@ namespace Web.Petcenter
 
 
                         lblModalValTitle.Text = "Error";
-                        lblVal.Text = "Ocurió un error en el sistema. Error de Base de datos.";
+                        lblVal.Text = "Ocurió un error en el sistema concate con su administrador Detalle: Error de Base de datos.";
                         lblVal.ForeColor = System.Drawing.Color.Red;
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalVal", "$('#myModalVal').modal();", true);
                         upModalVal.Update();
@@ -479,6 +484,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -587,6 +593,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -607,6 +614,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);

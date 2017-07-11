@@ -56,9 +56,9 @@
       <Project>{6730707f-8c8a-41e1-a876-e7ef7599c985}</Project>
       <Name>Entidades.Petcenter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utilitario.Comun\Utilitario.Comun.csproj">
+    <ProjectReference Include="..\Utilitario.Comun\Common.Utility.csproj">
       <Project>{7a8d8aba-5014-431e-bf7c-ebc9d0af2bbf}</Project>
-      <Name>Utilitario.Comun</Name>
+      <Name>Common.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

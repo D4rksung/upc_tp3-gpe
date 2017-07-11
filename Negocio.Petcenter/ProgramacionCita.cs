@@ -45,12 +45,13 @@ namespace Negocio.Petcenter
 
                 TxOle.Commit();
                 CnnDS.Close();
-                return (Resultado != String.Empty);
+                return true;
             }
             catch 
             {
                 TxOle.Rollback();
                 CnnDS.Close();
+                return false;
                 throw;
             }
             finally

@@ -301,8 +301,8 @@
                                                     <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%"
                                                         AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True"
                                                         OnRowCommand="grvresultado_RowCommand"
-                                                        OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" 
-                                                         OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idMovimiento">
+                                                        OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged"
+                                                        OnPageIndexChanging="gvResultado_PageIndexChanging" DataKeyNames="idMovimiento">
 
                                                         <Columns>
                                                             <asp:BoundField DataField="NUMREQ" HeaderText="NUM REQ">
@@ -327,7 +327,7 @@
 
                                                                     <asp:Button ID="ibtnCerrar" runat="server" AlternateText="Enviar" CausesValidation="false" Visible='<%# Eval("Cerrar") %>'
                                                                         CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Cerrar" Text="Eviar" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
-                                                                    
+
                                                                     <asp:Button ID="ibtnRecepcionar" runat="server" AlternateText="Recepcionar" CausesValidation="false" Visible='<%# Eval("Recepcionar") %>'
                                                                         CommandArgument='<%# Bind("idMovimiento") %>' CommandName="Recepcionar" Text="Recepcionar" CssClass="btn btn-default" Style="min-width: 70px" Font-Size="X-Small" />
 
@@ -346,7 +346,12 @@
 
                                                 </div>
                                             </div>
-
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <asp:Label ID="lblmsg" runat="server" ForeColor="#993333"></asp:Label>
+                                                    <hr />
+                                                </div>
+                                            </div>
                                         </section>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -540,7 +545,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                       
+
                                     </div>
 
 
@@ -552,8 +557,8 @@
                                 <section>
                                     <div class="col-sm-12">
 
-                                        
-                                                <div class="row" id="divBuscar" runat="server">
+
+                                        <div class="row" id="divBuscar" runat="server">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="input-group">
@@ -598,7 +603,7 @@
 
                                                             <ItemTemplate>
 
-                                                                <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0"  Style="text-align: center" onkeypress="return PriceMask(this)" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                                                <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0" Style="text-align: center" onkeypress="return PriceMask(this)" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
 
 
                                                                 <itemstyle width="15%" />
@@ -640,14 +645,14 @@
     </div>
 
 
-    
+
     <%--RECEPCIONAR--%>
     <div class="modal fade" id="myModalR" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <asp:UpdatePanel ID="upModalR" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    
-                                <asp:HiddenField runat="server" ID="idMovimientoR" />
+
+                    <asp:HiddenField runat="server" ID="idMovimientoR" />
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -667,40 +672,40 @@
 
                                         <div class="row">
                                             <div style="height: 180px; width: 100%; overflow: auto" class="col-md-12">
-                                            <asp:GridView ID="grvresultado3" runat="server" class="table table-bordered" Width="100%"
-                                                AutoGenerateColumns="False" AllowSorting="True" AllowPaging="false" ShowHeaderWhenEmpty="True"
-                                                DataKeyNames="idMovimiento">
+                                                <asp:GridView ID="grvresultado3" runat="server" class="table table-bordered" Width="100%"
+                                                    AutoGenerateColumns="False" AllowSorting="True" AllowPaging="false" ShowHeaderWhenEmpty="True"
+                                                    DataKeyNames="idMovimiento">
 
-                                                <Columns>
-                                                    <asp:BoundField DataField="NUMREQ" HeaderText="NUM REQ">
-                                                        <ItemStyle VerticalAlign="Middle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="MATERIAL" HeaderText="MATERIAL">
-                                                        <ItemStyle VerticalAlign="Middle" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="SOL" HeaderText="CANTIDAD SOLICITADA">
-                                                        <ItemStyle VerticalAlign="Middle" />
-                                                    </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="CANTIDAD">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="NUMREQ" HeaderText="NUM REQ">
+                                                            <ItemStyle VerticalAlign="Middle" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField DataField="MATERIAL" HeaderText="MATERIAL">
+                                                            <ItemStyle VerticalAlign="Middle" />
+                                                        </asp:BoundField>
+                                                        <asp:BoundField DataField="SOL" HeaderText="CANTIDAD SOLICITADA">
+                                                            <ItemStyle VerticalAlign="Middle" />
+                                                        </asp:BoundField>
+                                                        <asp:TemplateField HeaderText="CANTIDAD">
 
-                                                        <ItemTemplate>
+                                                            <ItemTemplate>
 
-                                                            <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0" Style="text-align: center" onkeypress="return PriceMask(this)" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
+                                                                <asp:TextBox ID="txtCantidad" Width="50px" runat="server" onblur="fn_formatDecimal(0)" type="number" min="0" Style="text-align: center" onkeypress="return PriceMask(this)" Text='<%# Eval("Cantidad") %>'></asp:TextBox>
 
 
-                                                            <itemstyle width="15%" horizontalalign="Center" />
-                                                        </ItemTemplate>
+                                                                <itemstyle width="15%" horizontalalign="Center" />
+                                                            </ItemTemplate>
 
-                                                        <ItemStyle BorderStyle="Solid" HorizontalAlign="Center" />
-                                                    </asp:TemplateField>
+                                                            <ItemStyle BorderStyle="Solid" HorizontalAlign="Center" />
+                                                        </asp:TemplateField>
 
-                                                </Columns>
-                                                <PagerSettings Position="Top" />
-                                                <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
-                                                <RowStyle Font-Size="8pt" CssClass="td2" />
-                                            </asp:GridView>
+                                                    </Columns>
+                                                    <PagerSettings Position="Top" />
+                                                    <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
+                                                    <RowStyle Font-Size="8pt" CssClass="td2" />
+                                                </asp:GridView>
 
-                                                   </div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -717,8 +722,8 @@
                                 <asp:HiddenField runat="server" ID="HiddenField2" />
                                 <asp:HiddenField runat="server" ID="HiddenField3" />
 
-                                 <asp:Button runat="server" Text="Grabar" CssClass="btn btn-danger" ID="btnGrabar" Style="min-width: 100px" OnClick="btnGrabar_Click" />
-                               <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-danger" ID="Button3" Style="width: 30%" />
+                                <asp:Button runat="server" Text="Grabar" CssClass="btn btn-danger" ID="btnGrabar" Style="min-width: 100px" OnClick="btnGrabar_Click" />
+                                <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-danger" ID="Button3" Style="width: 30%" />
 
                             </div>
                         </div>

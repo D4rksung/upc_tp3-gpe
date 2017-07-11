@@ -118,9 +118,12 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestión de Peluquería<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="ActualizaProgramacion.aspx">Realizar programación de atención de servicios</a></li>
-                                        <li><a href="#">Gestión de Kardex</a></li>
+                                        <li><a href="ActualizaKardex.aspx">Requerimiento de materiales</a></li>
+                                        <li><a href="ActualizaKardexJefe.aspx">Revisión de requerimientos</a></li>
+                                        <li><a href="ActualizaKardexAtencion.aspx">Atención de requerimientos</a></li>                                                                             
                                         <li><a href="ActualizaHojaServicio.aspx">Gestión de hoja de servicio</a></li>
                                         <li><a href="ResumenGeneralGrafico.aspx">Capacidad de recursos y servicio</a></li>
+                                        <li><a href="ActualizaSectorCanil.aspx">Administrar canil y sector de trabajo</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Sistema</a></li>

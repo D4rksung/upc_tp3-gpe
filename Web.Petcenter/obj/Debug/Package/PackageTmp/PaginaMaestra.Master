@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="Content/css/Paginacion.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -96,6 +97,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+          <iframe id="frmExportar" runat="server" style="display:none"></iframe>
         <asp:UpdatePanel ID="upMenu" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <!-- Fixed navbar -->
@@ -121,9 +123,13 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestión de Peluquería<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="ActualizaProgramacion.aspx">Realizar programación de atención de servicios</a></li>
-                                        <li><a href="#">Gestión de Kardex</a></li>
+                                        <li><a href="ActualizaKardex.aspx">Requerimiento de materiales</a></li>
+                                        <li><a href="ActualizaKardexJefe.aspx">Revisión de requerimientos</a></li>
+                                                                               
                                         <li><a href="ActualizaHojaServicio.aspx">Gestión de hoja de servicio</a></li>
                                         <li><a href="ResumenGeneralGrafico.aspx">Capacidad de recursos y servicio</a></li>
+                                        <li><a href="ActualizaSectorCanil.aspx">Administrar canil y sector de trabajo</a></li>
+                                        
                                     </ul>
                                 </li>
                                 <li><a href="#">Sistema</a></li>

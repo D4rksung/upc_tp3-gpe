@@ -36,18 +36,7 @@
             }
             return 1;
         }
-       <%-- $(function () {
-            $("#<%= txtfechaInicio.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
-
-            $("#<%= txtFechaFin.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
-        });
-        --%>
+      
 
     </script>
     <style type="text/css">
@@ -62,7 +51,7 @@
         <div class="box">
             <div class="contenido-ficha">
                 <section>
-                    <h2 class="text-center">Actualizar programación de Atención</h2>
+                    <h2 class="text-center">Realizar programación de atención de servicios</h2>
                     <br>
                     <br>
                     <div class="row">
@@ -121,7 +110,7 @@
                         </div>
                         <div class="panel-body">
                             <div id="table-responsive" class="table-responsive">
-                                <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%"
+                                <asp:GridView ID="grvresultado" runat="server" class="table table-bordered" Width="100%" OnPageIndexChanging="gvResultado_PageIndexChanging"
                                     AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="True"
                                     OnRowDataBound="grvresultado_RowDataBound" OnSelectedIndexChanged="grvresultado_OnSelectedIndexChanged" DataKeyNames="idCita,DescripcionCita">
 
@@ -179,18 +168,18 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <asp:Button ID="ibtnProgramar" runat="server" AlternateText="Programar" CausesValidation="false" Visible='<%# Eval("Programar") %>'
-                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Programar" Text="Programar" CssClass="btn btn-default" Style="width: 60px; height: 20px" Font-Size="X-Small" />
+                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Programar" Text="Programar" CssClass="btn btn-default" Style="width: 80px; height: 20px" Font-Size="X-Small" />
 
 
 
                                                                         <asp:Button ID="ibtnModificar" runat="server" AlternateText="Modificar" CausesValidation="false" Visible='<%# Eval("Modificar") %>'
-                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Modificar" Text="Modificar" CssClass="btn btn-default" Style="width: 60px; height: 20px" Font-Size="X-Small" />
+                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Modificar" Text="Modificar" CssClass="btn btn-default" Style="width: 80px; height: 20px" Font-Size="X-Small" />
 
 
                                                                         <asp:Button ID="ibtnAnular" runat="server" AlternateText="Anular" CausesValidation="false" Visible='<%#Eval("Modificar") %>'
-                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Anular" Text="Anular" CssClass="btn btn-default" Style="width: 60px; height: 20px" Font-Size="X-Small" />
+                                                                            CommandArgument='<%# Bind("idDetalleCitaServicio") %>' CommandName="Anular" Text="Anular" CssClass="btn btn-default" Style="width: 80px; height: 20px" Font-Size="X-Small" />
                                                                         <div style="margin-left: auto; cursor:default; margin-right: auto; text-align: center;" Visible='<%#Eval("Anulado") %>'>
-                                                                        <asp:Label ID="lblAnulado"  Text="Anulado" runat="server" Visible='<%#Eval("Anulado") %>'  Style="width: 60px; height: 20px; text-align:center; "  Font-Size="X-Small"  ></asp:Label>
+                                                                        <asp:Label ID="lblAnulado"  Text="Anulado" runat="server" Visible='<%#Eval("Anulado") %>'  Style="width: 80px; height: 20px; text-align:center; "  Font-Size="X-Small"  ></asp:Label>
                                                                             </div>
                                                                     </div>
                                                                 </div>
@@ -206,6 +195,8 @@
 
 
                                     </Columns>
+                                    <PagerSettings Position="Top" />
+                                    <PagerStyle HorizontalAlign="Right" CssClass="pagination-ys" />
                                     <RowStyle Font-Size="8pt" CssClass="td1" />
                                 </asp:GridView>
                                 <div class="row">
@@ -235,9 +226,11 @@
                 <ContentTemplate>--%>
 
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="divcerrardetalle">&times;</button>
-                </div>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">
+                                <asp:Label ID="lblModalPTitleGD" runat="server" Text=""></asp:Label></h4>
+                        </div>
                 <div class="modal-body">
                     <%--contenido--%>
 
@@ -260,7 +253,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <div id="table-responsive2" class="table-responsive">
-                                        <asp:GridView ID="grvresultadodet" runat="server" CssClass="table table-bordered" HeaderStyle-CssClass="bg-primary" Width="100%"
+                                        <asp:GridView ID="grvresultadodet" runat="server" CssClass="table table-bordered" Width="100%"
                                             BorderStyle="None" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" ShowHeaderWhenEmpty="true">
                                             <HeaderStyle Font-Size="8pt" Font-Names="Arial" />
                                             <Columns>
@@ -288,7 +281,7 @@
                     <%--fin de contenido--%>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button runat="server" Text="Ocultar" data-dismiss="modal" CssClass="btn btn-default" ID="btnOcultar" Style="width: 30%" OnClick="btnOcultar_Click" />
+                    <asp:Button runat="server" Text="Ocultar" data-dismiss="modal" CssClass="btn btn-danger" ID="btnOcultar" Style="width: 30%" OnClick="btnOcultar_Click" />
                 </div>
             </div>
             <%--              </ContentTemplate>
@@ -340,12 +333,12 @@
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label class="col-md-12  control-label">Empleado:</label>
+                                    <label class="col-md-12  control-label">Empleado(s):</label>
 
 
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-md-12  control-label">Asignado:</label>
+                                    <label class="col-md-12  control-label">Asignado(s):</label>
 
                                 </div>
                             </div>
@@ -354,7 +347,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <asp:GridView ID="gvEmpleados" runat="server" CssClass="table table-bordered" HeaderStyle-CssClass="bg-primary" Width="100%"
+                                                <asp:GridView ID="gvEmpleados" runat="server" CssClass="table table-bordered" Width="100%"
                                                     BorderStyle="None" AutoGenerateColumns="False" AllowSorting="False" AllowPaging="False" ShowHeaderWhenEmpty="False" ShowHeader="false"
                                                     DataKeyNames="idEmpleado" OnRowCommand="gvEmpleados_RowCommand">
 
@@ -379,7 +372,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <asp:GridView ID="gvEmpleadosAsig" runat="server" CssClass="table table-bordered" HeaderStyle-CssClass="bg-primary" Width="100%"
+                                                <asp:GridView ID="gvEmpleadosAsig" runat="server" CssClass="table table-bordered"  Width="100%"
                                                     BorderStyle="None" AutoGenerateColumns="False" AllowSorting="False" AllowPaging="False" ShowHeaderWhenEmpty="False" ShowHeader="false"
                                                     DataKeyNames="idEmpleado" OnRowCommand="gvEmpleadosAsig_RowCommand">
 
@@ -425,7 +418,7 @@
                             <asp:HiddenField runat="server" ID="strServicio" />
 
                             <asp:Button runat="server" Text="Guardar" CssClass="btn btn-default" ID="btnGuardarP" Style="width: 30%" OnClick="btnGuardarP_Click" />
-                            <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-default" ID="btnCancelarP" Style="width: 30%" />
+                            <asp:Button runat="server" Text="Cancelar" data-dismiss="modal" CssClass="btn btn-danger" ID="btnCancelarP" Style="width: 30%" />
 
                         </div>
                     </div>
@@ -477,7 +470,7 @@
                             <asp:HiddenField runat="server" ID="idCitaA" />
 
                             <asp:Button runat="server" Text="Anular" CssClass="btn btn-default" ID="btnGuardarA" Style="width: 30%" OnClick="btnGuardarA_Click" />
-                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-default" ID="btnCancelarA" Style="width: 30%" data-dismiss="modal" />
+                            <asp:Button runat="server" Text="Cancelar" CssClass="btn btn-danger" ID="btnCancelarA" Style="width: 30%" data-dismiss="modal" />
 
                         </div>
                     </div>
@@ -533,7 +526,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <asp:Label ID="Label2" runat="server" Font-Size="14px" ForeColor="Red" Text="La Fecha Final debe ser mayor a la Fecha Inicial"></asp:Label>
+                            <asp:Label ID="Label2" runat="server" Font-Size="14px" ForeColor="Red" Text="Ocurrió un error en el sistema: La fecha fin debe de ser mayor a la fecha inicio."></asp:Label>
                         </div>
 
                         <%--fin de contenido--%>
@@ -570,7 +563,7 @@
                         <%--fin de contenido--%>
 
                         <div class="modal-footer">
-                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-default" ID="btnAceptar" Style="width: 30%" OnClick="btnAceptar_Click" />
+                            <asp:Button runat="server" Text="Aceptar" CssClass="btn btn-danger" ID="btnAceptar" Style="width: 30%" OnClick="btnAceptar_Click" />
 
                         </div>
                     </div>
@@ -603,7 +596,7 @@
                         <div class="modal-footer">
                             <asp:Button runat="server" Text="SI" CssClass="btn btn-default" ID="btnSi" Style="width: 30%" OnClick="btnsi_Click" />
 
-                            <button class="btn btn-info" data-dismiss="modal" style="width: 30%" aria-hidden="true">NO</button>
+                            <button class="btn btn-danger" data-dismiss="modal" style="width: 30%" aria-hidden="true">NO</button>
                         </div>
                     </div>
 

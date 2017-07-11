@@ -36,18 +36,7 @@
             }
             return 1;
         }
-       <%-- $(function () {
-            $("#<%= txtfechaInicio.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
-
-            $("#<%= txtFechaFin.ClientID%>").datepicker({
-                format: "dd/mm/yyyy",
-                daysOfWeekHighlighted: "0,6"
-            });
-        });
-        --%>
+      
 
     </script>
     <style type="text/css">

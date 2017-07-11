@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <hr />
-                <div class="row" style="display: none">
+                <div class="row" >
                     <div class="col-xs-4">
                         <div class="form-group">
                             <div class="input-group">
@@ -380,7 +380,7 @@
             var senddata = "{idServcio:\"" + valor + "\"}";
             $.ajax({
                 type: "POST",
-                url: 'ServicioGraficas.asmx/Grafico1',
+                url: 'ServicioGraficas.asmx/ObtenerGraficaDemandaSemanal',
                 data: senddata,
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
@@ -430,7 +430,7 @@
             var senddata = "{opcion:\"" + valor + "\"}";
             $.ajax({
                 type: "POST",
-                url: 'ServicioGraficas.asmx/Grafico2',
+                url: 'ServicioGraficas.asmx/ObtenerGraficaIndicadorDeActividadPorEmpleado',
                 data: senddata,
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
@@ -481,7 +481,7 @@
                         clickable: true
                     },
                     legend: {
-                        show: false
+                        show: true
                     }
                 });
             }
@@ -493,7 +493,7 @@
             var senddata = "{sede:\"" + valor + "\"}";
             $.ajax({
                 type: "POST",
-                url: 'ServicioGraficas.asmx/Grafico3',
+                url: 'ServicioGraficas.asmx/ObtenerGraficaIndicadorDeEficienciaDeRecurso',
                 data: senddata,
                 contentType: "application/json; charset=utf-8",
                 dataType: 'json',
@@ -570,9 +570,9 @@
             var valor1 = $('#<%=cboGrafico1.ClientID %> option:selected').val();
             callservidor(valor1);
         });
-        $('#<%=cbografico4.ClientID %>').change(function () {
-            var valor2 = $('#<%=cbografico4.ClientID %> option:selected').val();
-            callservidor2(valor2);
+        $('#<%=cboGrafico2.ClientID %>').change(function () {
+            var valor4 = $('#<%=cboGrafico2.ClientID %> option:selected').val();
+            callservidor2(valor4);
         });
         $('#<%=filtroservicio.ClientID %>').change(function () {
             var valor3 = $('#<%=filtroservicio.ClientID %> option:selected').val();

@@ -1714,7 +1714,7 @@ namespace Datos.Petcenter
             }
             catch
             {
-                return "";
+                throw;
             }
             finally
             {
@@ -2156,7 +2156,7 @@ namespace Datos.Petcenter
             }
             catch
             {
-                return "";
+                throw;
             }
             finally
             {
@@ -2186,7 +2186,7 @@ namespace Datos.Petcenter
             }
             catch
             {
-                return "";
+                throw;
             }
             finally
             {
@@ -2216,7 +2216,7 @@ namespace Datos.Petcenter
             }
             catch 
             {
-                return "";
+                throw;
             }
             finally
             {

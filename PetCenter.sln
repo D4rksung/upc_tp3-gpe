@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.2.Datos", "2.2.Datos", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2.Utilitario", "3.2.Utilitario", "{E518C0FE-24DC-4736-B362-B8537794C07D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilitario.Comun", "Utilitario.Comun\Utilitario.Comun.csproj", "{7A8D8ABA-5014-431E-BF7C-EBC9D0AF2BBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Utility", "Utilitario.Comun\Common.Utility.csproj", "{7A8D8ABA-5014-431E-BF7C-EBC9D0AF2BBF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1.Entidades", "3.1.Entidades", "{E16D808E-E483-4705-965A-5B2BF0F8AC7A}"
 EndProject

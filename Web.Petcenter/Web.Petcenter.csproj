@@ -493,8 +493,6 @@
     <Content Include="Content\img\right.png" />
     <Content Include="Content\img\view.png" />
     <Content Include="Default.aspx" />
-    <Content Include="EditarHojaServicio.aspx" />
-    <Content Include="EditarKardexMaterial.aspx" />
     <Content Include="ExportarSectorCanil.aspx" />
     <Content Include="Global.asax" />
     <Content Include="IMAGES\Boby.jpg" />
@@ -504,7 +502,6 @@
     <Content Include="IMAGES\Toby.jpg" />
     <Content Include="Index.aspx" />
     <Content Include="RequerimientoMaterial.aspx" />
-    <Content Include="ResumenGeneralGrafico2.aspx" />
     <Content Include="ResumenGeneralGrafico.aspx" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
@@ -568,20 +565,6 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EditarHojaServicio.aspx.cs">
-      <DependentUpon>EditarHojaServicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarHojaServicio.aspx.designer.cs">
-      <DependentUpon>EditarHojaServicio.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EditarKardexMaterial.aspx.cs">
-      <DependentUpon>EditarKardexMaterial.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EditarKardexMaterial.aspx.designer.cs">
-      <DependentUpon>EditarKardexMaterial.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ExportarSectorCanil.aspx.cs">
       <DependentUpon>ExportarSectorCanil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -620,13 +603,6 @@
     </Compile>
     <Compile Include="RequerimientoMaterial.aspx.designer.cs">
       <DependentUpon>RequerimientoMaterial.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ResumenGeneralGrafico2.aspx.cs">
-      <DependentUpon>ResumenGeneralGrafico2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ResumenGeneralGrafico2.aspx.designer.cs">
-      <DependentUpon>ResumenGeneralGrafico2.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResumenGeneralGrafico.aspx.cs">
       <DependentUpon>ResumenGeneralGrafico.aspx</DependentUpon>
@@ -681,9 +657,9 @@
       <Project>{65525eac-003b-4c44-83e2-3e3a2fe5aad8}</Project>
       <Name>Negocio.Petcenter</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Utilitario.Comun\Utilitario.Comun.csproj">
+    <ProjectReference Include="..\Utilitario.Comun\Common.Utility.csproj">
       <Project>{7a8d8aba-5014-431e-bf7c-ebc9d0af2bbf}</Project>
-      <Name>Utilitario.Comun</Name>
+      <Name>Common.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

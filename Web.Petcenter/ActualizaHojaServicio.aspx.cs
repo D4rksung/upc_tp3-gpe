@@ -22,16 +22,15 @@ namespace Web.Petcenter
         {
             if (!Page.IsPostBack)
             {
-                //txtfechaIni.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                //txtFechaFinal.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 try
                 {
-
+                    lblmsg.Text = string.Empty;
                     CargarDetalle();
 
                 }
                 catch (Exception ex)
                 {
+                    lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                     msgError.Clear();
                     msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                     msgError.AppendLine("Descripción:" + ex.Message);
@@ -119,6 +118,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -129,27 +129,44 @@ namespace Web.Petcenter
 
         protected void grvresultado_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+
+            try
             {
 
-
-                e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvresultado, "Select$" + e.Row.RowIndex);
-                e.Row.ToolTip = "Ver Detalle";
-
-                Int32 HoraCita = Int32.Parse(grvresultado.DataKeys[e.Row.RowIndex].Values[1].ToString().Split(':')[0]);
-                String FechaCita = grvresultado.DataKeys[e.Row.RowIndex].Values[2].ToString();
-                DateTime Dt = new DateTime(Int32.Parse(FechaCita.Substring(6, 4)), Int32.Parse(FechaCita.Substring(3, 2)), Int32.Parse(FechaCita.Substring(0, 2)));
-                DateTime DtActual = DateTime.Now;
-
-                Int32 horaActual = DateTime.Now.Hour;
-                if (horaActual < HoraCita && MarcaGrid < 2 && Dt.ToShortDateString() == DtActual.ToShortDateString())
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    e.Row.BackColor = ColorTranslator.FromHtml("#E8E5F5");
-                    MarcaGrid++;
+
+
+                    e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvresultado, "Select$" + e.Row.RowIndex);
+                    e.Row.ToolTip = "Ver Detalle";
+
+                    Int32 HoraCita = Int32.Parse(grvresultado.DataKeys[e.Row.RowIndex].Values[1].ToString().Split(':')[0]);
+                    String FechaCita = grvresultado.DataKeys[e.Row.RowIndex].Values[2].ToString();
+                    DateTime Dt = new DateTime(Int32.Parse(FechaCita.Substring(6, 4)), Int32.Parse(FechaCita.Substring(3, 2)), Int32.Parse(FechaCita.Substring(0, 2)));
+                    DateTime DtActual = DateTime.Now;
+
+                    Int32 horaActual = DateTime.Now.Hour;
+                    if (horaActual < HoraCita && MarcaGrid < 2 && Dt.ToShortDateString() == DtActual.ToShortDateString())
+                    {
+                        e.Row.BackColor = ColorTranslator.FromHtml("#E8E5F5");
+                        MarcaGrid++;
+                    }
+
+
                 }
 
-
             }
+            catch (Exception ex)
+            {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
+                msgError.Clear();
+                msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
+                msgError.AppendLine("Descripción:" + ex.Message);
+                msgError.AppendLine("Detalle:" + ex.StackTrace);
+                log.Error(msgError.ToString());
+            }
+
+           
         }
         protected void grvresultado_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -192,6 +209,7 @@ namespace Web.Petcenter
                 }
                 catch (Exception ex)
                 {
+                    lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                     msgError.Clear();
                     msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                     msgError.AppendLine("Descripción:" + ex.Message);
@@ -216,6 +234,7 @@ namespace Web.Petcenter
                 }
                 catch (Exception ex)
                 {
+                    lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                     msgError.Clear();
                     msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                     msgError.AppendLine("Descripción:" + ex.Message);
@@ -302,6 +321,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -346,6 +366,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -366,6 +387,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
@@ -433,6 +455,7 @@ namespace Web.Petcenter
             }
             catch (Exception ex)
             {
+                lblmsg.Text = "Error interno en el sistema contacte a su administrador " + " Detalle:" + ex.Message;
                 msgError.Clear();
                 msgError.AppendLine("Fecha:" + DateTime.Now.ToString());
                 msgError.AppendLine("Descripción:" + ex.Message);
